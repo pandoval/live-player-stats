@@ -1,0 +1,72 @@
+<resources>
+    <string name="app_name">Live Player Stats</string>
+    <string name="add_player">Add player</string>
+    <string name="hint_player_name">Player name</string>
+
+    <string-array name="nba_tricode" >
+        <item>ATL</item>
+        <item>BOS</item>
+        <item>BKN</item>
+        <item>CHA</item>
+        <item>CHI</item>
+        <item>CLE</item>
+        <item>DAL</item>
+        <item>DEN</item>
+        <item>DET</item>
+        <item>GSW</item>
+        <item>HOU</item>
+        <item>IND</item>
+        <item>LAC</item>
+        <item>LAL</item>
+        <item>MEM</item>
+        <item>MIA</item>
+        <item>MIL</item>
+        <item>MIN</item>
+        <item>NOP</item>
+        <item>NYK</item>
+        <item>OKC</item>
+        <item>ORL</item>
+        <item>PHI</item>
+        <item>PHX</item>
+        <item>POR</item>
+        <item>SAC</item>
+        <item>SAS</item>
+        <item>TOR</item>
+        <item>UTA</item>
+        <item>WAS</item>
+    </string-array>
+
+    <string-array name="nba_team_id" >
+        <item>1610612737</item>
+        <item>1610612738</item>
+        <item>1610612751</item>
+        <item>1610612766</item>
+        <item>1610612741</item>
+        <item>1610612739</item>
+        <item>1610612742</item>
+        <item>1610612743</item>
+        <item>1610612765</item>
+        <item>1610612744</item>
+        <item>1610612745</item>
+        <item>1610612754</item>
+        <item>1610612746</item>
+        <item>1610612747</item>
+        <item>1610612763</item>
+        <item>1610612748</item>
+        <item>1610612749</item>
+        <item>1610612750</item>
+        <item>1610612740</item>
+        <item>1610612752</item>
+        <item>1610612760</item>
+        <item>1610612753</item>
+        <item>1610612755</item>
+        <item>1610612756</item>
+        <item>1610612757</item>
+        <item>1610612758</item>
+        <item>1610612759</item>
+        <item>1610612761</item>
+        <item>1610612762</item>
+        <item>1610612764</item>
+    </string-array>
+
+</resources>
