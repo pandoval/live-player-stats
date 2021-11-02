@@ -26,6 +26,7 @@
         android:src="@drawable/ic_baseline_check_24"
         android:contentDescription="@string/confirm_choices"
         android:id="@+id/confirmFab"
-        android:visibility="gone"/>
+        android:visibility="gone"
+        app:tint = "@color/white" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
