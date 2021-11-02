@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.util.Log
 import android.view.Menu
 import android.view.MenuInflater
+import android.view.View
 import android.view.inputmethod.EditorInfo
 import android.widget.SearchView
 import androidx.activity.viewModels
@@ -17,6 +18,7 @@ import com.example.liveplayerstats.newplayercomponents.NewPlayerStateEvent
 import com.example.liveplayerstats.newplayercomponents.NewPlayerViewModel
 import com.example.liveplayerstats.playerlist.Standard
 import com.example.liveplayerstats.util.DataState
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -28,11 +30,13 @@ class NewPlayerActivity : AppCompatActivity(), NewPlayerAdapter.OnItemClickListe
     private lateinit var recyclerView: RecyclerView
     private lateinit var adapter: NewPlayerAdapter
     private lateinit var searchView: androidx.appcompat.widget.SearchView
+    private lateinit var confirmFab: FloatingActionButton
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_new_player)
 
+        setupConfirmFab()
         subscribeObservers()
         viewModel.setStateEvent(NewPlayerStateEvent.GetPlayersEvents)
     }
@@ -72,7 +76,11 @@ class NewPlayerActivity : AppCompatActivity(), NewPlayerAdapter.OnItemClickListe
     }
 
     override fun onItemClick(player: Standard) {
-
+        if (adapter.selectedPlayers.size > 0 && confirmFab.visibility == View.GONE) {
+            confirmFab.visibility = View.VISIBLE
+        } else if (adapter.selectedPlayers.size == 0) {
+            confirmFab.visibility = View.GONE
+        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -94,6 +102,16 @@ class NewPlayerActivity : AppCompatActivity(), NewPlayerAdapter.OnItemClickListe
                 adapter.filter.filter(p0)
                 return false
             }
+        })
+    }
+
+    private fun setupConfirmFab() {
+        confirmFab = findViewById(R.id.confirmFab)
+        confirmFab.setOnClickListener(object : View.OnClickListener {
+            override fun onClick(p0: View?) {
+                TODO("Not yet implemented")
+            }
+
         })
     }
 
