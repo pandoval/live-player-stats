@@ -59,10 +59,10 @@ class NewPlayerActivity : AppCompatActivity(), NewPlayerAdapter.OnItemClickListe
                 }
                 is DataState.Error -> {
                     Snackbar.make(this, findViewById(android.R.id.content),
-                        "Error", Snackbar.LENGTH_SHORT).show()
+                        "Network unavailable", Snackbar.LENGTH_SHORT).show()
                 }
                 is DataState.Loading -> {
-                    //None for now
+                    //ADD LOADING CIRCLE
                 }
             }
         })

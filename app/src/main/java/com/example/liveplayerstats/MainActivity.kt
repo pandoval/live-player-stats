@@ -1,9 +1,15 @@
 package com.example.liveplayerstats
 
 import android.app.Activity
+import android.content.Context
 import android.content.Intent
+import android.net.ConnectivityManager
+import android.net.NetworkCapabilities
+import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuItem
 import android.view.View
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
@@ -15,6 +21,7 @@ import com.example.liveplayerstats.playercomponents.PlayerListAdapter
 import com.example.liveplayerstats.playercomponents.PlayerViewModel
 import com.example.liveplayerstats.playerlist.Standard
 import com.google.android.material.floatingactionbutton.FloatingActionButton
+import com.google.android.material.snackbar.Snackbar
 
 class MainActivity : AppCompatActivity() {
 
@@ -34,6 +41,7 @@ class MainActivity : AppCompatActivity() {
                 }
             }
         }
+
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -52,10 +60,48 @@ class MainActivity : AppCompatActivity() {
         val fab = findViewById<FloatingActionButton>(R.id.fab)
         fab.setOnClickListener(object : View.OnClickListener{
             override fun onClick(p0: View?) {
-                val intent = Intent(this@MainActivity, NewPlayerActivity::class.java)
-                resultLauncher.launch(intent)
+                if (isNetworkAvailable(applicationContext)) {
+                    val intent = Intent(this@MainActivity, NewPlayerActivity::class.java)
+                    resultLauncher.launch(intent)
+                } else {
+                    Snackbar.make(applicationContext, fab,
+                        "Network unavailable", Snackbar.LENGTH_SHORT).show()
+                    TODO("FIX SNACKBAR CRASh")
+                }
             }
 
         })
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        val inflater = menuInflater
+        inflater.inflate(R.menu.main_menu, menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        if (item.itemId == R.id.resetPlayers) {
+            playerViewModel.deleteAll()
+            Snackbar.make(this, findViewById(android.R.id.content),
+                "All Players Deleted", Snackbar.LENGTH_SHORT).show()
+            return true
+        }
+        return super.onOptionsItemSelected(item)
+    }
+
+    private fun isNetworkAvailable(context: Context): Boolean {
+        val connectivityManager = context.getSystemService(Context.CONNECTIVITY_SERVICE)
+                as ConnectivityManager
+        val nw = connectivityManager.activeNetwork ?: return false
+        val actNw = connectivityManager.getNetworkCapabilities(nw) ?: return false
+        return when {
+            actNw.hasTransport(NetworkCapabilities.TRANSPORT_WIFI) -> true
+            actNw.hasTransport(NetworkCapabilities.TRANSPORT_CELLULAR) -> true
+            //for other device how are able to connect with Ethernet
+            actNw.hasTransport(NetworkCapabilities.TRANSPORT_ETHERNET) -> true
+            //for check internet over Bluetooth
+            actNw.hasTransport(NetworkCapabilities.TRANSPORT_BLUETOOTH) -> true
+            else -> false
+        }
     }
 }
