@@ -55,12 +55,12 @@ class NewPlayerAdapter(private val data: MutableList<Standard>, context: Context
     }
 
     fun playerSelected(player: Standard): Pair<Boolean, Int> {
-        var isSelected = false;
-        var index = -1;
+        var isSelected = false
+        var index = -1
         for (i in selectedPlayers.indices) {
             if (selectedPlayers[i].personId == (player.personId)) {
-                isSelected = true;
-                index = i;
+                isSelected = true
+                index = i
             }
         }
         return Pair(isSelected,index)
@@ -94,8 +94,10 @@ class NewPlayerAdapter(private val data: MutableList<Standard>, context: Context
         }
     }
 
-    private fun getFullName(player: Standard): String {
-        return "${player.firstName} ${player.lastName}"
+    companion object {
+        fun getFullName(player: Standard): String {
+            return "${player.firstName} ${player.lastName}"
+        }
     }
 
     override fun getItemCount(): Int {

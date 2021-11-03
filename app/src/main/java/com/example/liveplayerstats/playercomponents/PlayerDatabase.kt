@@ -29,9 +29,9 @@ abstract class PlayerDatabase: RoomDatabase() {
         suspend fun populateDatabase(playerDao: PlayerDao) {
             playerDao.deleteAll()
 
-            var player = Player("Jagoat","123")
+            var player = Player("JaVale McGoat","123")
             playerDao.insert(player)
-            player = Player("JAGOD!","223")
+            player = Player("JaGoat McGee","223")
             playerDao.insert(player)
 
         }

@@ -1,6 +1,7 @@
 package com.example.liveplayerstats
 
 import android.content.Context
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -109,10 +110,25 @@ class NewPlayerActivity : AppCompatActivity(), NewPlayerAdapter.OnItemClickListe
         confirmFab = findViewById(R.id.confirmFab)
         confirmFab.setOnClickListener(object : View.OnClickListener {
             override fun onClick(p0: View?) {
-                TODO("Not yet implemented")
+                val replyIntent = Intent()
+                val names = ArrayList<String>()
+                val ids = ArrayList<String>()
+                for (player in adapter.selectedPlayers) {
+                    names.add(NewPlayerAdapter.getFullName(player))
+                    ids.add(player.personId)
+                }
+                replyIntent.putExtra(REPLY_NAMES, names)
+                replyIntent.putExtra(REPLY_IDS, ids)
+                setResult(RESULT_OK, replyIntent)
+                finish()
             }
 
         })
+    }
+
+    companion object {
+        const val REPLY_NAMES = "com.example.liveplayerstats.REPLYNAMES"
+        const val REPLY_IDS = "com.example.liveplayerstats.REPLYIDS"
     }
 
 }
