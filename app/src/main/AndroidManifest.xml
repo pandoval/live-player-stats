@@ -14,7 +14,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.LivePlayerStats">
         <!-- SWITCH THESE ACTIVITIES, THIS IS FOR TESTING PURPOSES-->
-        <activity android:name=".NewPlayerActivity"></activity>
+        <activity android:name=".NewPlayerActivity"
+            android:parentActivityName=".MainActivity">
+
+        </activity>
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

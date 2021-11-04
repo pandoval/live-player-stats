@@ -36,6 +36,7 @@ class NewPlayerActivity : AppCompatActivity(), NewPlayerAdapter.OnItemClickListe
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_new_player)
+        title = "Add players"
 
         setupConfirmFab()
         subscribeObservers()
