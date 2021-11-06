@@ -9,6 +9,7 @@ import android.view.Menu
 import android.view.MenuInflater
 import android.view.View
 import android.view.inputmethod.EditorInfo
+import android.widget.ProgressBar
 import android.widget.SearchView
 import androidx.activity.viewModels
 import androidx.lifecycle.Observer
@@ -32,11 +33,13 @@ class NewPlayerActivity : AppCompatActivity(), NewPlayerAdapter.OnItemClickListe
     private lateinit var adapter: NewPlayerAdapter
     private lateinit var searchView: androidx.appcompat.widget.SearchView
     private lateinit var confirmFab: FloatingActionButton
+    private lateinit var progressBar: ProgressBar
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_new_player)
         title = "Add players"
+        progressBar = findViewById(R.id.newPlayerProgress)
 
         setupConfirmFab()
         subscribeObservers()
@@ -57,13 +60,15 @@ class NewPlayerActivity : AppCompatActivity(), NewPlayerAdapter.OnItemClickListe
                     }
                     setupRecyclerView(playerList)
                     setupSearch()
+                    progressBar.visibility = View.INVISIBLE
                 }
                 is DataState.Error -> {
                     Snackbar.make(this, findViewById(android.R.id.content),
                         "Network unavailable", Snackbar.LENGTH_SHORT).show()
+                    progressBar.visibility = View.INVISIBLE
                 }
                 is DataState.Loading -> {
-                    //ADD LOADING CIRCLE
+                    progressBar.visibility = View.VISIBLE
                 }
             }
         })
