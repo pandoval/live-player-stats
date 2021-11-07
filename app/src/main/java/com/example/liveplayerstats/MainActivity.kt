@@ -13,13 +13,14 @@ import android.view.MenuItem
 import android.view.View
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
+import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.liveplayerstats.playercomponents.Player
-import com.example.liveplayerstats.playercomponents.PlayerApplication
-import com.example.liveplayerstats.playercomponents.PlayerListAdapter
-import com.example.liveplayerstats.playercomponents.PlayerViewModel
+import com.example.liveplayerstats.boxscore.Boxscore
+import com.example.liveplayerstats.newplayercomponents.NewPlayerStateEvent
+import com.example.liveplayerstats.playercomponents.*
 import com.example.liveplayerstats.playerlist.Standard
+import com.example.liveplayerstats.util.DataState
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.snackbar.Snackbar
 
@@ -35,10 +36,11 @@ class MainActivity : AppCompatActivity() {
             val names = data?.getStringArrayListExtra(NewPlayerActivity.REPLY_NAMES)
             val ids = data?.getStringArrayListExtra(NewPlayerActivity.REPLY_IDS)
             val teamNames = data?.getStringArrayListExtra(NewPlayerActivity.REPLY_TEAMNAMES)
+            val teamIds = data?.getStringArrayListExtra(NewPlayerActivity.REPLY_TEAMIDS)
 
-            if (names != null && ids != null && teamNames != null) {
+            if (names != null && ids != null && teamNames != null && teamIds != null) {
                 for (i in names.indices) {
-                    playerViewModel.insert(Player(names[i], ids[i], teamNames[i]))
+                    playerViewModel.insert(Player(names[i], ids[i], teamNames[i], teamIds[i]))
                 }
 
             }
@@ -68,6 +70,28 @@ class MainActivity : AppCompatActivity() {
             }
 
         })
+
+        subscribeObservers()
+        playerViewModel.setStateEvent(PlayerViewModel.PlayerStatsStateEvent.GetPlayerStatsEvent,)
+    }
+
+    private fun subscribeObservers() {
+        playerViewModel.dataState.observe(this, Observer { dataState ->
+            when(dataState){
+                is DataState.Success<Boxscore> -> {
+                    val boxscore = dataState.data
+
+                }
+                is DataState.Error -> {
+                    Snackbar.make(this, findViewById(android.R.id.content),
+                        "Network unavailable", Snackbar.LENGTH_SHORT).show()
+                }
+                is DataState.Loading -> {
+                    //Progress bar?
+                }
+            }
+        })
+
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
