@@ -34,12 +34,15 @@ class MainActivity : AppCompatActivity() {
             val data: Intent? = result.data
             val names = data?.getStringArrayListExtra(NewPlayerActivity.REPLY_NAMES)
             val ids = data?.getStringArrayListExtra(NewPlayerActivity.REPLY_IDS)
+            val teamNames = data?.getStringArrayListExtra(NewPlayerActivity.REPLY_TEAMNAMES)
 
-            if (names != null && ids != null) {
-                names.zip(ids).forEach { pair ->
-                    playerViewModel.insert(Player(pair.component1(),pair.component2()))
+            if (names != null && ids != null && teamNames != null) {
+                for (i in names.indices) {
+                    playerViewModel.insert(Player(names[i], ids[i], teamNames[i]))
                 }
+
             }
+
         }
 
     }

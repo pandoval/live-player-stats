@@ -119,12 +119,15 @@ class NewPlayerActivity : AppCompatActivity(), NewPlayerAdapter.OnItemClickListe
                 val replyIntent = Intent()
                 val names = ArrayList<String>()
                 val ids = ArrayList<String>()
+                val teamNames = ArrayList<String>()
                 for (player in adapter.selectedPlayers) {
                     names.add(NewPlayerAdapter.getFullName(player))
                     ids.add(player.personId)
+                    teamNames.add(adapter.teamMap[player.teamId]!!)
                 }
                 replyIntent.putExtra(REPLY_NAMES, names)
                 replyIntent.putExtra(REPLY_IDS, ids)
+                replyIntent.putExtra(REPLY_TEAMNAMES, teamNames)
                 setResult(RESULT_OK, replyIntent)
                 finish()
             }
@@ -135,6 +138,7 @@ class NewPlayerActivity : AppCompatActivity(), NewPlayerAdapter.OnItemClickListe
     companion object {
         const val REPLY_NAMES = "com.example.liveplayerstats.REPLYNAMES"
         const val REPLY_IDS = "com.example.liveplayerstats.REPLYIDS"
+        const val REPLY_TEAMNAMES = "com.example.liveplayerstats.REPLYTEAMNAMES"
     }
 
 }

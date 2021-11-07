@@ -12,26 +12,25 @@ import com.example.liveplayerstats.R
 class PlayerListAdapter : ListAdapter<Player, PlayerListAdapter.PlayerViewHolder>(PlayersComparator()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PlayerViewHolder {
-        return PlayerViewHolder.create(parent)
+        val view: View = LayoutInflater.from(parent.context)
+            .inflate(R.layout.player_recyclerview_item, parent, false)
+
+        return PlayerViewHolder(view)
     }
 
     override fun onBindViewHolder(holder: PlayerViewHolder, position: Int) {
         val current = getItem(position)
-        holder.bind(current.name)
+        holder.bind(current)
     }
 
-    class PlayerViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        private val playerItemView: TextView = itemView.findViewById(R.id.playerName)
+    inner class PlayerViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
-        fun bind(text: String?) {
-            playerItemView.text = text
-        }
+        private val playerName: TextView = itemView.findViewById(R.id.playerName)
 
-        companion object {
-            fun create(parent: ViewGroup): PlayerViewHolder {
-                val view: View = LayoutInflater.from(parent.context)
-                    .inflate(R.layout.player_recyclerview_item, parent, false)
-                return PlayerViewHolder(view)
+        fun bind(player: Player?) {
+            if (player != null) {
+                playerName.text = player.name
+
             }
         }
     }
