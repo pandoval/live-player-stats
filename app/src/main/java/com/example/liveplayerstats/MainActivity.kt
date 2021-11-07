@@ -16,6 +16,7 @@ import androidx.activity.viewModels
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.liveplayerstats.boxscore.ActivePlayer
 import com.example.liveplayerstats.boxscore.Boxscore
 import com.example.liveplayerstats.newplayercomponents.NewPlayerStateEvent
 import com.example.liveplayerstats.playercomponents.*
@@ -30,6 +31,8 @@ class MainActivity : AppCompatActivity() {
         PlayerViewModel.PlayerViewModelFactory((application as PlayerApplication).repository)
     }
 
+    private val playerStatsViewModel: PlayerStatsViewModel by viewModels()
+
     val resultLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
         if (result.resultCode == Activity.RESULT_OK) {
             val data: Intent? = result.data
@@ -40,7 +43,7 @@ class MainActivity : AppCompatActivity() {
 
             if (names != null && ids != null && teamNames != null && teamIds != null) {
                 for (i in names.indices) {
-                    playerViewModel.insert(Player(names[i], ids[i], teamNames[i], teamIds[i]))
+                    //playerViewModel.insert(Player(names[i], ids[i], teamNames[i], teamIds[i], ))
                 }
 
             }
@@ -72,14 +75,32 @@ class MainActivity : AppCompatActivity() {
         })
 
         subscribeObservers()
-        playerViewModel.setStateEvent(PlayerViewModel.PlayerStatsStateEvent.GetPlayerStatsEvent,)
+        val teamIds = ArrayList<String>();
+        for (player in playerViewModel.allPlayers.value!!) {
+            teamIds.add(player.teamId)
+        }
+        playerStatsViewModel.setStateEvent(PlayerStatsViewModel.PlayerStatsStateEvent.GetPlayerStatsEvent,teamIds)
     }
 
+    lateinit var ap: ActivePlayer
+
     private fun subscribeObservers() {
-        playerViewModel.dataState.observe(this, Observer { dataState ->
+        playerStatsViewModel.dataState.observe(this, Observer { dataState ->
             when(dataState){
-                is DataState.Success<Boxscore> -> {
-                    val boxscore = dataState.data
+                is DataState.Success<List<Boxscore>> -> {
+                    val playerList = playerViewModel.allPlayers.value!!
+                    for (i in playerList.indices) {
+                        val p = playerList[i]
+                        val b = dataState.data[i]
+                        for(activePlayer in b.stats.activePlayers) {
+                            if (p.id == activePlayer.personId) {
+                                ap = activePlayer
+                                break;
+                            }
+                        }
+
+                        playerViewModel.insert(Player(p.name, p.id, p.teamName, p.teamId, ap.points, ap.totReb, ap.assists))
+                    }
 
                 }
                 is DataState.Error -> {

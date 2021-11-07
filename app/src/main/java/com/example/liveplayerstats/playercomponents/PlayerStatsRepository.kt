@@ -14,35 +14,26 @@ import javax.inject.Singleton
 @Singleton
 class PlayerStatsRepository @Inject constructor(private val nbaApi: NBAApi){
 
-    suspend fun getPlayers(): Flow<DataState<List<Standard>>> = flow {
-        emit(DataState.Loading)
-        try {
-            val playerList = nbaApi.getPlayerList().league.standard
-            emit(DataState.Success(playerList))
-        } catch (e: Exception) {
-            Log.e("error", e.toString() )
-            emit(DataState.Error(e))
-        }
-    }
-
-    suspend fun getStats(teamId: String): Flow<DataState<Boxscore>> = flow {
+    suspend fun getStats(teamIds: List<String>): Flow<DataState<List<Boxscore>>> = flow {
 
         emit(DataState.Loading)
         try {
             val date = getDate()
             val scoreboard = nbaApi.getScoreboard(date)
             val games = scoreboard.games
-            var gameId = ""
-
-            for (game in games) {
-                if (game.hTeam.teamId == teamId || game.vTeam.teamId == teamId) {
-                    gameId = game.gameId
+            val boxscoreList = ArrayList<Boxscore>()
+            for (teamId in teamIds) {
+                var gameId = ""
+                for (game in games) {
+                    if (game.hTeam.teamId == teamId || game.vTeam.teamId == teamId) {
+                        gameId = game.gameId
+                        break
+                    }
                 }
+                val boxscore = nbaApi.getBoxscore(date, gameId)
+                boxscoreList.add(boxscore)
             }
-
-            val boxscore = nbaApi.getBoxscore(date, gameId)
-
-            emit(DataState.Success(boxscore))
+            emit(DataState.Success(boxscoreList.toList()))
         } catch (e: Exception) {
             Log.e("error", e.toString() )
             emit(DataState.Error(e))

@@ -12,37 +12,9 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class PlayerViewModel @Inject constructor(private val playerRepository: PlayerRepository,
-    private val playerStatsRepository: PlayerStatsRepository): ViewModel() {
+class PlayerViewModel @Inject constructor(private val playerRepository: PlayerRepository): ViewModel() {
 
     val allPlayers: LiveData<List<Player>> = playerRepository.allPlayers.asLiveData()
-
-
-    //MVI, ABOVE IS MVVM
-    private val _dataState: MutableLiveData<DataState<Boxscore>> =
-        MutableLiveData()
-
-    val dataState: LiveData<DataState<Boxscore>>
-        get() = _dataState
-
-    fun setStateEvent(playerStatsStateEvent: PlayerStatsStateEvent, teamId: String) {
-        viewModelScope.launch {
-            when (playerStatsStateEvent) {
-
-                is PlayerStatsStateEvent.GetPlayerStatsEvent -> {
-                    playerStatsRepository.getStats(teamId)
-                        .onEach { dataState ->
-                            _dataState.value = dataState
-                        }
-                        .launchIn(viewModelScope)
-                }
-
-                is PlayerStatsStateEvent.None -> {
-
-                }
-            }
-        }
-    }
 
     fun insert(player: Player) = viewModelScope.launch {
         playerRepository.insert(player)
@@ -52,24 +24,16 @@ class PlayerViewModel @Inject constructor(private val playerRepository: PlayerRe
         playerRepository.deleteAll()
     }
 
-    class PlayerViewModelFactory(private val playerRepository: PlayerRepository,
-                                 private val playerStatsRepository: PlayerStatsRepository) :
+    class PlayerViewModelFactory(private val playerRepository: PlayerRepository) :
         ViewModelProvider.Factory {
 
         override fun <T : ViewModel> create(modelClass: Class<T>): T {
             if (modelClass.isAssignableFrom(PlayerViewModel::class.java)) {
                 @Suppress("UNCHECKED_CAST")
-                return PlayerViewModel(playerRepository,playerStatsRepository) as T
+                return PlayerViewModel(playerRepository) as T
             }
             throw IllegalArgumentException("Unknown ViewModel class")
         }
-    }
-
-    sealed class PlayerStatsStateEvent {
-
-        object  GetPlayerStatsEvent: PlayerStatsStateEvent()
-
-        object None: PlayerStatsStateEvent()
     }
 }
 
