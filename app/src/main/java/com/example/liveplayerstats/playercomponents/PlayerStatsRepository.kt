@@ -21,8 +21,9 @@ class PlayerStatsRepository @Inject constructor(private val nbaApi: NBAApi){
             val date = getDate()
             val scoreboard = nbaApi.getScoreboard(date)
             val games = scoreboard.games
-            val boxscoreList = ArrayList<Boxscore>()
-            for (teamId in teamIds) {
+            val boxscoreList = ArrayList<Boxscore>(teamIds.size)
+            for (i in teamIds.indices) {
+                val teamId = teamIds[i]
                 var gameId = ""
                 for (game in games) {
                     if (game.hTeam.teamId == teamId || game.vTeam.teamId == teamId) {
@@ -30,12 +31,18 @@ class PlayerStatsRepository @Inject constructor(private val nbaApi: NBAApi){
                         break
                     }
                 }
-                val boxscore = nbaApi.getBoxscore(date, gameId)
-                boxscoreList.add(boxscore)
+
+                try {
+                    val boxscore = nbaApi.getBoxscore(date, gameId)
+                    boxscoreList.add(i, boxscore)
+                } catch (e: Exception) {
+
+                }
+
             }
             emit(DataState.Success(boxscoreList.toList()))
         } catch (e: Exception) {
-            Log.e("error", e.toString() )
+            Log.e("error", e.toString())
             emit(DataState.Error(e))
         }
     }

@@ -8,11 +8,13 @@ import android.net.NetworkCapabilities
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
+import androidx.lifecycle.MediatorLiveData
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -20,11 +22,14 @@ import com.example.liveplayerstats.boxscore.ActivePlayer
 import com.example.liveplayerstats.boxscore.Boxscore
 import com.example.liveplayerstats.newplayercomponents.NewPlayerStateEvent
 import com.example.liveplayerstats.playercomponents.*
+import com.example.liveplayerstats.playerlist.PlayerList
 import com.example.liveplayerstats.playerlist.Standard
 import com.example.liveplayerstats.util.DataState
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.snackbar.Snackbar
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
     private val playerViewModel: PlayerViewModel by viewModels {
@@ -32,6 +37,9 @@ class MainActivity : AppCompatActivity() {
     }
 
     private val playerStatsViewModel: PlayerStatsViewModel by viewModels()
+
+    private lateinit var adapter: PlayerListAdapter
+    private lateinit var playerList: List<Player>
 
     val resultLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
         if (result.resultCode == Activity.RESULT_OK) {
@@ -43,11 +51,10 @@ class MainActivity : AppCompatActivity() {
 
             if (names != null && ids != null && teamNames != null && teamIds != null) {
                 for (i in names.indices) {
-                    //playerViewModel.insert(Player(names[i], ids[i], teamNames[i], teamIds[i], ))
+                    playerViewModel.insert(Player(names[i], ids[i], teamNames[i], teamIds[i], ))
                 }
 
             }
-
         }
 
     }
@@ -57,13 +64,9 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         val recyclerView = findViewById<RecyclerView>(R.id.playerRecyclerView)
-        val adapter = PlayerListAdapter()
+        adapter = PlayerListAdapter()
         recyclerView.adapter = adapter
         recyclerView.layoutManager = LinearLayoutManager(this)
-
-        playerViewModel.allPlayers.observe(this) { players ->
-            players.let { adapter.submitList(it) }
-        }
 
         val fab = findViewById<FloatingActionButton>(R.id.fab)
         fab.setOnClickListener(object : View.OnClickListener{
@@ -75,33 +78,28 @@ class MainActivity : AppCompatActivity() {
         })
 
         subscribeObservers()
-        val teamIds = ArrayList<String>();
-        for (player in playerViewModel.allPlayers.value!!) {
-            teamIds.add(player.teamId)
+        playerViewModel.allPlayers.observe(this) { players ->
+            playerList = players
+            val teamIds = ArrayList<String>();
+            for (player in playerList) {
+                teamIds.add(player.teamId)
+            }
+            playerStatsViewModel.setStateEvent(PlayerStatsViewModel.PlayerStatsStateEvent.GetPlayerStatsEvent,teamIds)
         }
-        playerStatsViewModel.setStateEvent(PlayerStatsViewModel.PlayerStatsStateEvent.GetPlayerStatsEvent,teamIds)
+
     }
 
-    lateinit var ap: ActivePlayer
 
     private fun subscribeObservers() {
         playerStatsViewModel.dataState.observe(this, Observer { dataState ->
             when(dataState){
                 is DataState.Success<List<Boxscore>> -> {
-                    val playerList = playerViewModel.allPlayers.value!!
-                    for (i in playerList.indices) {
-                        val p = playerList[i]
-                        val b = dataState.data[i]
-                        for(activePlayer in b.stats.activePlayers) {
-                            if (p.id == activePlayer.personId) {
-                                ap = activePlayer
-                                break;
-                            }
-                        }
-
-                        playerViewModel.insert(Player(p.name, p.id, p.teamName, p.teamId, ap.points, ap.totReb, ap.assists))
+                    Log.d("success", "success")
+                    val pairList = ArrayList<Pair<Player, Boxscore>>()
+                    for (i in dataState.data.indices) {
+                        pairList.add(Pair(playerList[i], dataState.data[i]))
                     }
-
+                    adapter.submitList(pairList)
                 }
                 is DataState.Error -> {
                     Snackbar.make(this, findViewById(android.R.id.content),
