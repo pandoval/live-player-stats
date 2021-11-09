@@ -3,6 +3,7 @@ package com.example.liveplayerstats
 import com.example.liveplayerstats.boxscore.Boxscore
 import com.example.liveplayerstats.playerlist.PlayerList
 import com.example.liveplayerstats.playerprofile.Player
+import com.example.liveplayerstats.teamschedule.TeamSchedule
 import com.example.liveplayerstats.todayscoreboard.Scoreboard
 import retrofit2.Call
 import retrofit2.http.GET
@@ -27,4 +28,7 @@ interface NBAApi {
     //CHANGE 2020 TO PLAYING YEAR
     @GET("v1/$SEASON_YEAR/players.json")
     suspend fun getPlayerList(): PlayerList
+
+    @GET("v1/${SEASON_YEAR}/teams/{teamId}/schedule.json")
+    suspend fun getTeamSchedule(@Path("teamId") teamId: String): TeamSchedule
 }

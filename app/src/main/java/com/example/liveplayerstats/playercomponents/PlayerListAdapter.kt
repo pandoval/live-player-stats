@@ -31,8 +31,12 @@ class PlayerListAdapter : ListAdapter<Pair<Player, Boxscore>, PlayerListAdapter.
 
         fun bind(pair: Pair<Player, Boxscore>?) {
             if (pair != null) {
+                Log.d("hi", "here")
                 Log.d("hi", pair.first.name)
-                Log.d("hi", pair.second.stats.activePlayers.toString())
+                Log.d("hi", pair.second.toString())
+                if (pair.second != null) {
+                    Log.d("hi", "here2")
+                }
             } else {
                 Log.d("hi", "null")
             }

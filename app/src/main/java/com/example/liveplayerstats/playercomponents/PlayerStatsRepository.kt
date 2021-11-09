@@ -36,7 +36,14 @@ class PlayerStatsRepository @Inject constructor(private val nbaApi: NBAApi){
                     val boxscore = nbaApi.getBoxscore(date, gameId)
                     boxscoreList.add(i, boxscore)
                 } catch (e: Exception) {
-
+                    val teamSchedule = nbaApi.getTeamSchedule(teamId)
+                    val latestIndex = teamSchedule.league.lastStandardGamePlayedIndex
+                    val gameList = teamSchedule.league.standard
+                    //+1 because trying to return next game
+                    val nextGameId = gameList[latestIndex+1].gameId
+                    val nextDate = gameList[latestIndex+1].startDateEastern
+                    val nextBoxscore = nbaApi.getBoxscore(nextDate, nextGameId)
+                    boxscoreList.add(i, nextBoxscore)
                 }
 
             }
