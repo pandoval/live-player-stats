@@ -10,7 +10,7 @@
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
-        android:layout_height="150dp"
+        android:layout_height="200dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -22,16 +22,151 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent" >
 
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/pPic"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_margin="8dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:shapeAppearanceOverlay="@style/roundedImageViewRounded"
+                tools:srcCompat="@tools:sample/avatars" />
 
             <TextView
-                android:id="@+id/playerName"
+                android:id="@+id/pName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:layout_constraintBottom_toBottomOf="parent"
+                android:layout_marginStart="14dp"
+                android:layout_marginTop="4dp"
+                android:textColor="@color/black"
+                android:textSize="14sp"
+                app:layout_constraintStart_toEndOf="@+id/pPic"
+                app:layout_constraintTop_toTopOf="@+id/pPic"
+                tools:text="JaVale McGee" />
+
+            <TextView
+                android:id="@+id/pTeam"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="14sp"
+                app:layout_constraintStart_toStartOf="@+id/pName"
+                app:layout_constraintTop_toBottomOf="@+id/pName"
+                tools:text="PHX" />
+
+            <TextView
+                android:id="@+id/pHTeam"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/black"
+                android:textSize="12sp"
+                app:layout_constraintBottom_toTopOf="@+id/imageView"
+                app:layout_constraintEnd_toEndOf="@+id/imageView"
+                app:layout_constraintStart_toStartOf="@+id/imageView"
+                android:gravity="center"
+                tools:text="PHX" />
+
+            <TextView
+                android:id="@+id/pHTeamRecord"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="12sp"
+                app:layout_constraintEnd_toEndOf="@+id/imageView"
+                app:layout_constraintStart_toStartOf="@+id/imageView"
+                app:layout_constraintTop_toBottomOf="@+id/imageView"
+                android:gravity="center"
+                tools:text="6-3" />
+
+            <TextView
+                android:id="@+id/pVTeam"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/black"
+                android:textSize="12sp"
+                app:layout_constraintBottom_toTopOf="@+id/imageView2"
+                app:layout_constraintEnd_toEndOf="@+id/imageView2"
+                app:layout_constraintStart_toStartOf="@+id/imageView2"
+                android:gravity="center"
+                tools:text="LAL" />
+
+            <TextView
+                android:id="@+id/pVTeamRecord"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="12sp"
+                app:layout_constraintEnd_toEndOf="@+id/imageView2"
+                app:layout_constraintStart_toStartOf="@+id/imageView2"
+                app:layout_constraintTop_toBottomOf="@+id/imageView2"
+                tools:text="6-5" />
+
+            <TextView
+                android:id="@+id/pQuarter"
+                android:layout_width="80dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:gravity="center"
+                android:textColor="@color/black"
+                android:textSize="12sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toBottomOf="@+id/pPic"
+                tools:text="Q4" />
+
+            <TextView
+                android:id="@+id/pClock"
+                android:layout_width="80dp"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:textSize="12sp"
+                app:layout_constraintEnd_toEndOf="@+id/pQuarter"
+                app:layout_constraintStart_toStartOf="@+id/pQuarter"
+                app:layout_constraintTop_toBottomOf="@+id/pQuarter"
+                tools:text="1:23" />
+
+            <TextView
+                android:id="@+id/pHTeamPoints"
+                android:layout_width="50dp"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:textColor="@color/black"
+                android:textSize="24sp"
+                app:layout_constraintBottom_toBottomOf="@+id/pClock"
+                app:layout_constraintEnd_toStartOf="@+id/pQuarter"
+                app:layout_constraintTop_toTopOf="@+id/pQuarter"
+                tools:text="105" />
+
+            <TextView
+                android:id="@+id/pVTeamPoints"
+                android:layout_width="50dp"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:textColor="@color/black"
+                android:textSize="24sp"
+                app:layout_constraintBottom_toBottomOf="@+id/pClock"
+                app:layout_constraintStart_toEndOf="@+id/pQuarter"
+                app:layout_constraintTop_toTopOf="@+id/pQuarter"
+                tools:text="92" />
+
+            <ImageView
+                android:id="@+id/imageView"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:layout_marginEnd="16dp"
+                app:layout_constraintBottom_toBottomOf="@+id/pHTeamPoints"
+                app:layout_constraintEnd_toStartOf="@+id/pHTeamPoints"
+                app:layout_constraintTop_toTopOf="@+id/pHTeamPoints"
+                app:srcCompat="@drawable/ic_suns" />
+
+            <ImageView
+                android:id="@+id/imageView2"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:layout_marginStart="16dp"
+                app:layout_constraintBottom_toBottomOf="@+id/pVTeamPoints"
+                app:layout_constraintStart_toEndOf="@+id/pVTeamPoints"
+                app:layout_constraintTop_toTopOf="@+id/pVTeamPoints"
+                app:srcCompat="@drawable/ic_lakers" />
+
         </androidx.constraintlayout.widget.ConstraintLayout>
-        
+
     </androidx.cardview.widget.CardView>
 </androidx.constraintlayout.widget.ConstraintLayout>
