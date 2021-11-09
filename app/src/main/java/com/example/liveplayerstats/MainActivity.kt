@@ -50,10 +50,11 @@ class MainActivity : AppCompatActivity() {
             val teamIds = data?.getStringArrayListExtra(NewPlayerActivity.REPLY_TEAMIDS)
 
             if (names != null && ids != null && teamNames != null && teamIds != null) {
+                val listPlayers = ArrayList<Player>()
                 for (i in names.indices) {
-                    playerViewModel.insert(Player(names[i], ids[i], teamNames[i], teamIds[i], ))
+                    listPlayers.add(Player(names[i], ids[i], teamNames[i], teamIds[i], ))
                 }
-
+                playerViewModel.insertList(listPlayers)
             }
         }
 
