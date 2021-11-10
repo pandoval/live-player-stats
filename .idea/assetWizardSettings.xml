@@ -35,8 +35,8 @@
                           <map>
                             <entry key="assetSourceType" value="FILE" />
                             <entry key="color" value="ffffff" />
-                            <entry key="outputName" value="ic_lakers" />
-                            <entry key="sourceFile" value="C:\Users\Spencer\AndroidStudioProjects\LivePlayerStats\team_vectors\lakers.svg" />
+                            <entry key="outputName" value="ic_wizards" />
+                            <entry key="sourceFile" value="C:\Users\Spencer\AndroidStudioProjects\LivePlayerStats\team_vectors\wizards.svg" />
                           </map>
                         </option>
                       </PersistentState>
