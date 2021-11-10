@@ -6,5 +6,6 @@ data class BasicGameData(
         val period: Period,
         val statusNum: Int,
         val vTeam: VTeamBS,
-        val startTimeEastern: String
+        val startTimeEastern: String,
+        val startDateEastern: String
 )

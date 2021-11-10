@@ -2,7 +2,7 @@ package com.example.liveplayerstats
 
 enum class TeamImgResources(val id: Int) {
     ATL(R.drawable.ic_hawks),
-    BOs(R.drawable.ic_celtics),
+    BOS(R.drawable.ic_celtics),
     BKN(R.drawable.ic_nets),
     CHA(R.drawable.ic_hornets),
     CHI(R.drawable.ic_bulls),
