@@ -80,15 +80,22 @@ class PlayerListAdapter : ListAdapter<Pair<Player, Boxscore>, PlayerListAdapter.
                 pVTeamPoints.text = vTeam.score
 
                 val quarterText = "Q${b.basicGameData.period.current.toString()}"
+                pQuarter.text = ""
+                pClock.text = ""
+                pFinal.visibility = View.INVISIBLE
                 when (b.basicGameData.statusNum) {
                     1 -> {
                         pQuarter.text = getDateString(b)
                         pClock.text = b.basicGameData.startTimeEastern
+                        pHTeamPoints.text = ""
+                        pVTeamPoints.text = ""
                     }
                     2 -> {
                         if (b.basicGameData.period.isHalftime) {
+                            pFinal.visibility = View.VISIBLE
                             pFinal.text = "Halftime"
                         } else if (b.basicGameData.period.isEndOfPeriod) {
+                            pFinal.visibility = View.VISIBLE
                             val endOfQ = "End of $quarterText"
                             pFinal.text = endOfQ
                         } else {
@@ -98,12 +105,13 @@ class PlayerListAdapter : ListAdapter<Pair<Player, Boxscore>, PlayerListAdapter.
                     }
                     3 -> {
                         pFinal.visibility = View.VISIBLE
+                        pFinal.text = "Final"
                     }
                 }
 
             } else {
-                pFinal.text = "Error"
                 pFinal.visibility = View.VISIBLE
+                pFinal.text = "Error"
             }
         }
     }
@@ -114,6 +122,11 @@ class PlayerListAdapter : ListAdapter<Pair<Player, Boxscore>, PlayerListAdapter.
         val day = startDateEastern.substring(6)
         val monthString = Months.values()[Integer.parseInt(month)-1].string
         val dayNum = Integer.parseInt(day)
+
+        val currentDate = PlayerStatsRepository.getDate()
+        if (startDateEastern == currentDate) {
+            return "Today"
+        }
         return "$monthString $dayNum"
     }
 

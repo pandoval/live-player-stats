@@ -170,13 +170,13 @@
                 android:id="@+id/pFinal"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:text="Final"
                 android:textColor="@color/black"
                 android:visibility="invisible"
                 app:layout_constraintBottom_toBottomOf="@+id/pClock"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/pQuarter"
-                android:text="Final" />
+                app:layout_constraintTop_toTopOf="@+id/pQuarter" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
