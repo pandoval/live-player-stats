@@ -25,8 +25,8 @@
 
             <com.google.android.material.imageview.ShapeableImageView
                 android:id="@+id/pPic"
-                android:layout_width="48dp"
-                android:layout_height="48dp"
+                android:layout_width="44dp"
+                android:layout_height="44dp"
                 android:layout_margin="8dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
@@ -37,10 +37,10 @@
                 android:id="@+id/pName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="14dp"
+                android:layout_marginStart="8dp"
                 android:layout_marginTop="4dp"
                 android:textColor="@color/black"
-                android:textSize="14sp"
+                android:textSize="13sp"
                 app:layout_constraintStart_toEndOf="@+id/pPic"
                 app:layout_constraintTop_toTopOf="@+id/pPic"
                 tools:text="JaVale McGee" />
@@ -49,7 +49,7 @@
                 android:id="@+id/pTeam"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="14sp"
+                android:textSize="13sp"
                 app:layout_constraintStart_toStartOf="@+id/pName"
                 app:layout_constraintTop_toBottomOf="@+id/pName"
                 tools:text="PHX" />
@@ -69,12 +69,12 @@
                 android:id="@+id/pHTeam"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:gravity="center"
                 android:textColor="@color/black"
                 android:textSize="12sp"
                 app:layout_constraintBottom_toTopOf="@+id/pHTeamLogo"
                 app:layout_constraintEnd_toEndOf="@+id/pHTeamLogo"
                 app:layout_constraintStart_toStartOf="@+id/pHTeamLogo"
-                android:gravity="center"
                 tools:text="PHX" />
 
             <TextView
@@ -92,12 +92,12 @@
                 android:id="@+id/pVTeam"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:gravity="center"
                 android:textColor="@color/black"
                 android:textSize="12sp"
                 app:layout_constraintBottom_toTopOf="@+id/pVTeamLogo"
                 app:layout_constraintEnd_toEndOf="@+id/pVTeamLogo"
                 app:layout_constraintStart_toStartOf="@+id/pVTeamLogo"
-                android:gravity="center"
                 tools:text="LAL" />
 
             <TextView
@@ -190,16 +190,30 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="@+id/pQuarter" />
 
+            <View
+                android:id="@+id/boxscoreSeparator"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="6dp"
+                android:layout_marginEnd="8dp"
+                android:background="@color/gray_background"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/pHTeamRecord" />
+
             <HorizontalScrollView
+                android:id="@+id/pHorizScroll"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="15dp"
                 android:visibility="gone"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/pHTeamRecord">
+                app:layout_constraintTop_toBottomOf="@id/pHTeamRecord"
+                tools:visibility="visible">
 
                 <TableLayout
                     android:layout_width="wrap_content"

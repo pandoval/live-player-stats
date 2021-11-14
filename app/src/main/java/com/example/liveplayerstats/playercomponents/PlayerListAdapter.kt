@@ -4,6 +4,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.HorizontalScrollView
 import android.widget.ImageView
 import androidx.recyclerview.widget.ListAdapter
 import android.widget.TextView
@@ -14,6 +15,7 @@ import com.bumptech.glide.Glide
 import com.example.liveplayerstats.Months
 import com.example.liveplayerstats.R
 import com.example.liveplayerstats.TeamImgResources
+import com.example.liveplayerstats.boxscore.ActivePlayer
 import com.example.liveplayerstats.boxscore.Boxscore
 import com.google.android.material.imageview.ShapeableImageView
 
@@ -49,9 +51,58 @@ class PlayerListAdapter : ListAdapter<Pair<Player, Boxscore>, PlayerListAdapter.
         private val pClock: TextView = itemView.findViewById(R.id.pClock)
         private val pFinal: TextView = itemView.findViewById(R.id.pFinal)
 
+        private val boxscoreSeparator: View = itemView.findViewById(R.id.boxscoreSeparator)
+        private val horizScrollView: HorizontalScrollView = itemView.findViewById(R.id.pHorizScroll)
+
+        private val mainMin: TextView = itemView.findViewById(R.id.mainMin)
+        private val mainPts: TextView = itemView.findViewById(R.id.mainPts)
+        private val mainReb: TextView = itemView.findViewById(R.id.mainReb)
+        private val mainAst: TextView = itemView.findViewById(R.id.mainAst)
+        private val mainStl: TextView = itemView.findViewById(R.id.mainStl)
+        private val mainBlk: TextView = itemView.findViewById(R.id.mainBlk)
+        private val mainFg: TextView = itemView.findViewById(R.id.mainFg)
+        private val main3p: TextView = itemView.findViewById(R.id.main3p)
+        private val mainFt: TextView = itemView.findViewById(R.id.mainFt)
+        private val mainOreb: TextView = itemView.findViewById(R.id.mainOreb)
+        private val mainDreb: TextView = itemView.findViewById(R.id.mainDreb)
+        private val mainTov: TextView = itemView.findViewById(R.id.mainTov)
+        private val mainPf: TextView = itemView.findViewById(R.id.mainPf)
+        private val mainPm: TextView = itemView.findViewById(R.id.mainPm)
+
         val teamArray = itemView.resources.getStringArray(R.array.nba_team_id)
         val teamImgResources = TeamImgResources.values()
         val resourcesMap: Map<String,TeamImgResources> = teamArray.zip(teamImgResources).toMap()
+
+        lateinit var ap: ActivePlayer
+        fun setBoxscore(p: Player, b: Boxscore) {
+
+            for (player in b.stats.activePlayers) {
+                if (p.id == player.personId) {
+                    ap = player
+                    break
+                }
+            }
+            boxscoreSeparator.visibility = View.VISIBLE
+            horizScrollView.visibility = View.VISIBLE
+
+            mainMin.text = ap.min
+            mainPts.text = ap.points
+            mainReb.text = ap.totReb
+            mainAst.text = ap.assists
+            mainStl.text = ap.steals
+            mainBlk.text = ap.blocks
+            val fgText = "${ap.fgm}-${ap.fga}"
+            mainFg.text = fgText
+            val threeText = "${ap.tpm}-${ap.tpa}"
+            main3p.text = threeText
+            val ftText = "${ap.ftm}-${ap.fta}"
+            mainFt.text = ftText
+            mainOreb.text = ap.offReb
+            mainDreb.text = ap.defReb
+            mainTov.text = ap.turnovers
+            mainPf.text = ap.pFouls
+            mainPm.text = ap.plusMinus
+        }
 
         fun bind(pair: Pair<Player, Boxscore>?) {
             if (pair != null) {
@@ -83,6 +134,8 @@ class PlayerListAdapter : ListAdapter<Pair<Player, Boxscore>, PlayerListAdapter.
                 pQuarter.text = ""
                 pClock.text = ""
                 pFinal.visibility = View.INVISIBLE
+                horizScrollView.visibility = View.GONE
+                boxscoreSeparator.visibility = View.GONE
                 when (b.basicGameData.statusNum) {
                     1 -> {
                         pQuarter.text = getDateString(b)
@@ -102,10 +155,12 @@ class PlayerListAdapter : ListAdapter<Pair<Player, Boxscore>, PlayerListAdapter.
                             pQuarter.text = quarterText
                             pClock.text = b.basicGameData.clock
                         }
+                        setBoxscore(p, b)
                     }
                     3 -> {
                         pFinal.visibility = View.VISIBLE
                         pFinal.text = "Final"
+                        setBoxscore(p, b)
                     }
                 }
 
