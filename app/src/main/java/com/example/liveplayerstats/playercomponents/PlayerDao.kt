@@ -1,9 +1,6 @@
 package com.example.liveplayerstats.playercomponents
 
-import androidx.room.Dao
-import androidx.room.Insert
-import androidx.room.OnConflictStrategy
-import androidx.room.Query
+import androidx.room.*
 import kotlinx.coroutines.flow.Flow
 
 @Dao
@@ -17,6 +14,9 @@ interface PlayerDao {
 
     @Query("DELETE FROM player_table")
     suspend fun deleteAll()
+
+    @Query("DELETE FROM player_table WHERE id = :id")
+    suspend fun deleteById(id: String)
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertList(playerList: List<Player>)

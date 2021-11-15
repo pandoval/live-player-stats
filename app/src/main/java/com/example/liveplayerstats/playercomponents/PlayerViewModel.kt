@@ -21,6 +21,10 @@ class PlayerViewModel(private val repository: PlayerRepository): ViewModel() {
         repository.insertList(playerList)
     }
 
+    fun deleteById(id: String) = viewModelScope.launch {
+        repository.deleteById(id)
+    }
+
     class PlayerViewModelFactory(private val repository: PlayerRepository) : ViewModelProvider.Factory {
         override fun <T : ViewModel> create(modelClass: Class<T>): T {
             if (modelClass.isAssignableFrom(PlayerViewModel::class.java)) {

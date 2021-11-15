@@ -30,7 +30,7 @@ import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), PlayerListAdapter.OnItemClickListener {
 
     private val playerViewModel: PlayerViewModel by viewModels {
         PlayerViewModel.PlayerViewModelFactory((application as PlayerApplication).repository)
@@ -65,7 +65,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         val recyclerView = findViewById<RecyclerView>(R.id.playerRecyclerView)
-        adapter = PlayerListAdapter()
+        adapter = PlayerListAdapter(this)
         recyclerView.adapter = adapter
         recyclerView.layoutManager = LinearLayoutManager(this)
 
@@ -146,5 +146,9 @@ class MainActivity : AppCompatActivity() {
                 else -> false
             }
         }
+    }
+
+    override fun onItemClick(id: String) {
+        playerViewModel.deleteById(id)
     }
 }

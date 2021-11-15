@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.HorizontalScrollView
+import android.widget.ImageButton
 import android.widget.ImageView
 import androidx.recyclerview.widget.ListAdapter
 import android.widget.TextView
@@ -19,7 +20,8 @@ import com.example.liveplayerstats.boxscore.ActivePlayer
 import com.example.liveplayerstats.boxscore.Boxscore
 import com.google.android.material.imageview.ShapeableImageView
 
-class PlayerListAdapter : ListAdapter<Pair<Player, Boxscore>, PlayerListAdapter.PlayerViewHolder>(PlayersComparator()) {
+class PlayerListAdapter(private val listener: OnItemClickListener) :
+    ListAdapter<Pair<Player, Boxscore>, PlayerListAdapter.PlayerViewHolder>(PlayersComparator()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PlayerViewHolder {
         val view: View = LayoutInflater.from(parent.context)
@@ -33,7 +35,7 @@ class PlayerListAdapter : ListAdapter<Pair<Player, Boxscore>, PlayerListAdapter.
         holder.bind(current)
     }
 
-    inner class PlayerViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    inner class PlayerViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView), View.OnClickListener {
 
         private val pName: TextView = itemView.findViewById(R.id.pName)
         private val pPic: ShapeableImageView = itemView.findViewById(R.id.pPic)
@@ -53,6 +55,7 @@ class PlayerListAdapter : ListAdapter<Pair<Player, Boxscore>, PlayerListAdapter.
 
         private val boxscoreSeparator: View = itemView.findViewById(R.id.boxscoreSeparator)
         private val horizScrollView: HorizontalScrollView = itemView.findViewById(R.id.pHorizScroll)
+        private val pDelete: ImageButton = itemView.findViewById(R.id.pDelete)
 
         private val mainMin: TextView = itemView.findViewById(R.id.mainMin)
         private val mainPts: TextView = itemView.findViewById(R.id.mainPts)
@@ -72,6 +75,8 @@ class PlayerListAdapter : ListAdapter<Pair<Player, Boxscore>, PlayerListAdapter.
         val teamArray = itemView.resources.getStringArray(R.array.nba_team_id)
         val teamImgResources = TeamImgResources.values()
         val resourcesMap: Map<String,TeamImgResources> = teamArray.zip(teamImgResources).toMap()
+
+        lateinit var currentPlayer: Player
 
         lateinit var ap: ActivePlayer
         fun setBoxscore(p: Player, b: Boxscore) {
@@ -105,6 +110,8 @@ class PlayerListAdapter : ListAdapter<Pair<Player, Boxscore>, PlayerListAdapter.
         }
 
         fun bind(pair: Pair<Player, Boxscore>?) {
+            currentPlayer = pair!!.first
+
             if (pair != null) {
                 val p = pair.first
                 val b = pair.second
@@ -168,7 +175,17 @@ class PlayerListAdapter : ListAdapter<Pair<Player, Boxscore>, PlayerListAdapter.
                 pFinal.visibility = View.VISIBLE
                 pFinal.text = "Error"
             }
+
+            pDelete.setOnClickListener(this)
         }
+
+        override fun onClick(p0: View?) {
+            listener.onItemClick(currentPlayer.id)
+        }
+    }
+
+    interface OnItemClickListener {
+        fun onItemClick(id: String)
     }
 
     private fun getDateString(b: Boxscore): String {
