@@ -52,7 +52,7 @@ class MainActivity : AppCompatActivity(), PlayerListAdapter.OnItemClickListener 
             if (names != null && ids != null && teamNames != null && teamIds != null) {
                 val listPlayers = ArrayList<Player>()
                 for (i in names.indices) {
-                    listPlayers.add(Player(names[i], ids[i], teamNames[i], teamIds[i], ))
+                    listPlayers.add(Player(names[i], ids[i], teamNames[i], teamIds[i], listPlayers.size))
                 }
                 playerViewModel.insertList(listPlayers)
             }

@@ -8,4 +8,5 @@ data class Player(val name: String,
                   @PrimaryKey
                   val id: String,
                   val teamName: String,
-                  val teamId: String)
+                  val teamId: String,
+                  val position: Int)
