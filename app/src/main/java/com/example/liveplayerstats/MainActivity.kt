@@ -18,6 +18,7 @@ import androidx.lifecycle.MediatorLiveData
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.example.liveplayerstats.boxscore.ActivePlayer
 import com.example.liveplayerstats.boxscore.Boxscore
 import com.example.liveplayerstats.newplayercomponents.NewPlayerStateEvent
@@ -40,6 +41,8 @@ class MainActivity : AppCompatActivity(), PlayerListAdapter.OnItemClickListener 
 
     private lateinit var adapter: PlayerListAdapter
     private lateinit var playerList: List<Player>
+
+    private lateinit var swipeRefreshLayout: SwipeRefreshLayout
 
     val resultLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
         if (result.resultCode == Activity.RESULT_OK) {
@@ -83,15 +86,15 @@ class MainActivity : AppCompatActivity(), PlayerListAdapter.OnItemClickListener 
         subscribeObservers()
         playerViewModel.allPlayers.observe(this) { players ->
             playerList = players
-            val teamIds = ArrayList<String>();
-            for (player in playerList) {
-                teamIds.add(player.teamId)
-            }
-            playerStatsViewModel.setStateEvent(PlayerStatsViewModel.PlayerStatsStateEvent.GetPlayerStatsEvent,teamIds)
+            updatePage()
+        }
+
+        swipeRefreshLayout = findViewById<SwipeRefreshLayout>(R.id.mainSwipeRefresh)
+        swipeRefreshLayout.setOnRefreshListener {
+            updatePage()
         }
 
     }
-
 
     private fun subscribeObservers() {
         playerStatsViewModel.dataState.observe(this, Observer { dataState ->
@@ -102,13 +105,15 @@ class MainActivity : AppCompatActivity(), PlayerListAdapter.OnItemClickListener 
                         pairList.add(Pair(playerList[i], dataState.data[i]))
                     }
                     adapter.submitList(pairList)
+                    swipeRefreshLayout.isRefreshing = false
                 }
                 is DataState.Error -> {
                     Snackbar.make(this, findViewById(android.R.id.content),
                         "Network unavailable", Snackbar.LENGTH_SHORT).show()
+                    swipeRefreshLayout.isRefreshing = false
                 }
                 is DataState.Loading -> {
-                    //Progress bar?
+                    swipeRefreshLayout.isRefreshing = true
                 }
             }
         })
@@ -127,6 +132,9 @@ class MainActivity : AppCompatActivity(), PlayerListAdapter.OnItemClickListener 
             Snackbar.make(this, findViewById(R.id.fab),
                 "All Players Deleted", Snackbar.LENGTH_SHORT).show()
             return true
+        } else if (item.itemId == R.id.refreshPlayers) {
+            swipeRefreshLayout.isRefreshing = true
+            updatePage()
         }
         return super.onOptionsItemSelected(item)
     }
@@ -151,5 +159,13 @@ class MainActivity : AppCompatActivity(), PlayerListAdapter.OnItemClickListener 
 
     override fun onItemClick(id: String) {
         playerViewModel.deleteById(id)
+    }
+
+    private fun updatePage() {
+        val teamIds = ArrayList<String>();
+        for (player in playerList) {
+            teamIds.add(player.teamId)
+        }
+        playerStatsViewModel.setStateEvent(PlayerStatsViewModel.PlayerStatsStateEvent.GetPlayerStatsEvent,teamIds)
     }
 }

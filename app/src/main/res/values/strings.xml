@@ -4,6 +4,7 @@
     <string name="hint_player_name">Player name</string>
     <string name="confirm_choices">Confirm choices</string>
     <string name="reset_players_title">Delete All Players</string>
+    <string name="refresh_players">Refresh Players</string>
 
     <string-array name="nba_tricode" >
         <item>ATL</item>
