@@ -6,6 +6,7 @@ import com.example.liveplayerstats.boxscore.Boxscore
 import com.example.liveplayerstats.playerlist.Standard
 import com.example.liveplayerstats.util.DataState
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.channelFlow
 import kotlinx.coroutines.flow.flow
 import java.util.*
 import javax.inject.Inject
@@ -14,14 +15,17 @@ import javax.inject.Singleton
 @Singleton
 class PlayerStatsRepository @Inject constructor(private val nbaApi: NBAApi){
 
-    suspend fun getStats(teamIds: List<String>): Flow<DataState<List<Boxscore>>> = flow {
+    suspend fun getStats(teamIds: List<String>): Flow<DataState<List<Boxscore>>> = channelFlow {
 
-        emit(DataState.Loading)
+        send(DataState.Loading)
         try {
             val date = getDate()
             val scoreboard = nbaApi.getScoreboard(date)
             val games = scoreboard.games
             val boxscoreList = ArrayList<Boxscore>(teamIds.size)
+            if (teamIds.isEmpty()) {
+                send(DataState.Success(boxscoreList.toList()))
+            }
             for (i in teamIds.indices) {
                 val teamId = teamIds[i]
                 var gameId = ""
@@ -47,10 +51,10 @@ class PlayerStatsRepository @Inject constructor(private val nbaApi: NBAApi){
                 }
 
             }
-            emit(DataState.Success(boxscoreList.toList()))
+            send(DataState.Success(boxscoreList.toList()))
         } catch (e: Exception) {
             Log.e("error", e.toString())
-            emit(DataState.Error(e))
+            send(DataState.Error(e))
         }
     }
 

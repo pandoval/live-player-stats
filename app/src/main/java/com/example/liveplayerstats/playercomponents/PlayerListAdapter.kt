@@ -110,7 +110,6 @@ class PlayerListAdapter(private val listener: OnItemClickListener) :
         }
 
         fun bind(pair: Pair<Player, Boxscore>?) {
-            Log.d("debug", "${pair!!.first.name}: ${pair.first.position}")
             currentPlayer = pair!!.first
 
             if (pair != null) {

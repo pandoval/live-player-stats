@@ -64,7 +64,7 @@ class MainActivity : AppCompatActivity(), PlayerListAdapter.OnItemClickListener 
                     }
                     if (!alreadyIn) {
                         //add to end of database list (make position the last one)
-                        listPlayers.add(Player(names[i], ids[i], teamNames[i], teamIds[i], playerList.size + i + 1))
+                        listPlayers.add(Player(names[i], ids[i], teamNames[i], teamIds[i]))
                     }
                 }
                 playerViewModel.insertList(listPlayers)
@@ -109,9 +109,8 @@ class MainActivity : AppCompatActivity(), PlayerListAdapter.OnItemClickListener 
         playerStatsViewModel.dataState.observe(this, Observer { dataState ->
             when(dataState){
                 is DataState.Success<List<Boxscore>> -> {
-                    Log.d("success", "success")
                     val pairList = ArrayList<Pair<Player, Boxscore>>()
-                    for (i in dataState.data.indices) {
+                    for (i in playerList.indices) {
                         pairList.add(Pair(playerList[i], dataState.data[i]))
                     }
                     adapter.submitList(pairList)
