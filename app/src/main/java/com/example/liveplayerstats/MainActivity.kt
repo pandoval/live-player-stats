@@ -52,7 +52,20 @@ class MainActivity : AppCompatActivity(), PlayerListAdapter.OnItemClickListener 
             if (names != null && ids != null && teamNames != null && teamIds != null) {
                 val listPlayers = ArrayList<Player>()
                 for (i in names.indices) {
-                    listPlayers.add(Player(names[i], ids[i], teamNames[i], teamIds[i], listPlayers.size))
+                    var alreadyIn = false
+                    for (player in playerList) {
+                        if (player.name == names[i]) {
+                            alreadyIn = true
+                            val snackbarText = "Player already added: ${player.name}"
+                            Snackbar.make(this, findViewById(R.id.fab),
+                                snackbarText, Snackbar.LENGTH_SHORT).show()
+                            break
+                        }
+                    }
+                    if (!alreadyIn) {
+                        //add to end of database list (make position the last one)
+                        listPlayers.add(Player(names[i], ids[i], teamNames[i], teamIds[i], playerList.size + i + 1))
+                    }
                 }
                 playerViewModel.insertList(listPlayers)
             }
@@ -66,6 +79,7 @@ class MainActivity : AppCompatActivity(), PlayerListAdapter.OnItemClickListener 
 
         val recyclerView = findViewById<RecyclerView>(R.id.playerRecyclerView)
         adapter = PlayerListAdapter(this)
+        adapter.setHasStableIds(true)
         recyclerView.adapter = adapter
         recyclerView.layoutManager = LinearLayoutManager(this)
 

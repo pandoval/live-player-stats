@@ -110,6 +110,7 @@ class PlayerListAdapter(private val listener: OnItemClickListener) :
         }
 
         fun bind(pair: Pair<Player, Boxscore>?) {
+            Log.d("debug", "${pair!!.first.name}: ${pair.first.position}")
             currentPlayer = pair!!.first
 
             if (pair != null) {
@@ -210,5 +211,9 @@ class PlayerListAdapter(private val listener: OnItemClickListener) :
         override fun areContentsTheSame(oldItem: Pair<Player, Boxscore>, newItem: Pair<Player, Boxscore>): Boolean {
             return oldItem.first.id == newItem.first.id
         }
+    }
+
+    override fun getItemId(position: Int): Long {
+        return Integer.parseInt(getItem(position).first.id).toLong()
     }
 }
