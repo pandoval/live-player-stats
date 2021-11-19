@@ -31,7 +31,8 @@ import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class MainActivity : AppCompatActivity(), PlayerListAdapter.OnItemClickListener {
+class MainActivity : AppCompatActivity(), PlayerListAdapter.OnItemClickListener,
+    PlayerListAdapter.OnItemLongClickListener {
 
     private val playerViewModel: PlayerViewModel by viewModels {
         PlayerViewModel.PlayerViewModelFactory((application as PlayerApplication).repository)
@@ -69,7 +70,7 @@ class MainActivity : AppCompatActivity(), PlayerListAdapter.OnItemClickListener 
         setContentView(R.layout.activity_main)
 
         val recyclerView = findViewById<RecyclerView>(R.id.playerRecyclerView)
-        adapter = PlayerListAdapter(this)
+        adapter = PlayerListAdapter(this, this)
         adapter.setHasStableIds(true)
         recyclerView.adapter = adapter
         recyclerView.layoutManager = LinearLayoutManager(this)
@@ -167,5 +168,9 @@ class MainActivity : AppCompatActivity(), PlayerListAdapter.OnItemClickListener 
             teamIds.add(player.teamId)
         }
         playerStatsViewModel.setStateEvent(PlayerStatsViewModel.PlayerStatsStateEvent.GetPlayerStatsEvent,teamIds)
+    }
+
+    override fun onItemLongClick(id: String) {
+
     }
 }

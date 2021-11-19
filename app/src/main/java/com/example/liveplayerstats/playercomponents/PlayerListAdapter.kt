@@ -20,7 +20,8 @@ import com.example.liveplayerstats.boxscore.ActivePlayer
 import com.example.liveplayerstats.boxscore.Boxscore
 import com.google.android.material.imageview.ShapeableImageView
 
-class PlayerListAdapter(private val listener: OnItemClickListener) :
+class PlayerListAdapter(private val listener: OnItemClickListener,
+private val longClickListener: OnItemLongClickListener) :
     ListAdapter<Pair<Player, Boxscore>, PlayerListAdapter.PlayerViewHolder>(PlayersComparator()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PlayerViewHolder {
@@ -35,7 +36,8 @@ class PlayerListAdapter(private val listener: OnItemClickListener) :
         holder.bind(current)
     }
 
-    inner class PlayerViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView), View.OnClickListener {
+    inner class PlayerViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView),
+        View.OnClickListener, View.OnLongClickListener {
 
         private val pName: TextView = itemView.findViewById(R.id.pName)
         private val pPic: ShapeableImageView = itemView.findViewById(R.id.pPic)
@@ -181,15 +183,25 @@ class PlayerListAdapter(private val listener: OnItemClickListener) :
             }
 
             pDelete.setOnClickListener(this)
+            itemView.setOnLongClickListener(this)
         }
 
         override fun onClick(p0: View?) {
             listener.onItemClick(currentPlayer.id)
         }
+
+        override fun onLongClick(p0: View?): Boolean {
+            longClickListener.onItemLongClick(currentPlayer.id)
+            return true
+        }
     }
 
     interface OnItemClickListener {
         fun onItemClick(id: String)
+    }
+
+    interface OnItemLongClickListener {
+        fun onItemLongClick(id: String)
     }
 
     private fun getDateString(b: Boxscore): String {
