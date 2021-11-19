@@ -80,33 +80,37 @@ class PlayerListAdapter(private val listener: OnItemClickListener) :
 
         lateinit var ap: ActivePlayer
         fun setBoxscore(p: Player, b: Boxscore) {
-
+            var playerActive = false
             for (player in b.stats.activePlayers) {
                 if (p.id == player.personId) {
                     ap = player
+                    playerActive = true
                     break
                 }
             }
-            boxscoreSeparator.visibility = View.VISIBLE
-            horizScrollView.visibility = View.VISIBLE
 
-            mainMin.text = ap.min
-            mainPts.text = ap.points
-            mainReb.text = ap.totReb
-            mainAst.text = ap.assists
-            mainStl.text = ap.steals
-            mainBlk.text = ap.blocks
-            val fgText = "${ap.fgm}-${ap.fga}"
-            mainFg.text = fgText
-            val threeText = "${ap.tpm}-${ap.tpa}"
-            main3p.text = threeText
-            val ftText = "${ap.ftm}-${ap.fta}"
-            mainFt.text = ftText
-            mainOreb.text = ap.offReb
-            mainDreb.text = ap.defReb
-            mainTov.text = ap.turnovers
-            mainPf.text = ap.pFouls
-            mainPm.text = ap.plusMinus
+            if (playerActive) {
+                boxscoreSeparator.visibility = View.VISIBLE
+                horizScrollView.visibility = View.VISIBLE
+
+                mainMin.text = ap.min
+                mainPts.text = ap.points
+                mainReb.text = ap.totReb
+                mainAst.text = ap.assists
+                mainStl.text = ap.steals
+                mainBlk.text = ap.blocks
+                val fgText = "${ap.fgm}-${ap.fga}"
+                mainFg.text = fgText
+                val threeText = "${ap.tpm}-${ap.tpa}"
+                main3p.text = threeText
+                val ftText = "${ap.ftm}-${ap.fta}"
+                mainFt.text = ftText
+                mainOreb.text = ap.offReb
+                mainDreb.text = ap.defReb
+                mainTov.text = ap.turnovers
+                mainPf.text = ap.pFouls
+                mainPm.text = ap.plusMinus
+            }
         }
 
         fun bind(pair: Pair<Player, Boxscore>?) {
