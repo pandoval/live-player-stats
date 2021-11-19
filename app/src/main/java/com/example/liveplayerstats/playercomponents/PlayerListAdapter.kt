@@ -1,5 +1,6 @@
 package com.example.liveplayerstats.playercomponents
 
+import android.content.Context
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -13,16 +14,22 @@ import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.example.liveplayerstats.MainActivity
 import com.example.liveplayerstats.Months
 import com.example.liveplayerstats.R
 import com.example.liveplayerstats.TeamImgResources
 import com.example.liveplayerstats.boxscore.ActivePlayer
 import com.example.liveplayerstats.boxscore.Boxscore
+import com.google.android.material.card.MaterialCardView
 import com.google.android.material.imageview.ShapeableImageView
 
 class PlayerListAdapter(private val listener: OnItemClickListener,
-private val longClickListener: OnItemLongClickListener) :
+private val longClickListener: OnItemLongClickListener, private val context: Context
+) :
     ListAdapter<Pair<Player, Boxscore>, PlayerListAdapter.PlayerViewHolder>(PlayersComparator()) {
+
+    var selectionMode = false
+    val selectedIds = ArrayList<String>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PlayerViewHolder {
         val view: View = LayoutInflater.from(parent.context)
@@ -58,6 +65,7 @@ private val longClickListener: OnItemLongClickListener) :
         private val boxscoreSeparator: View = itemView.findViewById(R.id.boxscoreSeparator)
         private val horizScrollView: HorizontalScrollView = itemView.findViewById(R.id.pHorizScroll)
         private val pDelete: ImageButton = itemView.findViewById(R.id.pDelete)
+        private val mainCardView = itemView.findViewById<MaterialCardView>(R.id.mainCardView)
 
         private val mainMin: TextView = itemView.findViewById(R.id.mainMin)
         private val mainPts: TextView = itemView.findViewById(R.id.mainPts)
@@ -182,8 +190,35 @@ private val longClickListener: OnItemLongClickListener) :
                 pFinal.text = "Error"
             }
 
-            pDelete.setOnClickListener(this)
-            itemView.setOnLongClickListener(this)
+            if (selectionMode) {
+                itemView.setOnClickListener {
+                    itemSelected(currentPlayer)
+                }
+                itemView.setOnLongClickListener(object : View.OnLongClickListener{
+                    override fun onLongClick(p0: View?): Boolean {
+                        itemSelected(currentPlayer)
+                        return true
+                    }
+                })
+            } else {
+                itemView.setOnLongClickListener(this)
+            }
+        }
+
+        private fun itemSelected(player: Player) {
+            if (selectedIds.contains(player.id)) {
+                selectedIds.remove(player.id)
+                mainCardView.strokeWidth = 0
+                if (selectedIds.size == 0) {
+                    selectionMode = false
+                    val main = context as MainActivity
+                    main.mainActionModeCallback.finishActionMode()
+                    notifyDataSetChanged()
+                }
+            } else {
+                selectedIds.add(player.id)
+                mainCardView.strokeWidth = 1
+            }
         }
 
         override fun onClick(p0: View?) {

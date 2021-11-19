@@ -9,6 +9,7 @@ import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.ActionMode
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
@@ -40,8 +41,10 @@ class MainActivity : AppCompatActivity(), PlayerListAdapter.OnItemClickListener,
 
     private val playerStatsViewModel: PlayerStatsViewModel by viewModels()
 
+    private lateinit var recyclerView: RecyclerView
     private lateinit var adapter: PlayerListAdapter
     private lateinit var playerList: List<Player>
+    lateinit var mainActionModeCallback: MainActionModeCallback
 
     private lateinit var swipeRefreshLayout: SwipeRefreshLayout
 
@@ -69,8 +72,8 @@ class MainActivity : AppCompatActivity(), PlayerListAdapter.OnItemClickListener,
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val recyclerView = findViewById<RecyclerView>(R.id.playerRecyclerView)
-        adapter = PlayerListAdapter(this, this)
+        recyclerView = findViewById<RecyclerView>(R.id.playerRecyclerView)
+        adapter = PlayerListAdapter(this, this, this)
         adapter.setHasStableIds(true)
         recyclerView.adapter = adapter
         recyclerView.layoutManager = LinearLayoutManager(this)
@@ -158,10 +161,6 @@ class MainActivity : AppCompatActivity(), PlayerListAdapter.OnItemClickListener,
         }
     }
 
-    override fun onItemClick(id: String) {
-        playerViewModel.deleteById(id)
-    }
-
     private fun updatePage() {
         val teamIds = ArrayList<String>();
         for (player in playerList) {
@@ -171,6 +170,15 @@ class MainActivity : AppCompatActivity(), PlayerListAdapter.OnItemClickListener,
     }
 
     override fun onItemLongClick(id: String) {
+        mainActionModeCallback = MainActionModeCallback()
+        mainActionModeCallback.startActionMode(recyclerView, R.menu.delete_menu, "1")
 
+        adapter.selectionMode = true
+        adapter.selectedIds.add(id)
+        adapter.notifyDataSetChanged()
+    }
+
+    override fun onItemClick(id: String) {
+        playerViewModel.deleteById(id)
     }
 }
