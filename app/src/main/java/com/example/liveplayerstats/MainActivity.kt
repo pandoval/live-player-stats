@@ -33,7 +33,7 @@ import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity(), PlayerListAdapter.OnItemClickListener,
-    PlayerListAdapter.OnItemLongClickListener {
+    PlayerListAdapter.OnItemLongClickListener, OnActionItemClickListener {
 
     private val playerViewModel: PlayerViewModel by viewModels {
         PlayerViewModel.PlayerViewModelFactory((application as PlayerApplication).repository)
@@ -170,15 +170,28 @@ class MainActivity : AppCompatActivity(), PlayerListAdapter.OnItemClickListener,
     }
 
     override fun onItemLongClick(id: String) {
-        mainActionModeCallback = MainActionModeCallback()
+        mainActionModeCallback = MainActionModeCallback(this)
         mainActionModeCallback.startActionMode(recyclerView, R.menu.delete_menu, "1")
-
+        adapter.newSelectionMode = true
+        adapter.firstId = id
         adapter.selectionMode = true
-        adapter.selectedIds.add(id)
+        swipeRefreshLayout.isEnabled = false
         adapter.notifyDataSetChanged()
     }
 
     override fun onItemClick(id: String) {
-        playerViewModel.deleteById(id)
+    }
+
+    override fun onActionItemClick(item: MenuItem) {
+        playerViewModel.deleteList(adapter.selectedIds)
+        adapter.selectionMode = false
+        adapter.notifyDataSetChanged()
+        mainActionModeCallback.finishActionMode()
+    }
+
+    override fun onCanceled() {
+        swipeRefreshLayout.isEnabled = true
+        adapter.selectionMode = false
+        adapter.notifyDataSetChanged()
     }
 }

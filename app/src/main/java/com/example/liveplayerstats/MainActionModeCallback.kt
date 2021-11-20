@@ -1,14 +1,16 @@
 package com.example.liveplayerstats
 
+import android.content.Context
 import android.view.ActionMode
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import androidx.annotation.MenuRes
+import com.example.liveplayerstats.playercomponents.PlayerListAdapter
 
-class MainActionModeCallback : ActionMode.Callback {
+class MainActionModeCallback(onActionItemClickListener: OnActionItemClickListener) : ActionMode.Callback {
 
-    var onActionItemClickListener: OnActionItemClickListener? = null
+    var onActionItemClickListener: OnActionItemClickListener? = onActionItemClickListener
 
     private var mode: ActionMode? = null
     @MenuRes
@@ -41,6 +43,7 @@ class MainActionModeCallback : ActionMode.Callback {
     }
 
     override fun onDestroyActionMode(p0: ActionMode?) {
+        onActionItemClickListener?.onCanceled()
         this.mode = null
     }
 
@@ -58,4 +61,7 @@ class MainActionModeCallback : ActionMode.Callback {
         mode?.finish()
     }
 
+    fun setMenuTitle(title: String) {
+        this.title = title
+    }
 }

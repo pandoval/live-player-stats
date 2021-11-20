@@ -10,7 +10,6 @@ import android.widget.ImageButton
 import android.widget.ImageView
 import androidx.recyclerview.widget.ListAdapter
 import android.widget.TextView
-import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
@@ -29,6 +28,8 @@ private val longClickListener: OnItemLongClickListener, private val context: Con
     ListAdapter<Pair<Player, Boxscore>, PlayerListAdapter.PlayerViewHolder>(PlayersComparator()) {
 
     var selectionMode = false
+    var newSelectionMode = false
+    var firstId: String = ""
     val selectedIds = ArrayList<String>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PlayerViewHolder {
@@ -40,6 +41,7 @@ private val longClickListener: OnItemLongClickListener, private val context: Con
 
     override fun onBindViewHolder(holder: PlayerViewHolder, position: Int) {
         val current = getItem(position)
+        Log.d("onBind", selectedIds.toString())
         holder.bind(current)
     }
 
@@ -189,36 +191,42 @@ private val longClickListener: OnItemLongClickListener, private val context: Con
                 pFinal.visibility = View.VISIBLE
                 pFinal.text = "Error"
             }
-
             if (selectionMode) {
                 itemView.setOnClickListener {
-                    itemSelected(currentPlayer)
+                    itemSelected(currentPlayer.id)
                 }
-                itemView.setOnLongClickListener(object : View.OnLongClickListener{
-                    override fun onLongClick(p0: View?): Boolean {
-                        itemSelected(currentPlayer)
-                        return true
-                    }
-                })
+                itemView.setOnLongClickListener {
+                    itemSelected(currentPlayer.id)
+                    true
+                }
             } else {
+                selectedIds.clear()
+                mainCardView.strokeWidth = 0
+                itemView.setOnClickListener(this)
                 itemView.setOnLongClickListener(this)
+            }
+
+            if (newSelectionMode && currentPlayer.id == firstId) {
+                itemSelected(firstId)
+                newSelectionMode = false
             }
         }
 
-        private fun itemSelected(player: Player) {
-            if (selectedIds.contains(player.id)) {
-                selectedIds.remove(player.id)
+        fun itemSelected(id: String) {
+            val main = context as MainActivity
+            if (selectedIds.contains(id)) {
+                selectedIds.remove(id)
                 mainCardView.strokeWidth = 0
                 if (selectedIds.size == 0) {
                     selectionMode = false
-                    val main = context as MainActivity
                     main.mainActionModeCallback.finishActionMode()
                     notifyDataSetChanged()
                 }
             } else {
-                selectedIds.add(player.id)
-                mainCardView.strokeWidth = 1
+                selectedIds.add(id)
+                mainCardView.strokeWidth = 10
             }
+            main.mainActionModeCallback.setMenuTitle(selectedIds.size.toString())
         }
 
         override fun onClick(p0: View?) {

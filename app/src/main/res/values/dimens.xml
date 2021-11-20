@@ -2,4 +2,6 @@
 <resources>
     <dimen name="stat_text_size">12sp</dimen>
     <dimen name="boxscore_tv_width">44dp</dimen>
+    <dimen name="stroke_select">1dp</dimen>
+    <dimen name="stroke_unselect">0dp</dimen>
 </resources>

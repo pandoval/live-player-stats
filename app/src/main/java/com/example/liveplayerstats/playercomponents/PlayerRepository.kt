@@ -35,4 +35,10 @@ class PlayerRepository(private val playerDao: PlayerDao) {
     suspend fun deleteById(id: String) {
         playerDao.deleteById(id)
     }
+
+    @Suppress("RedundantSuspendModifier")
+    @WorkerThread
+    suspend fun deleteList(idList: List<String>) {
+        playerDao.deleteList(idList)
+    }
 }

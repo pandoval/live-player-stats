@@ -20,4 +20,8 @@ interface PlayerDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertList(playerList: List<Player>)
+
+    @Query("DELETE FROM player_table WHERE id IN (:idList)")
+    suspend fun deleteList(idList: List<String>)
+
 }
