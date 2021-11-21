@@ -171,7 +171,7 @@ class MainActivity : AppCompatActivity(), PlayerListAdapter.OnItemClickListener,
 
     override fun onItemLongClick(id: String) {
         mainActionModeCallback = MainActionModeCallback(this)
-        mainActionModeCallback.startActionMode(recyclerView, R.menu.delete_menu, "1")
+        mainActionModeCallback.startActionMode(recyclerView, R.menu.delete_menu, "Delete players")
         adapter.newSelectionMode = true
         adapter.firstId = id
         adapter.selectionMode = true
@@ -184,6 +184,12 @@ class MainActivity : AppCompatActivity(), PlayerListAdapter.OnItemClickListener,
 
     override fun onActionItemClick(item: MenuItem) {
         playerViewModel.deleteList(adapter.selectedIds)
+        var string = "players"
+        if (adapter.selectedIds.size == 1) {
+            string = "player"
+        }
+        Snackbar.make(this, findViewById(R.id.fab),
+            "${adapter.selectedIds.size} $string deleted", Snackbar.LENGTH_SHORT).show()
         adapter.selectionMode = false
         adapter.notifyDataSetChanged()
         mainActionModeCallback.finishActionMode()

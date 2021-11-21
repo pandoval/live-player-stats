@@ -66,7 +66,6 @@ private val longClickListener: OnItemLongClickListener, private val context: Con
 
         private val boxscoreSeparator: View = itemView.findViewById(R.id.boxscoreSeparator)
         private val horizScrollView: HorizontalScrollView = itemView.findViewById(R.id.pHorizScroll)
-        private val pDelete: ImageButton = itemView.findViewById(R.id.pDelete)
         private val mainCardView = itemView.findViewById<MaterialCardView>(R.id.mainCardView)
 
         private val mainMin: TextView = itemView.findViewById(R.id.mainMin)
@@ -84,14 +83,14 @@ private val longClickListener: OnItemLongClickListener, private val context: Con
         private val mainPf: TextView = itemView.findViewById(R.id.mainPf)
         private val mainPm: TextView = itemView.findViewById(R.id.mainPm)
 
-        val teamArray = itemView.resources.getStringArray(R.array.nba_team_id)
-        val teamImgResources = TeamImgResources.values()
-        val resourcesMap: Map<String,TeamImgResources> = teamArray.zip(teamImgResources).toMap()
+        private val teamArray = itemView.resources.getStringArray(R.array.nba_team_id)
+        private val teamImgResources = TeamImgResources.values()
+        private val resourcesMap: Map<String,TeamImgResources> = teamArray.zip(teamImgResources).toMap()
 
-        lateinit var currentPlayer: Player
+        private lateinit var currentPlayer: Player
 
-        lateinit var ap: ActivePlayer
-        fun setBoxscore(p: Player, b: Boxscore) {
+        private lateinit var ap: ActivePlayer
+        private fun setBoxscore(p: Player, b: Boxscore) {
             var playerActive = false
             for (player in b.stats.activePlayers) {
                 if (p.id == player.personId) {
@@ -212,7 +211,7 @@ private val longClickListener: OnItemLongClickListener, private val context: Con
             }
         }
 
-        fun itemSelected(id: String) {
+        private fun itemSelected(id: String) {
             val main = context as MainActivity
             if (selectedIds.contains(id)) {
                 selectedIds.remove(id)
@@ -226,7 +225,6 @@ private val longClickListener: OnItemLongClickListener, private val context: Con
                 selectedIds.add(id)
                 mainCardView.strokeWidth = 10
             }
-            main.mainActionModeCallback.setMenuTitle(selectedIds.size.toString())
         }
 
         override fun onClick(p0: View?) {

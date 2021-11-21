@@ -56,16 +56,6 @@
                 app:layout_constraintTop_toBottomOf="@+id/pName"
                 tools:text="PHX" />
 
-            <ImageButton
-                android:id="@+id/pDelete"
-                android:layout_width="61dp"
-                android:layout_height="61dp"
-                android:background="@color/white"
-                android:foreground="?android:attr/selectableItemBackground"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/ic_baseline_delete_24" />
-
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
