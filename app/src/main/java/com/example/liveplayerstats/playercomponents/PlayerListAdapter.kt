@@ -229,6 +229,7 @@ private val longClickListener: OnItemLongClickListener, private val context: Con
             pIndicator.visibility = View.VISIBLE
             pStatus.visibility = View.VISIBLE
             pIndicator.setTextColor(color)
+            pStatus.setTextColor(color)
             pStatus.text = text
         }
 

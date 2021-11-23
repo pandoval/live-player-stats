@@ -60,7 +60,7 @@
                 android:id="@+id/pIndicator"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="8dp"
+                android:layout_marginEnd="4dp"
                 android:gravity="center"
                 android:text="&#8226;"
                 android:textSize="34sp"
@@ -70,15 +70,14 @@
 
             <TextView
                 android:id="@+id/pStatus"
-                android:layout_width="60dp"
+                android:layout_width="56dp"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="32dp"
+                android:layout_marginEnd="24dp"
+                android:textSize="13sp"
                 app:layout_constraintBottom_toBottomOf="@+id/pPic"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="@+id/pPic"
-                android:textColor="@color/black"
-                android:textSize="13sp"
-                tools:text="Off court" />
+                tools:text="On bench" />
 
             <View
                 android:layout_width="match_parent"
