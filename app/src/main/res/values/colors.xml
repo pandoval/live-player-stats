@@ -9,4 +9,6 @@
     <color name="white">#FFFFFFFF</color>
     <color name = "gray_background">#EAEAEA</color>
     <color name="highlight_blue">#cde9ff</color>
+    <color name="red_indicator">#ed4245</color>
+    <color name="green_indicator">#3ba55d</color>
 </resources>

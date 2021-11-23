@@ -56,6 +56,30 @@
                 app:layout_constraintTop_toBottomOf="@+id/pName"
                 tools:text="PHX" />
 
+            <TextView
+                android:id="@+id/pIndicator"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:gravity="center"
+                android:text="&#8226;"
+                android:textSize="34sp"
+                app:layout_constraintBottom_toBottomOf="@+id/pStatus"
+                app:layout_constraintEnd_toStartOf="@+id/pStatus"
+                app:layout_constraintTop_toTopOf="@+id/pStatus" />
+
+            <TextView
+                android:id="@+id/pStatus"
+                android:layout_width="60dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="32dp"
+                app:layout_constraintBottom_toBottomOf="@+id/pPic"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/pPic"
+                android:textColor="@color/black"
+                android:textSize="13sp"
+                tools:text="Off court" />
+
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"

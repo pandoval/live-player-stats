@@ -10,6 +10,7 @@ import android.widget.ImageButton
 import android.widget.ImageView
 import androidx.recyclerview.widget.ListAdapter
 import android.widget.TextView
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
@@ -51,6 +52,8 @@ private val longClickListener: OnItemLongClickListener, private val context: Con
         private val pName: TextView = itemView.findViewById(R.id.pName)
         private val pPic: ShapeableImageView = itemView.findViewById(R.id.pPic)
         private val pTeam: TextView = itemView.findViewById(R.id.pTeam)
+        private val pIndicator: TextView = itemView.findViewById(R.id.pIndicator)
+        private val pStatus: TextView = itemView.findViewById(R.id.pStatus)
 
         private val pHTeam: TextView = itemView.findViewById(R.id.pHTeam)
         private val pHTeamRecord: TextView = itemView.findViewById(R.id.pHTeamRecord)
@@ -87,10 +90,12 @@ private val longClickListener: OnItemLongClickListener, private val context: Con
         private val teamImgResources = TeamImgResources.values()
         private val resourcesMap: Map<String,TeamImgResources> = teamArray.zip(teamImgResources).toMap()
 
+        private val defaultColor = pStatus.textColors.defaultColor
+
         private lateinit var currentPlayer: Player
 
         private lateinit var ap: ActivePlayer
-        private fun setBoxscore(p: Player, b: Boxscore) {
+        private fun setBoxscore(p: Player, b: Boxscore, gameFinished: Boolean = false) {
             var playerActive = false
             for (player in b.stats.activePlayers) {
                 if (p.id == player.personId) {
@@ -99,7 +104,6 @@ private val longClickListener: OnItemLongClickListener, private val context: Con
                     break
                 }
             }
-
             if (playerActive) {
                 boxscoreSeparator.visibility = View.VISIBLE
                 horizScrollView.visibility = View.VISIBLE
@@ -121,6 +125,14 @@ private val longClickListener: OnItemLongClickListener, private val context: Con
                 mainTov.text = ap.turnovers
                 mainPf.text = ap.pFouls
                 mainPm.text = ap.plusMinus
+
+                if (ap.isOnCourt && !gameFinished) {
+                    setIndicator(ContextCompat.getColor(context, R.color.green_indicator), "On court")
+                } else if(!gameFinished) {
+                    setIndicator(defaultColor, "On bench")
+                }
+            } else {
+                setIndicator(ContextCompat.getColor(context, R.color.red_indicator), "Inactive")
             }
         }
 
@@ -158,6 +170,8 @@ private val longClickListener: OnItemLongClickListener, private val context: Con
                 pFinal.visibility = View.INVISIBLE
                 horizScrollView.visibility = View.GONE
                 boxscoreSeparator.visibility = View.GONE
+                pIndicator.visibility = View.GONE
+                pStatus.visibility = View.GONE
                 when (b.basicGameData.statusNum) {
                     1 -> {
                         pQuarter.text = getDateString(b)
@@ -182,7 +196,7 @@ private val longClickListener: OnItemLongClickListener, private val context: Con
                     3 -> {
                         pFinal.visibility = View.VISIBLE
                         pFinal.text = "Final"
-                        setBoxscore(p, b)
+                        setBoxscore(p, b, true)
                     }
                 }
 
@@ -209,6 +223,13 @@ private val longClickListener: OnItemLongClickListener, private val context: Con
                 itemSelected(firstId)
                 newSelectionMode = false
             }
+        }
+
+        private fun setIndicator(color: Int, text: String) {
+            pIndicator.visibility = View.VISIBLE
+            pStatus.visibility = View.VISIBLE
+            pIndicator.setTextColor(color)
+            pStatus.text = text
         }
 
         private fun itemSelected(id: String) {
