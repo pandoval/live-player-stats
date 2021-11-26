@@ -5,27 +5,19 @@ import android.content.Context
 import android.content.Intent
 import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
-import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
-import android.view.ActionMode
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
-import androidx.lifecycle.MediatorLiveData
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-import com.example.liveplayerstats.boxscore.ActivePlayer
 import com.example.liveplayerstats.boxscore.Boxscore
-import com.example.liveplayerstats.newplayercomponents.NewPlayerStateEvent
 import com.example.liveplayerstats.playercomponents.*
-import com.example.liveplayerstats.playerlist.PlayerList
-import com.example.liveplayerstats.playerlist.Standard
 import com.example.liveplayerstats.util.DataState
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.snackbar.Snackbar
@@ -47,6 +39,7 @@ class MainActivity : AppCompatActivity(), PlayerListAdapter.OnItemClickListener,
     lateinit var mainActionModeCallback: MainActionModeCallback
 
     private lateinit var swipeRefreshLayout: SwipeRefreshLayout
+    private lateinit var fab: FloatingActionButton
 
     val resultLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
         if (result.resultCode == Activity.RESULT_OK) {
@@ -78,7 +71,7 @@ class MainActivity : AppCompatActivity(), PlayerListAdapter.OnItemClickListener,
         recyclerView.adapter = adapter
         recyclerView.layoutManager = LinearLayoutManager(this)
 
-        val fab = findViewById<FloatingActionButton>(R.id.fab)
+        fab = findViewById<FloatingActionButton>(R.id.fab)
         fab.setOnClickListener(object : View.OnClickListener{
             override fun onClick(p0: View?) {
                 val intent = Intent(this@MainActivity, NewPlayerActivity::class.java)
@@ -110,14 +103,17 @@ class MainActivity : AppCompatActivity(), PlayerListAdapter.OnItemClickListener,
                     }
                     adapter.submitList(pairList)
                     swipeRefreshLayout.isRefreshing = false
+                    fab.isEnabled = true
                 }
                 is DataState.Error -> {
                     Snackbar.make(this, findViewById(android.R.id.content),
                         "Network unavailable", Snackbar.LENGTH_SHORT).show()
                     swipeRefreshLayout.isRefreshing = false
+                    fab.isEnabled = true
                 }
                 is DataState.Loading -> {
                     swipeRefreshLayout.isRefreshing = true
+                    fab.isEnabled = false
                 }
             }
         })
@@ -180,6 +176,8 @@ class MainActivity : AppCompatActivity(), PlayerListAdapter.OnItemClickListener,
     }
 
     override fun onItemClick(id: String) {
+        intent = Intent(this, GameInfoActivity::class.java)
+        startActivity(intent)
     }
 
     override fun onActionItemClick(item: MenuItem) {

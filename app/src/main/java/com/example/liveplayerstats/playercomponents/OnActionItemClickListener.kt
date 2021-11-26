@@ -1,4 +1,4 @@
-package com.example.liveplayerstats
+package com.example.liveplayerstats.playercomponents
 
 import android.view.MenuItem
 

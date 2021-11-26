@@ -1,4 +1,4 @@
-package com.example.liveplayerstats
+package com.example.liveplayerstats.enums
 
 enum class Months(val string: String) {
     JAN("January"),

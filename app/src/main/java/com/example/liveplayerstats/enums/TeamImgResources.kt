@@ -1,4 +1,6 @@
-package com.example.liveplayerstats
+package com.example.liveplayerstats.enums
+
+import com.example.liveplayerstats.R
 
 enum class TeamImgResources(val id: Int) {
     ATL(R.drawable.ic_hawks),

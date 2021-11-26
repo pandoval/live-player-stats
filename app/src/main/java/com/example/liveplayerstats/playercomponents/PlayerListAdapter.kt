@@ -6,7 +6,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.HorizontalScrollView
-import android.widget.ImageButton
 import android.widget.ImageView
 import androidx.recyclerview.widget.ListAdapter
 import android.widget.TextView
@@ -15,9 +14,9 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.liveplayerstats.MainActivity
-import com.example.liveplayerstats.Months
+import com.example.liveplayerstats.enums.Months
 import com.example.liveplayerstats.R
-import com.example.liveplayerstats.TeamImgResources
+import com.example.liveplayerstats.enums.TeamImgResources
 import com.example.liveplayerstats.boxscore.ActivePlayer
 import com.example.liveplayerstats.boxscore.Boxscore
 import com.google.android.material.card.MaterialCardView
@@ -88,7 +87,7 @@ private val longClickListener: OnItemLongClickListener, private val context: Con
 
         private val teamArray = itemView.resources.getStringArray(R.array.nba_team_id)
         private val teamImgResources = TeamImgResources.values()
-        private val resourcesMap: Map<String,TeamImgResources> = teamArray.zip(teamImgResources).toMap()
+        private val resourcesMap: Map<String, TeamImgResources> = teamArray.zip(teamImgResources).toMap()
 
         private val defaultColor = pStatus.textColors.defaultColor
 

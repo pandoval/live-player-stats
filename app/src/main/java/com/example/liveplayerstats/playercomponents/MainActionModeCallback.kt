@@ -1,12 +1,10 @@
-package com.example.liveplayerstats
+package com.example.liveplayerstats.playercomponents
 
-import android.content.Context
 import android.view.ActionMode
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import androidx.annotation.MenuRes
-import com.example.liveplayerstats.playercomponents.PlayerListAdapter
 
 class MainActionModeCallback(onActionItemClickListener: OnActionItemClickListener) : ActionMode.Callback {
 
