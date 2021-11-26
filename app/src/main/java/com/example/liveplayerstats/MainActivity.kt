@@ -176,8 +176,8 @@ class MainActivity : AppCompatActivity(), PlayerListAdapter.OnItemClickListener,
     }
 
     override fun onItemClick(id: String) {
-        intent = Intent(this, GameInfoActivity::class.java)
-        startActivity(intent)
+        //intent = Intent(this, GameInfoActivity::class.java)
+        //startActivity(intent)
     }
 
     override fun onActionItemClick(item: MenuItem) {
