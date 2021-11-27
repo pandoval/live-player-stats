@@ -1,11 +1,10 @@
 package com.example.liveplayerstats
 
-import com.example.liveplayerstats.boxscore.Boxscore
+import com.example.liveplayerstats.boxscore.BoxScore
 import com.example.liveplayerstats.playerlist.PlayerList
 import com.example.liveplayerstats.playerprofile.Player
 import com.example.liveplayerstats.teamschedule.TeamSchedule
 import com.example.liveplayerstats.todayscoreboard.Scoreboard
-import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Path
 
@@ -23,7 +22,7 @@ interface NBAApi {
     suspend fun getScoreboard(@Path("date") date: String): Scoreboard
 
     @GET("v1/{date}/{gameId}_boxscore.json")
-    suspend fun getBoxscore(@Path("date") date: String, @Path("gameId") gameId: String): Boxscore
+    suspend fun getBoxscore(@Path("date") date: String, @Path("gameId") gameId: String): BoxScore
 
     //CHANGE 2020 TO PLAYING YEAR
     @GET("v1/$SEASON_YEAR/players.json")

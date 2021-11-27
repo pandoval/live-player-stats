@@ -16,7 +16,8 @@ import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-import com.example.liveplayerstats.boxscore.Boxscore
+import com.example.liveplayerstats.boxscore.BoxScore
+import com.example.liveplayerstats.gameinfoactivity.GameInfoActivity
 import com.example.liveplayerstats.playercomponents.*
 import com.example.liveplayerstats.util.DataState
 import com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -96,8 +97,8 @@ class MainActivity : AppCompatActivity(), PlayerListAdapter.OnItemClickListener,
     private fun subscribeObservers() {
         playerStatsViewModel.dataState.observe(this, Observer { dataState ->
             when(dataState){
-                is DataState.Success<List<Boxscore>> -> {
-                    val pairList = ArrayList<Pair<Player, Boxscore>>()
+                is DataState.Success<List<BoxScore>> -> {
+                    val pairList = ArrayList<Pair<Player, BoxScore>>()
                     for (i in playerList.indices) {
                         pairList.add(Pair(playerList[i], dataState.data[i]))
                     }
@@ -176,8 +177,8 @@ class MainActivity : AppCompatActivity(), PlayerListAdapter.OnItemClickListener,
     }
 
     override fun onItemClick(id: String) {
-        //intent = Intent(this, GameInfoActivity::class.java)
-        //startActivity(intent)
+        intent = Intent(this, GameInfoActivity::class.java)
+        startActivity(intent)
     }
 
     override fun onActionItemClick(item: MenuItem) {

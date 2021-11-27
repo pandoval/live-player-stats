@@ -2,12 +2,10 @@ package com.example.liveplayerstats.playercomponents
 
 import android.util.Log
 import com.example.liveplayerstats.NBAApi
-import com.example.liveplayerstats.boxscore.Boxscore
-import com.example.liveplayerstats.playerlist.Standard
+import com.example.liveplayerstats.boxscore.BoxScore
 import com.example.liveplayerstats.util.DataState
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.channelFlow
-import kotlinx.coroutines.flow.flow
 import java.util.*
 import javax.inject.Inject
 import javax.inject.Singleton
@@ -15,14 +13,14 @@ import javax.inject.Singleton
 @Singleton
 class PlayerStatsRepository @Inject constructor(private val nbaApi: NBAApi){
 
-    suspend fun getStats(teamIds: List<String>): Flow<DataState<List<Boxscore>>> = channelFlow {
+    suspend fun getStats(teamIds: List<String>): Flow<DataState<List<BoxScore>>> = channelFlow {
 
         send(DataState.Loading)
         try {
             val date = getDate()
             val scoreboard = nbaApi.getScoreboard(date)
             val games = scoreboard.games
-            val boxscoreList = ArrayList<Boxscore>(teamIds.size)
+            val boxscoreList = ArrayList<BoxScore>(teamIds.size)
             if (teamIds.isEmpty()) {
                 send(DataState.Success(boxscoreList.toList()))
             }

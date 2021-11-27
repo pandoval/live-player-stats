@@ -1,22 +1,21 @@
 package com.example.liveplayerstats.playercomponents
 
 import androidx.lifecycle.*
-import com.example.liveplayerstats.boxscore.Boxscore
+import com.example.liveplayerstats.boxscore.BoxScore
 import com.example.liveplayerstats.util.DataState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
 import javax.inject.Inject
-import javax.inject.Singleton
 
 @HiltViewModel
 class PlayerStatsViewModel @Inject constructor(private val playerStatsRepository: PlayerStatsRepository): ViewModel() {
 
-    private val _dataState: MutableLiveData<DataState<List<Boxscore>>> =
+    private val _dataState: MutableLiveData<DataState<List<BoxScore>>> =
         MutableLiveData()
 
-    val dataState: LiveData<DataState<List<Boxscore>>>
+    val dataState: LiveData<DataState<List<BoxScore>>>
         get() = _dataState
 
     fun setStateEvent(playerStatsStateEvent: PlayerStatsStateEvent, teamIds: List<String>) {

@@ -14,14 +14,11 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.LivePlayerStats">
         <activity
-            android:name=".GameInfoActivity"
-            android:exported="false"
-            android:label="@string/title_activity_game_info"
-            android:theme="@style/Theme.LivePlayerStats.NoActionBar" />
-        <!-- SWITCH THESE ACTIVITIES, THIS IS FOR TESTING PURPOSES -->
+            android:name=".gameinfoactivity.GameInfoActivity"
+            android:parentActivityName=".MainActivity" />
         <activity
             android:name=".NewPlayerActivity"
-            android:parentActivityName=".MainActivity"></activity>
+            android:parentActivityName=".MainActivity" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

@@ -18,14 +18,14 @@ import com.example.liveplayerstats.enums.Months
 import com.example.liveplayerstats.R
 import com.example.liveplayerstats.enums.TeamImgResources
 import com.example.liveplayerstats.boxscore.ActivePlayer
-import com.example.liveplayerstats.boxscore.Boxscore
+import com.example.liveplayerstats.boxscore.BoxScore
 import com.google.android.material.card.MaterialCardView
 import com.google.android.material.imageview.ShapeableImageView
 
 class PlayerListAdapter(private val listener: OnItemClickListener,
 private val longClickListener: OnItemLongClickListener, private val context: Context
 ) :
-    ListAdapter<Pair<Player, Boxscore>, PlayerListAdapter.PlayerViewHolder>(PlayersComparator()) {
+    ListAdapter<Pair<Player, BoxScore>, PlayerListAdapter.PlayerViewHolder>(PlayersComparator()) {
 
     var selectionMode = false
     var newSelectionMode = false
@@ -94,7 +94,7 @@ private val longClickListener: OnItemLongClickListener, private val context: Con
         private lateinit var currentPlayer: Player
 
         private lateinit var ap: ActivePlayer
-        private fun setBoxscore(p: Player, b: Boxscore, gameFinished: Boolean = false) {
+        private fun setBoxscore(p: Player, b: BoxScore, gameFinished: Boolean = false) {
             var playerActive = false
             for (player in b.stats.activePlayers) {
                 if (p.id == player.personId) {
@@ -135,7 +135,7 @@ private val longClickListener: OnItemLongClickListener, private val context: Con
             }
         }
 
-        fun bind(pair: Pair<Player, Boxscore>?) {
+        fun bind(pair: Pair<Player, BoxScore>?) {
             currentPlayer = pair!!.first
 
             if (pair != null) {
@@ -266,7 +266,7 @@ private val longClickListener: OnItemLongClickListener, private val context: Con
         fun onItemLongClick(id: String)
     }
 
-    private fun getDateString(b: Boxscore): String {
+    private fun getDateString(b: BoxScore): String {
         val startDateEastern = b.basicGameData.startDateEastern
         val month = startDateEastern.substring(4,6)
         val day = startDateEastern.substring(6)
@@ -280,12 +280,12 @@ private val longClickListener: OnItemLongClickListener, private val context: Con
         return "$monthString $dayNum"
     }
 
-    class PlayersComparator : DiffUtil.ItemCallback<Pair<Player, Boxscore>>() {
-        override fun areItemsTheSame(oldItem: Pair<Player, Boxscore>, newItem: Pair<Player, Boxscore>): Boolean {
+    class PlayersComparator : DiffUtil.ItemCallback<Pair<Player, BoxScore>>() {
+        override fun areItemsTheSame(oldItem: Pair<Player, BoxScore>, newItem: Pair<Player, BoxScore>): Boolean {
             return oldItem === newItem
         }
 
-        override fun areContentsTheSame(oldItem: Pair<Player, Boxscore>, newItem: Pair<Player, Boxscore>): Boolean {
+        override fun areContentsTheSame(oldItem: Pair<Player, BoxScore>, newItem: Pair<Player, BoxScore>): Boolean {
             return oldItem.first.id == newItem.first.id
         }
     }
