@@ -249,7 +249,7 @@ private val longClickListener: OnItemLongClickListener, private val context: Con
         }
 
         override fun onClick(p0: View?) {
-            listener.onItemClick(currentPlayer.id)
+            listener.onItemClick(currentPlayer.teamId)
         }
 
         override fun onLongClick(p0: View?): Boolean {
@@ -259,7 +259,7 @@ private val longClickListener: OnItemLongClickListener, private val context: Con
     }
 
     interface OnItemClickListener {
-        fun onItemClick(id: String)
+        fun onItemClick(teamId: String)
     }
 
     interface OnItemLongClickListener {

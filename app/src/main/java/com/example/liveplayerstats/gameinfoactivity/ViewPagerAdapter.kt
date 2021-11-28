@@ -5,7 +5,8 @@ import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.Lifecycle
 import androidx.viewpager2.adapter.FragmentStateAdapter
 
-class ViewPagerAdapter(fragmentManager: FragmentManager, lifecycle: Lifecycle) :
+class ViewPagerAdapter(fragmentManager: FragmentManager, lifecycle: Lifecycle,
+                       private val teamId: String) :
     FragmentStateAdapter(fragmentManager, lifecycle) {
 
     override fun getItemCount(): Int {
@@ -15,7 +16,7 @@ class ViewPagerAdapter(fragmentManager: FragmentManager, lifecycle: Lifecycle) :
     override fun createFragment(position: Int): Fragment {
         return  when (position) {
                     0 -> {
-                        BoxscoreFragment()
+                        BoxScoreFragment.newInstance(teamId)
                     }
                     1 -> {
                         SummaryFragment()

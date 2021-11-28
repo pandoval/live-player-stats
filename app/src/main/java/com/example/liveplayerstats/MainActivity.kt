@@ -140,24 +140,6 @@ class MainActivity : AppCompatActivity(), PlayerListAdapter.OnItemClickListener,
         return super.onOptionsItemSelected(item)
     }
 
-    companion object {
-        fun isNetworkAvailable(context: Context): Boolean {
-            val connectivityManager = context.getSystemService(Context.CONNECTIVITY_SERVICE)
-                    as ConnectivityManager
-            val nw = connectivityManager.activeNetwork ?: return false
-            val actNw = connectivityManager.getNetworkCapabilities(nw) ?: return false
-            return when {
-                actNw.hasTransport(NetworkCapabilities.TRANSPORT_WIFI) -> true
-                actNw.hasTransport(NetworkCapabilities.TRANSPORT_CELLULAR) -> true
-                //for other device how are able to connect with Ethernet
-                actNw.hasTransport(NetworkCapabilities.TRANSPORT_ETHERNET) -> true
-                //for check internet over Bluetooth
-                actNw.hasTransport(NetworkCapabilities.TRANSPORT_BLUETOOTH) -> true
-                else -> false
-            }
-        }
-    }
-
     private fun updatePage() {
         val teamIds = ArrayList<String>();
         for (player in playerList) {
@@ -176,8 +158,9 @@ class MainActivity : AppCompatActivity(), PlayerListAdapter.OnItemClickListener,
         adapter.notifyDataSetChanged()
     }
 
-    override fun onItemClick(id: String) {
+    override fun onItemClick(teamId: String) {
         intent = Intent(this, GameInfoActivity::class.java)
+        intent.putExtra(TEAM_ID, teamId)
         startActivity(intent)
     }
 
@@ -198,5 +181,9 @@ class MainActivity : AppCompatActivity(), PlayerListAdapter.OnItemClickListener,
         swipeRefreshLayout.isEnabled = true
         adapter.selectionMode = false
         adapter.notifyDataSetChanged()
+    }
+
+    companion object {
+        const val TEAM_ID = "com.example.liveplayerstats.TEAMID"
     }
 }
