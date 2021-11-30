@@ -112,5 +112,8 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="game_not_started">Game has not started</string>
+    <string name="starters_header">STARTERS</string>
+    <string name="bench_header">BENCH</string>
+    <string name="oncourt_header">ON COURT</string>
 
 </resources>

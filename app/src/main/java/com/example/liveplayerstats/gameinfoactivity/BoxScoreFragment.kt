@@ -11,6 +11,8 @@ import android.view.ViewGroup
 import android.widget.TableRow
 import android.widget.TextView
 import androidx.core.content.ContextCompat
+import androidx.core.view.get
+import androidx.core.view.marginStart
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import com.example.liveplayerstats.R
@@ -34,6 +36,15 @@ class BoxScoreFragment : Fragment() {
     private lateinit var hOthers: ArrayList<ActivePlayer>
     private lateinit var vOthers: ArrayList<ActivePlayer>
 
+    private lateinit var hStatHeaders1: TableRow
+    private lateinit var hStatHeaders2: TableRow
+    private lateinit var hNameHeaders1: TableRow
+    private lateinit var hNameHeaders2: TableRow
+    private lateinit var vStatHeaders1: TableRow
+    private lateinit var vStatHeaders2: TableRow
+    private lateinit var vNameHeaders1: TableRow
+    private lateinit var vNameHeaders2: TableRow
+
     private lateinit var tricodeArray: Array<String>
     private lateinit var teamNameArray: Array<String>
     private lateinit var teamMap: Map<String,String>
@@ -53,6 +64,9 @@ class BoxScoreFragment : Fragment() {
     }
 
     private fun setupBoxScore(boxScore: BoxScore) {
+        resetTableLayouts()
+        setNameHeaders(boxScore.basicGameData.statusNum == 2)
+
         binding.notStartedTV.visibility = View.GONE
 
         binding.boxScoreTabLayout.visibility = View.VISIBLE
@@ -67,17 +81,37 @@ class BoxScoreFragment : Fragment() {
         Log.d("hi",vFirstFive.toString())
         Log.d("hi",vOthers.toString())
 
-
         for (i in 1..5) {
             binding.hTableLayout.addView(addRow(hFirstFive[i-1]), i)
             binding.vTableLayout.addView(addRow(vFirstFive[i-1]), i)
+            binding.hNamesTL.addView(addName(hFirstFive[i-1]), i)
+            binding.vNamesTL.addView(addName(vFirstFive[i-1]), i)
         }
         for (i in 0 until hOthers.size) {
             binding.hTableLayout.addView(addRow(hOthers[i]), i + 7)
+            binding.hNamesTL.addView(addName(hOthers[i]), i + 7)
         }
         for (i in 0 until vOthers.size) {
             binding.vTableLayout.addView(addRow(vOthers[i]), i + 7)
+            binding.vNamesTL.addView(addName(vOthers[i]), i + 7)
         }
+    }
+
+    private fun resetTableLayouts() {
+        binding.hTableLayout.removeAllViews()
+        binding.vTableLayout.removeAllViews()
+        binding.hNamesTL.removeAllViews()
+        binding.vNamesTL.removeAllViews()
+
+        binding.hTableLayout.addView(hStatHeaders1)
+        binding.hTableLayout.addView(hStatHeaders2)
+        binding.vTableLayout.addView(vStatHeaders1)
+        binding.vTableLayout.addView(vStatHeaders2)
+
+        binding.hNamesTL.addView(hNameHeaders1)
+        binding.hNamesTL.addView(hNameHeaders2)
+        binding.vNamesTL.addView(vNameHeaders1)
+        binding.vNamesTL.addView(vNameHeaders2)
     }
 
     private fun orderPlayers(boxScore: BoxScore, gameActive: Boolean) {
@@ -133,6 +167,22 @@ class BoxScoreFragment : Fragment() {
         }
     }
 
+    private fun setNameHeaders(gameActive: Boolean) {
+        val h1 = hNameHeaders1[0] as TextView
+        val h2 = hNameHeaders2[0] as TextView
+        val v1 = vNameHeaders1[0] as TextView
+        val v2 = vNameHeaders2[0] as TextView
+        h2.text = getString(R.string.bench_header)
+        v2.text = getString(R.string.bench_header)
+        if (gameActive) {
+            h1.text = getString(R.string.oncourt_header)
+            v1.text = getString(R.string.oncourt_header)
+        } else {
+            h1.text = getString(R.string.starters_header)
+            v1.text = getString(R.string.starters_header)
+        }
+    }
+
     private fun addRow(p: ActivePlayer): TableRow {
         val row = TableRow(context)
         row.layoutParams = TableRow.LayoutParams(TableRow.LayoutParams.MATCH_PARENT,
@@ -154,6 +204,20 @@ class BoxScoreFragment : Fragment() {
         row.addView(valueTV(p.turnovers))
         row.addView(valueTV(p.pFouls))
         row.addView(valueTV(p.plusMinus))
+        return row
+    }
+
+    private fun addName(p: ActivePlayer): TableRow {
+        val row = TableRow(context)
+        row.layoutParams = TableRow.LayoutParams(TableRow.LayoutParams.MATCH_PARENT,
+            TableRow.LayoutParams.WRAP_CONTENT)
+        val name = "${p.firstName.substring(0,1)}.${p.lastName}"
+        val tv = valueTV(name)
+        tv.gravity = Gravity.START
+        tv.setPadding(TypedValue.applyDimension(
+            TypedValue.COMPLEX_UNIT_DIP, 10f,resources.displayMetrics)
+            .toInt(), 0, 0, 0)
+        row.addView(tv)
         return row
     }
 
@@ -209,6 +273,14 @@ class BoxScoreFragment : Fragment() {
     ): View? {
         _binding = FragmentBoxscoreBinding.inflate(inflater, container, false)
         val view = binding.root
+        hStatHeaders1 = binding.hTableLayout[0] as TableRow
+        hStatHeaders2 = binding.hTableLayout[1] as TableRow
+        hNameHeaders1 = binding.hNamesTL[0] as TableRow
+        hNameHeaders2 = binding.hNamesTL[1] as TableRow
+        vStatHeaders1 = binding.vTableLayout[0] as TableRow
+        vStatHeaders2 = binding.vTableLayout[1] as TableRow
+        vNameHeaders1 = binding.vNamesTL[0] as TableRow
+        vNameHeaders2 = binding.vNamesTL[1] as TableRow
         return view
     }
 
