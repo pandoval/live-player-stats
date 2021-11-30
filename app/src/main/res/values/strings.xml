@@ -41,6 +41,39 @@
         <item>WAS</item>
     </string-array>
 
+    <string-array name="nba_team_names">
+        <item>Hawks</item>
+        <item>Celtics</item>
+        <item>Nets</item>
+        <item>Hornets</item>
+        <item>Bulls</item>
+        <item>Cavaliers</item>
+        <item>Mavericks</item>
+        <item>Nuggets</item>
+        <item>Pistons</item>
+        <item>Warriors</item>
+        <item>Rockets</item>
+        <item>Pacers</item>
+        <item>Clippers</item>
+        <item>Lakers</item>
+        <item>Grizzlies</item>
+        <item>Heat</item>
+        <item>Bucks</item>
+        <item>Timberwolves</item>
+        <item>Pelicans</item>
+        <item>Knicks</item>
+        <item>Thunder</item>
+        <item>Magic</item>
+        <item>76ers</item>
+        <item>Suns</item>
+        <item>Trail Blazers</item>
+        <item>Kings</item>
+        <item>Spurs</item>
+        <item>Raptors</item>
+        <item>Jazz</item>
+        <item>Wizards</item>
+    </string-array>
+
     <string-array name="nba_team_id">
         <item>1610612737</item>
         <item>1610612738</item>
@@ -78,5 +111,6 @@
     <string name="tab_text_2">Tab 2</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="game_not_started">Game has not started</string>
 
 </resources>

@@ -16,6 +16,7 @@ class ViewPagerAdapter(fragmentManager: FragmentManager, lifecycle: Lifecycle,
     override fun createFragment(position: Int): Fragment {
         return  when (position) {
                     0 -> {
+                        //FOR TESTING. SWITCH THIS LATER
                         BoxScoreFragment.newInstance(teamId)
                     }
                     1 -> {

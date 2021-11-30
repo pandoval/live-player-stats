@@ -3,14 +3,63 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".gameinfoactivity.BoxScoreFragment"
     android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/notStartedTV"
+        android:visibility="gone"
+        android:layout_marginTop="16dp"
+        android:layout_gravity="center"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/game_not_started"/>
+
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:strokeWidth="2dp"
+        app:strokeColor="@color/design_default_color_primary"
+        app:cardCornerRadius="20dp"
+        android:layout_gravity="center"
+        android:layout_margin="16dp">
+
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/boxScoreTabLayout"
+            android:layout_width="320dp"
+            android:layout_height="32dp"
+            app:tabIndicatorGravity="stretch"
+            app:tabMaxWidth="0dp"
+            app:tabGravity="fill"
+            app:tabMode="fixed"
+            app:tabIndicatorColor="@color/design_default_color_primary"
+            app:tabSelectedTextColor="@color/white"
+            app:tabTextColor="@color/design_default_color_primary"
+            android:visibility="gone"
+            tools:visibility="visible">
+
+            <com.google.android.material.tabs.TabItem
+                tools:text="Suns"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <com.google.android.material.tabs.TabItem
+                tools:text="Lakers"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+        </com.google.android.material.tabs.TabLayout>
+
+    </com.google.android.material.card.MaterialCardView>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:id="@+id/hLinearLayout">
+        android:id="@+id/hLinearLayout"
+        android:visibility="gone"
+        tools:visibility="visible">
 
         <HorizontalScrollView
             android:id="@+id/hHScroll"
@@ -207,7 +256,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:id="@+id/vLinearLayout">
+        android:id="@+id/vLinearLayout"
+        android:visibility="gone">
 
         <HorizontalScrollView
             android:id="@+id/vHScroll"
