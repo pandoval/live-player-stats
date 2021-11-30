@@ -1,10 +1,8 @@
 package com.example.liveplayerstats.gameinfoactivity
 
 import android.os.Bundle
-import android.util.Log
 import android.util.TypedValue
 import android.view.Gravity
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,7 +10,7 @@ import android.widget.TableRow
 import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.core.view.get
-import androidx.core.view.marginStart
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import com.example.liveplayerstats.R
@@ -21,12 +19,15 @@ import com.example.liveplayerstats.boxscore.BoxScore
 import com.example.liveplayerstats.databinding.FragmentBoxscoreBinding
 import com.example.liveplayerstats.util.DataState
 import com.google.android.material.snackbar.Snackbar
+import com.google.android.material.tabs.TabLayout
 import dagger.hilt.android.AndroidEntryPoint
 
 private const val PLAYER_TEAM_ID = "teamId"
 
 @AndroidEntryPoint
 class BoxScoreFragment : Fragment() {
+    private var firstLoad = true
+    private var tabNeverSelected = true
 
     private val boxScoreViewModel: BoxScoreViewModel by viewModels()
     private lateinit var teamId: String
@@ -64,6 +65,13 @@ class BoxScoreFragment : Fragment() {
     }
 
     private fun setupBoxScore(boxScore: BoxScore) {
+        if (firstLoad) {
+            firstLoad = false
+            if (binding.hLinearLayout.visibility == View.GONE && tabNeverSelected) {
+                binding.hLinearLayout.visibility = View.VISIBLE
+            }
+        }
+
         resetTableLayouts()
         setNameHeaders(boxScore.basicGameData.statusNum == 2)
 
@@ -73,13 +81,7 @@ class BoxScoreFragment : Fragment() {
         binding.boxScoreTabLayout.getTabAt(0)?.text = teamMap[boxScore.basicGameData.hTeam.triCode]
         binding.boxScoreTabLayout.getTabAt(1)?.text = teamMap[boxScore.basicGameData.vTeam.triCode]
 
-        binding.hLinearLayout.visibility = View.VISIBLE
-        binding.vLinearLayout.visibility = View.VISIBLE
         orderPlayers(boxScore, boxScore.basicGameData.statusNum == 2)
-        Log.d("hi",hFirstFive.toString())
-        Log.d("hi",hOthers.toString())
-        Log.d("hi",vFirstFive.toString())
-        Log.d("hi",vOthers.toString())
 
         for (i in 1..5) {
             binding.hTableLayout.addView(addRow(hFirstFive[i-1]), i)
@@ -281,6 +283,32 @@ class BoxScoreFragment : Fragment() {
         vStatHeaders2 = binding.vTableLayout[1] as TableRow
         vNameHeaders1 = binding.vNamesTL[0] as TableRow
         vNameHeaders2 = binding.vNamesTL[1] as TableRow
+
+        binding.boxScoreTabLayout.addOnTabSelectedListener(object :
+            TabLayout.OnTabSelectedListener {
+            override fun onTabSelected(tab: TabLayout.Tab?) {
+                when (tab?.position) {
+                    0 -> {
+                        binding.hLinearLayout.visibility = View.VISIBLE
+                        binding.vLinearLayout.visibility = View.GONE
+                    }
+                    1 -> {
+                        if (tabNeverSelected) {
+                            tabNeverSelected = false
+                        }
+                        binding.vLinearLayout.visibility = View.VISIBLE
+                        binding.hLinearLayout.visibility = View.GONE
+                    }
+                }
+            }
+
+            override fun onTabUnselected(tab: TabLayout.Tab?) {
+            }
+
+            override fun onTabReselected(tab: TabLayout.Tab?) {
+            }
+        })
+
         return view
     }
 

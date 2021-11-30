@@ -6,7 +6,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".gameinfoactivity.BoxScoreFragment"
     android:orientation="vertical"
-    tools:ignore="hardcodedText">
+    tools:ignore="hardcodedText"
+    android:paddingStart="16dp"
+    android:paddingEnd="16dp">
 
     <TextView
         android:id="@+id/notStartedTV"
@@ -38,12 +40,15 @@
             app:tabSelectedTextColor="@color/white"
             app:tabTextColor="@color/design_default_color_primary"
             android:visibility="gone"
-            tools:visibility="visible">
+            tools:visibility="visible"
+            app:tabIndicatorAnimationMode="linear"
+            app:tabIndicatorAnimationDuration="0">
 
             <com.google.android.material.tabs.TabItem
-                tools:text="Suns"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:text="Tab3"
+                tools:text="Suns" />
 
             <com.google.android.material.tabs.TabItem
                 tools:text="Lakers"
@@ -55,27 +60,27 @@
     </com.google.android.material.card.MaterialCardView>
 
     <LinearLayout
+        android:id="@+id/hLinearLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:id="@+id/hLinearLayout"
         android:visibility="gone"
         tools:visibility="visible">
 
         <TableLayout
+            android:id="@+id/hNamesTL"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/hNamesTL">
+            android:layout_height="wrap_content">
 
             <TableRow android:background="@color/gray_background">
 
                 <TextView
                     android:layout_width="100dp"
                     android:layout_height="wrap_content"
-                    tools:text="STARTERS"
-                    android:theme="@style/boxscoreHeaderTV"
+                    android:layout_marginStart="10dp"
                     android:gravity="start"
-                    android:layout_marginStart="10dp"/>
+                    android:theme="@style/boxscoreHeaderTV"
+                    tools:text="STARTERS" />
 
             </TableRow>
 
@@ -84,10 +89,10 @@
                 <TextView
                     android:layout_width="100dp"
                     android:layout_height="wrap_content"
-                    tools:text="BENCH"
-                    android:theme="@style/boxscoreHeaderTV"
+                    android:layout_marginStart="10dp"
                     android:gravity="start"
-                    android:layout_marginStart="10dp"/>
+                    android:theme="@style/boxscoreHeaderTV"
+                    tools:text="BENCH" />
 
             </TableRow>
 
@@ -99,9 +104,9 @@
             android:layout_height="wrap_content">
 
             <TableLayout
+                android:id="@+id/hTableLayout"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/hTableLayout">
+                android:layout_height="wrap_content">
 
                 <TableRow android:background="@color/gray_background">
 
@@ -190,6 +195,7 @@
                         android:theme="@style/boxscoreHeaderTV" />
 
                 </TableRow>
+
                 <TableRow android:background="@color/gray_background">
 
                     <TextView
