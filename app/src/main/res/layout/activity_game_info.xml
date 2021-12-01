@@ -7,6 +7,137 @@
     android:orientation="vertical"
     tools:context=".gameinfoactivity.GameInfoActivity">
 
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <TextView
+            android:id="@+id/pHTeam"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:textColor="@color/black"
+            android:textSize="12sp"
+            app:layout_constraintBottom_toTopOf="@+id/pHTeamLogo"
+            app:layout_constraintEnd_toEndOf="@+id/pHTeamLogo"
+            app:layout_constraintStart_toStartOf="@+id/pHTeamLogo"
+            tools:text="PHX" />
+
+        <TextView
+            android:id="@+id/pHTeamRecord"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:textSize="12sp"
+            app:layout_constraintEnd_toEndOf="@+id/pHTeamLogo"
+            app:layout_constraintStart_toStartOf="@+id/pHTeamLogo"
+            app:layout_constraintTop_toBottomOf="@+id/pHTeamLogo"
+            tools:text="6-3" />
+
+        <TextView
+            android:id="@+id/pVTeam"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:textColor="@color/black"
+            android:textSize="12sp"
+            app:layout_constraintBottom_toTopOf="@+id/pVTeamLogo"
+            app:layout_constraintEnd_toEndOf="@+id/pVTeamLogo"
+            app:layout_constraintStart_toStartOf="@+id/pVTeamLogo"
+            tools:text="LAL" />
+
+        <TextView
+            android:id="@+id/pVTeamRecord"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="12sp"
+            app:layout_constraintEnd_toEndOf="@+id/pVTeamLogo"
+            app:layout_constraintStart_toStartOf="@+id/pVTeamLogo"
+            app:layout_constraintTop_toBottomOf="@+id/pVTeamLogo"
+            tools:text="6-5" />
+
+        <TextView
+            android:id="@+id/pQuarter"
+            android:layout_width="80dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="31dp"
+            android:gravity="center"
+            android:textColor="@color/black"
+            android:textSize="12sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Q4" />
+
+        <TextView
+            android:id="@+id/pClock"
+            android:layout_width="80dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:textSize="12sp"
+            app:layout_constraintEnd_toEndOf="@+id/pQuarter"
+            app:layout_constraintStart_toStartOf="@+id/pQuarter"
+            app:layout_constraintTop_toBottomOf="@+id/pQuarter"
+            tools:text="1:23" />
+
+        <TextView
+            android:id="@+id/pHTeamPoints"
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:textColor="@color/black"
+            android:textSize="24sp"
+            app:layout_constraintBottom_toBottomOf="@+id/pClock"
+            app:layout_constraintEnd_toStartOf="@+id/pQuarter"
+            app:layout_constraintTop_toTopOf="@+id/pQuarter"
+            tools:text="105" />
+
+        <TextView
+            android:id="@+id/pVTeamPoints"
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:textColor="@color/black"
+            android:textSize="24sp"
+            app:layout_constraintBottom_toBottomOf="@+id/pClock"
+            app:layout_constraintStart_toEndOf="@+id/pQuarter"
+            app:layout_constraintTop_toTopOf="@+id/pQuarter"
+            tools:text="92" />
+
+        <ImageView
+            android:id="@+id/pHTeamLogo"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_marginEnd="16dp"
+            app:layout_constraintBottom_toBottomOf="@+id/pHTeamPoints"
+            app:layout_constraintEnd_toStartOf="@+id/pHTeamPoints"
+            app:layout_constraintTop_toTopOf="@+id/pHTeamPoints"
+            app:srcCompat="@drawable/ic_suns" />
+
+        <ImageView
+            android:id="@+id/pVTeamLogo"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_marginStart="16dp"
+            app:layout_constraintBottom_toBottomOf="@+id/pVTeamPoints"
+            app:layout_constraintStart_toEndOf="@+id/pVTeamPoints"
+            app:layout_constraintTop_toTopOf="@+id/pVTeamPoints"
+            app:srcCompat="@drawable/ic_lakers" />
+
+        <TextView
+            android:id="@+id/pFinal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Final"
+            android:textColor="@color/black"
+            android:visibility="invisible"
+            app:layout_constraintBottom_toBottomOf="@+id/pClock"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/pQuarter" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
     <com.google.android.material.tabs.TabLayout
         android:id="@+id/gameInfoTabLayout"
         android:layout_width="match_parent"

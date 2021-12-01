@@ -61,7 +61,6 @@ class PlayerStatsRepository @Inject constructor(private val nbaApi: NBAApi){
             val tz: TimeZone = TimeZone.getTimeZone("America/New_York")
             val calendar = Calendar.getInstance(tz)
             //-3 because some games can go to 2 am
-            //TODO("SWITCH THIS BACK TO -3 THIS IS FOR TESTING ONLY")
             calendar.add(Calendar.HOUR,-20)
             val year = calendar.get(Calendar.YEAR)
             val month: String = "%02d".format(calendar.get(Calendar.MONTH)+1)

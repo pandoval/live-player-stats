@@ -123,10 +123,14 @@ class BoxScoreFragment : Fragment() {
         val vTeamPlayers = arrayListOf<ActivePlayer>()
 
         for(player in boxScore.stats.activePlayers) {
-            if (player.teamId == boxScore.basicGameData.hTeam.teamId) {
-                hTeamPlayers.add(player)
-            } else {
-                vTeamPlayers.add(player)
+
+            //Remove inactive/0 minute players
+            if (player.min != "" && player.min != "0:00") {
+                if (player.teamId == boxScore.basicGameData.hTeam.teamId) {
+                    hTeamPlayers.add(player)
+                } else {
+                    vTeamPlayers.add(player)
+                }
             }
         }
 
