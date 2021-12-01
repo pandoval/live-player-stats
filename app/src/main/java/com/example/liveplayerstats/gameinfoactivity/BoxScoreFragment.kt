@@ -6,10 +6,12 @@ import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.LinearLayout
 import android.widget.TableRow
 import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.core.view.get
+import androidx.core.view.marginEnd
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
@@ -213,13 +215,34 @@ class BoxScoreFragment : Fragment() {
         val row = TableRow(context)
         row.layoutParams = TableRow.LayoutParams(TableRow.LayoutParams.MATCH_PARENT,
             TableRow.LayoutParams.WRAP_CONTENT)
+
+        val horizontalLinearLayout = LinearLayout(context)
+        horizontalLinearLayout.orientation = LinearLayout.HORIZONTAL
+
         val name = "${p.firstName.substring(0,1)}.${p.lastName}"
-        val tv = valueTV(name)
-        tv.gravity = Gravity.START
+        val tv = TextView(context)
+        tv.layoutParams = LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT,
+            LinearLayout.LayoutParams.MATCH_PARENT)
+        tv.setTextColor(ContextCompat.getColor(requireContext(), R.color.black))
+        tv.setTextSize(TypedValue.COMPLEX_UNIT_PX, resources.getDimension(R.dimen.stat_text_size))
+        tv.text = name
         tv.setPadding(TypedValue.applyDimension(
             TypedValue.COMPLEX_UNIT_DIP, 10f,resources.displayMetrics)
-            .toInt(), 0, 0, 0)
-        row.addView(tv)
+            .toInt(), 0, TypedValue.applyDimension(
+            TypedValue.COMPLEX_UNIT_DIP, 8f,resources.displayMetrics)
+            .toInt(), 0)
+        horizontalLinearLayout.addView(tv)
+
+        if (p.pos != "") {
+            val posTV = TextView(context)
+            posTV.layoutParams = LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT,
+                LinearLayout.LayoutParams.MATCH_PARENT)
+            posTV.text = p.pos
+            posTV.gravity = Gravity.START
+            posTV.setTextSize(TypedValue.COMPLEX_UNIT_PX, resources.getDimension(R.dimen.stat_text_size))
+            horizontalLinearLayout.addView(posTV)
+        }
+        row.addView(horizontalLinearLayout)
         return row
     }
 
