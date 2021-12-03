@@ -9,7 +9,8 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
+        android:layout_height="wrap_content"
+        android:paddingBottom="16dp">
 
         <TextView
             android:id="@+id/pHTeam"
@@ -141,7 +142,8 @@
     <com.google.android.material.tabs.TabLayout
         android:id="@+id/gameInfoTabLayout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:paddingTop="0dp" />
 
     <androidx.viewpager2.widget.ViewPager2
         android:id="@+id/gameInfoViewPager"

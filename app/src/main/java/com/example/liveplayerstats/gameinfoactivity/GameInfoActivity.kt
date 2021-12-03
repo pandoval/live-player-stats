@@ -34,4 +34,8 @@ class GameInfoActivity : AppCompatActivity() {
             }
         }.attach()
     }
+
+    fun updateBoxScore() {
+
+    }
 }
