@@ -113,7 +113,7 @@
             app:layout_constraintBottom_toBottomOf="@+id/pHTeamPoints"
             app:layout_constraintEnd_toStartOf="@+id/pHTeamPoints"
             app:layout_constraintTop_toTopOf="@+id/pHTeamPoints"
-            app:srcCompat="@drawable/ic_suns" />
+            tools:srcCompat="@drawable/ic_suns" />
 
         <ImageView
             android:id="@+id/pVTeamLogo"
@@ -123,7 +123,7 @@
             app:layout_constraintBottom_toBottomOf="@+id/pVTeamPoints"
             app:layout_constraintStart_toEndOf="@+id/pVTeamPoints"
             app:layout_constraintTop_toTopOf="@+id/pVTeamPoints"
-            app:srcCompat="@drawable/ic_lakers" />
+            tools:srcCompat="@drawable/ic_lakers" />
 
         <TextView
             android:id="@+id/pFinal"

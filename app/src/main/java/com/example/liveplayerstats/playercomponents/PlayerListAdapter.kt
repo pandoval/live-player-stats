@@ -266,18 +266,20 @@ private val longClickListener: OnItemLongClickListener, private val context: Con
         fun onItemLongClick(id: String)
     }
 
-    private fun getDateString(b: BoxScore): String {
-        val startDateEastern = b.basicGameData.startDateEastern
-        val month = startDateEastern.substring(4,6)
-        val day = startDateEastern.substring(6)
-        val monthString = Months.values()[Integer.parseInt(month)-1].string
-        val dayNum = Integer.parseInt(day)
+    companion object {
+        fun getDateString(b: BoxScore): String {
+            val startDateEastern = b.basicGameData.startDateEastern
+            val month = startDateEastern.substring(4,6)
+            val day = startDateEastern.substring(6)
+            val monthString = Months.values()[Integer.parseInt(month)-1].string
+            val dayNum = Integer.parseInt(day)
 
-        val currentDate = PlayerStatsRepository.getDate()
-        if (startDateEastern == currentDate) {
-            return "Today"
+            val currentDate = PlayerStatsRepository.getDate()
+            if (startDateEastern == currentDate) {
+                return "Today"
+            }
+            return "$monthString $dayNum"
         }
-        return "$monthString $dayNum"
     }
 
     class PlayersComparator : DiffUtil.ItemCallback<Pair<Player, BoxScore>>() {
