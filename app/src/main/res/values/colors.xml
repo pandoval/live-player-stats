@@ -8,7 +8,16 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name = "gray_background">#EAEAEA</color>
-    <color name="highlight_blue">#cde9ff</color>
+    <!-- <color name="highlight_blue">#cde9ff</color> -->
+    <color name="highlight_blue">#1e4e75</color>
     <color name="red_indicator">#ed4245</color>
     <color name="green_indicator">#3ba55d</color>
+    <color name="darkest_gray">#2e2e2e</color>
+    <color name="darker_gray">#363636</color>
+    <color name="dark_gray">#3f3f3f</color>
+    <color name="text_gray">#bbbbbb</color>
+    <color name="text_darker_gray">#8a8a8a</color>
+    <color name="almost_black">#161511</color>
+    <color name="secondary_blue">#3b93da</color>
+
 </resources>

@@ -1,28 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/darkest_gray"
     android:paddingHorizontal="10dp"
-    android:paddingTop="10dp"
-    android:background="@color/gray_background">
+    android:paddingTop="10dp">
 
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/mainCardView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:strokeColor="@color/highlight_blue"
+        app:cardCornerRadius="16dp"
+        app:cardElevation="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:cardCornerRadius="16dp"
-        app:cardElevation="0dp">
+        app:strokeColor="@color/highlight_blue"
+        app:cardBackgroundColor="@android:color/transparent">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:background="@color/dark_gray"
             android:paddingBottom="8dp">
 
             <com.google.android.material.imageview.ShapeableImageView
@@ -40,8 +42,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
-                android:layout_marginTop="4dp"
-                android:textColor="@color/black"
+                android:layout_marginTop="5dp"
+                android:textColor="@color/text_gray"
                 android:textSize="13sp"
                 app:layout_constraintStart_toEndOf="@+id/pPic"
                 app:layout_constraintTop_toTopOf="@+id/pPic"
@@ -51,6 +53,7 @@
                 android:id="@+id/pTeam"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textColor="@color/text_darker_gray"
                 android:textSize="13sp"
                 app:layout_constraintStart_toStartOf="@+id/pName"
                 app:layout_constraintTop_toBottomOf="@+id/pName"
@@ -63,6 +66,7 @@
                 android:layout_marginEnd="4dp"
                 android:gravity="center"
                 android:text="&#8226;"
+                android:textColor="@color/text_gray"
                 android:textSize="34sp"
                 app:layout_constraintBottom_toBottomOf="@+id/pStatus"
                 app:layout_constraintEnd_toStartOf="@+id/pStatus"
@@ -73,6 +77,7 @@
                 android:layout_width="56dp"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="24dp"
+                android:textColor="@color/text_gray"
                 android:textSize="13sp"
                 app:layout_constraintBottom_toBottomOf="@+id/pPic"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -85,7 +90,7 @@
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="8dp"
-                android:background="@color/gray_background"
+                android:background="@color/darkest_gray"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/pPic" />
@@ -95,7 +100,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:textColor="@color/black"
+                android:textColor="@color/text_gray"
                 android:textSize="12sp"
                 app:layout_constraintBottom_toTopOf="@+id/pHTeamLogo"
                 app:layout_constraintEnd_toEndOf="@+id/pHTeamLogo"
@@ -107,6 +112,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center"
+                android:textColor="@color/text_darker_gray"
                 android:textSize="12sp"
                 app:layout_constraintEnd_toEndOf="@+id/pHTeamLogo"
                 app:layout_constraintStart_toStartOf="@+id/pHTeamLogo"
@@ -118,7 +124,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:textColor="@color/black"
+                android:textColor="@color/text_gray"
                 android:textSize="12sp"
                 app:layout_constraintBottom_toTopOf="@+id/pVTeamLogo"
                 app:layout_constraintEnd_toEndOf="@+id/pVTeamLogo"
@@ -129,6 +135,7 @@
                 android:id="@+id/pVTeamRecord"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textColor="@color/text_darker_gray"
                 android:textSize="12sp"
                 app:layout_constraintEnd_toEndOf="@+id/pVTeamLogo"
                 app:layout_constraintStart_toStartOf="@+id/pVTeamLogo"
@@ -141,7 +148,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="31dp"
                 android:gravity="center"
-                android:textColor="@color/black"
+                android:textColor="@color/text_gray"
                 android:textSize="12sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -153,6 +160,7 @@
                 android:layout_width="80dp"
                 android:layout_height="wrap_content"
                 android:gravity="center"
+                android:textColor="@color/text_darker_gray"
                 android:textSize="12sp"
                 app:layout_constraintEnd_toEndOf="@+id/pQuarter"
                 app:layout_constraintStart_toStartOf="@+id/pQuarter"
@@ -164,7 +172,7 @@
                 android:layout_width="50dp"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:textColor="@color/black"
+                android:textColor="@color/text_gray"
                 android:textSize="24sp"
                 app:layout_constraintBottom_toBottomOf="@+id/pClock"
                 app:layout_constraintEnd_toStartOf="@+id/pQuarter"
@@ -176,7 +184,7 @@
                 android:layout_width="50dp"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:textColor="@color/black"
+                android:textColor="@color/text_gray"
                 android:textSize="24sp"
                 app:layout_constraintBottom_toBottomOf="@+id/pClock"
                 app:layout_constraintStart_toEndOf="@+id/pQuarter"
@@ -208,7 +216,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Final"
-                android:textColor="@color/black"
+                android:textColor="@color/text_gray"
                 android:visibility="invisible"
                 app:layout_constraintBottom_toBottomOf="@+id/pClock"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -222,8 +230,9 @@
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="6dp"
                 android:layout_marginEnd="8dp"
-                android:background="@color/gray_background"
+                android:background="@color/darkest_gray"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/pHTeamRecord" />
 
@@ -247,7 +256,7 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/pHTeamRecord">
 
-                    <TableRow android:background="@color/gray_background">
+                    <TableRow android:background="@color/darkest_gray">
 
                         <TextView
                             android:layout_width="@dimen/boxscore_tv_width"

@@ -31,8 +31,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:gravity="center_vertical"
-            android:textStyle="bold"
-            android:textColor="@color/black"
+            android:textColor="@color/text_gray"
             app:layout_constraintBottom_toTopOf="@+id/guideline8"
             app:layout_constraintStart_toEndOf="@+id/playerNewPic"
             tools:text="JaVale McGee" />
@@ -43,6 +42,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:gravity="center_vertical"
+            android:textColor="@color/text_darker_gray"
             android:textSize="12sp"
             app:layout_constraintStart_toEndOf="@+id/playerNewPic"
             app:layout_constraintTop_toTopOf="@+id/guideline8"

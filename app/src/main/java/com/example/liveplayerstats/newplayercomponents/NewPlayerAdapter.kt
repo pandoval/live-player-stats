@@ -87,7 +87,7 @@ class NewPlayerAdapter(private val data: MutableList<Standard>, context: Context
             holder.itemView.setBackgroundResource(R.color.highlight_blue)
             holder.playerNewPic.setImageResource(R.drawable.ic_baseline_check_64)
         } else {
-            holder.itemView.setBackgroundResource(R.color.white)
+            holder.itemView.setBackgroundResource(R.color.darkest_gray)
             Glide.with(holder.itemView)
                 .load("https://cdn.nba.com/headshots/nba/latest/260x190/${idString}.png")
                 .into(holder.playerNewPic)

@@ -227,7 +227,7 @@ class BoxScoreFragment : Fragment() {
         val tv = TextView(context)
         tv.layoutParams = LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT,
             LinearLayout.LayoutParams.MATCH_PARENT)
-        tv.setTextColor(ContextCompat.getColor(requireContext(), R.color.black))
+        tv.setTextColor(ContextCompat.getColor(requireContext(), R.color.text_gray))
         tv.setTextSize(TypedValue.COMPLEX_UNIT_PX, resources.getDimension(R.dimen.stat_text_size))
         tv.text = name
         tv.setPadding(TypedValue.applyDimension(
@@ -243,6 +243,7 @@ class BoxScoreFragment : Fragment() {
                 LinearLayout.LayoutParams.MATCH_PARENT)
             posTV.text = p.pos
             posTV.gravity = Gravity.START
+            posTV.setTextColor(ContextCompat.getColor(requireContext(), R.color.text_darker_gray))
             posTV.setTextSize(TypedValue.COMPLEX_UNIT_PX, resources.getDimension(R.dimen.stat_text_size))
             horizontalLinearLayout.addView(posTV)
         }
@@ -257,7 +258,7 @@ class BoxScoreFragment : Fragment() {
             TableRow.LayoutParams.MATCH_PARENT)
         tv.text = text
         tv.gravity = Gravity.CENTER
-        tv.setTextColor(ContextCompat.getColor(requireContext(), R.color.black))
+        tv.setTextColor(ContextCompat.getColor(requireContext(), R.color.text_gray))
         tv.setTextSize(TypedValue.COMPLEX_UNIT_PX, resources.getDimension(R.dimen.stat_text_size))
         return tv
     }

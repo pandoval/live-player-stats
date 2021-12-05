@@ -17,13 +17,15 @@
         android:layout_gravity="center"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/game_not_started"/>
+        android:text="@string/game_not_started"
+        android:textColor="@color/text_gray"/>
 
     <com.google.android.material.card.MaterialCardView
+        android:background="@android:color/transparent"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:strokeWidth="2dp"
-        app:strokeColor="@color/design_default_color_primary"
+        app:strokeColor="@color/dark_gray"
         app:cardCornerRadius="20dp"
         android:layout_gravity="center"
         android:layout_margin="16dp">
@@ -32,17 +34,18 @@
             android:id="@+id/boxScoreTabLayout"
             android:layout_width="320dp"
             android:layout_height="32dp"
+            android:background="@color/darkest_gray"
+            android:visibility="gone"
+            app:tabGravity="fill"
+            app:tabIndicatorAnimationDuration="0"
+            app:tabIndicatorAnimationMode="linear"
+            app:tabIndicatorColor="@color/dark_gray"
             app:tabIndicatorGravity="stretch"
             app:tabMaxWidth="0dp"
-            app:tabGravity="fill"
             app:tabMode="fixed"
-            app:tabIndicatorColor="@color/design_default_color_primary"
-            app:tabSelectedTextColor="@color/white"
-            app:tabTextColor="@color/design_default_color_primary"
-            android:visibility="gone"
-            tools:visibility="visible"
-            app:tabIndicatorAnimationMode="linear"
-            app:tabIndicatorAnimationDuration="0">
+            app:tabSelectedTextColor="@color/text_gray"
+            app:tabTextColor="@color/text_darker_gray"
+            tools:visibility="visible">
 
             <com.google.android.material.tabs.TabItem
                 android:layout_width="wrap_content"
@@ -51,9 +54,9 @@
                 tools:text="Suns" />
 
             <com.google.android.material.tabs.TabItem
-                tools:text="Lakers"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                tools:text="Lakers" />
 
         </com.google.android.material.tabs.TabLayout>
 
@@ -72,11 +75,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
 
-            <TableRow android:background="@color/gray_background">
+            <TableRow android:background="@color/dark_gray">
 
                 <TextView
                     android:layout_width="100dp"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:layout_marginStart="10dp"
                     android:gravity="start"
                     android:theme="@style/boxscoreHeaderTV"
@@ -84,7 +87,7 @@
 
             </TableRow>
 
-            <TableRow android:background="@color/gray_background">
+            <TableRow android:background="@color/dark_gray">
 
                 <TextView
                     android:layout_width="100dp"
@@ -108,7 +111,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content">
 
-                <TableRow android:background="@color/gray_background">
+                <TableRow android:background="@color/dark_gray">
 
                     <TextView
                         android:layout_width="@dimen/boxscore_tv_width"
@@ -196,7 +199,7 @@
 
                 </TableRow>
 
-                <TableRow android:background="@color/gray_background">
+                <TableRow android:background="@color/dark_gray">
 
                     <TextView
                         android:layout_width="@dimen/boxscore_tv_width"
@@ -303,7 +306,7 @@
             android:layout_height="wrap_content"
             android:id="@+id/vNamesTL">
 
-            <TableRow android:background="@color/gray_background">
+            <TableRow android:background="@color/dark_gray">
 
                 <TextView
                     android:layout_width="100dp"
@@ -315,7 +318,7 @@
 
             </TableRow>
 
-            <TableRow android:background="@color/gray_background">
+            <TableRow android:background="@color/dark_gray">
 
                 <TextView
                     android:layout_width="100dp"
@@ -339,7 +342,7 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/vTableLayout">
 
-                <TableRow android:background="@color/gray_background">
+                <TableRow android:background="@color/dark_gray">
 
                     <TextView
                         android:layout_width="@dimen/boxscore_tv_width"
@@ -426,7 +429,7 @@
                         android:theme="@style/boxscoreHeaderTV" />
 
                 </TableRow>
-                <TableRow android:background="@color/gray_background">
+                <TableRow android:background="@color/dark_gray">
 
                     <TextView
                         android:layout_width="@dimen/boxscore_tv_width"

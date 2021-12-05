@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".NewPlayerActivity">
+    tools:context=".NewPlayerActivity"
+    android:background="@color/darkest_gray">
 
     <ProgressBar
         android:id="@+id/newPlayerProgress"

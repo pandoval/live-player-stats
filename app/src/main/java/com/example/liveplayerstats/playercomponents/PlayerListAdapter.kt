@@ -89,8 +89,6 @@ private val longClickListener: OnItemLongClickListener, private val context: Con
         private val teamImgResources = TeamImgResources.values()
         private val resourcesMap: Map<String, TeamImgResources> = teamArray.zip(teamImgResources).toMap()
 
-        private val defaultColor = pStatus.textColors.defaultColor
-
         private lateinit var currentPlayer: Player
 
         private lateinit var ap: ActivePlayer
@@ -128,7 +126,7 @@ private val longClickListener: OnItemLongClickListener, private val context: Con
                 if (ap.isOnCourt && !gameFinished) {
                     setIndicator(ContextCompat.getColor(context, R.color.green_indicator), "On court")
                 } else if(!gameFinished) {
-                    setIndicator(defaultColor, "On bench")
+                    setIndicator(ContextCompat.getColor(context, R.color.text_gray), "On bench")
                 }
             } else {
                 setIndicator(ContextCompat.getColor(context, R.color.red_indicator), "Inactive")
