@@ -23,13 +23,19 @@
         <item name="cornerSize">0%</item>
     </style>
 
-    <style name="boxscoreHeaderTV">
+    <style name="boxScoreHeaderTV">
         <item name="android:gravity">center</item>
         <item name="android:textSize">@dimen/stat_text_size</item>
         <item name="android:textColor">@color/text_gray</item>
     </style>
 
-    <style name="boxscoresValueTV">
+    <style name="boxScoreFragmentHeaderTV">
+        <item name="android:gravity">center</item>
+        <item name="android:textSize">@dimen/box_score_text_size</item>
+        <item name="android:textColor">@color/text_gray</item>
+    </style>
+
+    <style name="boxScoresValueTV">
         <item name="android:gravity">center</item>
         <item name="android:textSize">@dimen/stat_text_size</item>
         <item name="android:textColor">@color/text_gray</item>

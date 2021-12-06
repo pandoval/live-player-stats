@@ -195,6 +195,9 @@ class BoxScoreFragment : Fragment() {
         val row = TableRow(context)
         row.layoutParams = TableRow.LayoutParams(TableRow.LayoutParams.MATCH_PARENT,
             TableRow.LayoutParams.WRAP_CONTENT)
+        row.minimumHeight = TypedValue.applyDimension(
+            TypedValue.COMPLEX_UNIT_DIP, ROW_HEIGHT,resources.displayMetrics).toInt()
+        row.gravity = Gravity.START or Gravity.CENTER_VERTICAL
         row.addView(valueTV(p.min))
         row.addView(valueTV(p.points))
         row.addView(valueTV(p.totReb))
@@ -219,7 +222,9 @@ class BoxScoreFragment : Fragment() {
         val row = TableRow(context)
         row.layoutParams = TableRow.LayoutParams(TableRow.LayoutParams.MATCH_PARENT,
             TableRow.LayoutParams.WRAP_CONTENT)
-
+        row.minimumHeight = TypedValue.applyDimension(
+            TypedValue.COMPLEX_UNIT_DIP, ROW_HEIGHT,resources.displayMetrics).toInt()
+        row.gravity = Gravity.START or Gravity.CENTER_VERTICAL
         val horizontalLinearLayout = LinearLayout(context)
         horizontalLinearLayout.orientation = LinearLayout.HORIZONTAL
 
@@ -227,8 +232,9 @@ class BoxScoreFragment : Fragment() {
         val tv = TextView(context)
         tv.layoutParams = LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT,
             LinearLayout.LayoutParams.MATCH_PARENT)
+        tv.gravity = Gravity.START
         tv.setTextColor(ContextCompat.getColor(requireContext(), R.color.text_gray))
-        tv.setTextSize(TypedValue.COMPLEX_UNIT_PX, resources.getDimension(R.dimen.stat_text_size))
+        tv.setTextSize(TypedValue.COMPLEX_UNIT_PX, resources.getDimension(R.dimen.box_score_text_size))
         tv.text = name
         tv.setPadding(TypedValue.applyDimension(
             TypedValue.COMPLEX_UNIT_DIP, 10f,resources.displayMetrics)
@@ -244,7 +250,7 @@ class BoxScoreFragment : Fragment() {
             posTV.text = p.pos
             posTV.gravity = Gravity.START
             posTV.setTextColor(ContextCompat.getColor(requireContext(), R.color.text_darker_gray))
-            posTV.setTextSize(TypedValue.COMPLEX_UNIT_PX, resources.getDimension(R.dimen.stat_text_size))
+            posTV.setTextSize(TypedValue.COMPLEX_UNIT_PX, resources.getDimension(R.dimen.box_score_text_size))
             horizontalLinearLayout.addView(posTV)
         }
         row.addView(horizontalLinearLayout)
@@ -259,7 +265,7 @@ class BoxScoreFragment : Fragment() {
         tv.text = text
         tv.gravity = Gravity.CENTER
         tv.setTextColor(ContextCompat.getColor(requireContext(), R.color.text_gray))
-        tv.setTextSize(TypedValue.COMPLEX_UNIT_PX, resources.getDimension(R.dimen.stat_text_size))
+        tv.setTextSize(TypedValue.COMPLEX_UNIT_PX, resources.getDimension(R.dimen.box_score_text_size))
         return tv
     }
 
@@ -348,5 +354,7 @@ class BoxScoreFragment : Fragment() {
                     putString(PLAYER_TEAM_ID, teamId)
                 }
             }
+
+        const val ROW_HEIGHT = 32f
     }
 }
