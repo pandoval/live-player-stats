@@ -86,18 +86,30 @@ class BoxScoreFragment : Fragment() {
         orderPlayers(boxScore, boxScore.basicGameData.statusNum == 2)
 
         for (i in 1..5) {
-            binding.hTableLayout.addView(addRow(hFirstFive[i-1]), i)
-            binding.vTableLayout.addView(addRow(vFirstFive[i-1]), i)
-            binding.hNamesTL.addView(addName(hFirstFive[i-1]), i)
-            binding.vNamesTL.addView(addName(vFirstFive[i-1]), i)
+            var rowLighter = false
+            if (i % 2 == 0) {
+                rowLighter = true
+            }
+            binding.hTableLayout.addView(addRow(hFirstFive[i-1], rowLighter), i)
+            binding.vTableLayout.addView(addRow(vFirstFive[i-1], rowLighter), i)
+            binding.hNamesTL.addView(addName(hFirstFive[i-1], rowLighter), i)
+            binding.vNamesTL.addView(addName(vFirstFive[i-1], rowLighter), i)
         }
         for (i in 0 until hOthers.size) {
-            binding.hTableLayout.addView(addRow(hOthers[i]), i + 7)
-            binding.hNamesTL.addView(addName(hOthers[i]), i + 7)
+            var rowLighter = false
+            if (i % 2 == 1) {
+                rowLighter = true
+            }
+            binding.hTableLayout.addView(addRow(hOthers[i], rowLighter), i + 7)
+            binding.hNamesTL.addView(addName(hOthers[i], rowLighter), i + 7)
         }
         for (i in 0 until vOthers.size) {
-            binding.vTableLayout.addView(addRow(vOthers[i]), i + 7)
-            binding.vNamesTL.addView(addName(vOthers[i]), i + 7)
+            var rowLighter = false
+            if (i % 2 == 1) {
+                rowLighter = true
+            }
+            binding.vTableLayout.addView(addRow(vOthers[i], rowLighter), i + 7)
+            binding.vNamesTL.addView(addName(vOthers[i], rowLighter), i + 7)
         }
     }
 
@@ -191,8 +203,13 @@ class BoxScoreFragment : Fragment() {
         }
     }
 
-    private fun addRow(p: ActivePlayer): TableRow {
+    private fun addRow(p: ActivePlayer, rowLighter: Boolean): TableRow {
         val row = TableRow(context)
+        if (rowLighter) {
+            row.setBackgroundResource(R.color.darker_gray)
+        } else {
+            row.setBackgroundResource(R.color.darkest_gray)
+        }
         row.layoutParams = TableRow.LayoutParams(TableRow.LayoutParams.MATCH_PARENT,
             TableRow.LayoutParams.WRAP_CONTENT)
         row.minimumHeight = TypedValue.applyDimension(
@@ -218,8 +235,13 @@ class BoxScoreFragment : Fragment() {
         return row
     }
 
-    private fun addName(p: ActivePlayer): TableRow {
+    private fun addName(p: ActivePlayer, rowLighter: Boolean): TableRow {
         val row = TableRow(context)
+        if (rowLighter) {
+            row.setBackgroundResource(R.color.darker_gray)
+        } else {
+            row.setBackgroundResource(R.color.darkest_gray)
+        }
         row.layoutParams = TableRow.LayoutParams(TableRow.LayoutParams.MATCH_PARENT,
             TableRow.LayoutParams.WRAP_CONTENT)
         row.minimumHeight = TypedValue.applyDimension(
@@ -355,6 +377,6 @@ class BoxScoreFragment : Fragment() {
                 }
             }
 
-        const val ROW_HEIGHT = 32f
+        const val ROW_HEIGHT = 30f
     }
 }
