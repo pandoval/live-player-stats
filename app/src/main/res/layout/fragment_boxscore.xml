@@ -61,58 +61,20 @@
 
     </com.google.android.material.card.MaterialCardView>
 
-    <LinearLayout
-        android:id="@+id/hLinearLayout"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:visibility="gone"
-        tools:visibility="visible">
+        android:layout_height="wrap_content" >
 
-        <TableLayout
-            android:id="@+id/hNamesTL"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
-
-            <TableRow
-                android:background="@color/dark_gray"
-                android:gravity="start|center_vertical"
-                android:minHeight="@dimen/box_score_row_min_height">
-
-                <TextView
-                    android:layout_width="100dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="10dp"
-                    android:gravity="start"
-                    android:theme="@style/boxScoreFragmentHeaderTV"
-                    tools:text="STARTERS" />
-
-            </TableRow>
-
-            <TableRow
-                android:background="@color/dark_gray"
-                android:gravity="start|center_vertical"
-                android:minHeight="@dimen/box_score_row_min_height">
-
-                <TextView
-                    android:layout_width="100dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="10dp"
-                    android:gravity="start"
-                    android:theme="@style/boxScoreFragmentHeaderTV"
-                    tools:text="BENCH" />
-
-            </TableRow>
-
-        </TableLayout>
-
-        <HorizontalScrollView
-            android:id="@+id/hHScroll"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
+        <LinearLayout
+            android:id="@+id/hLinearLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:visibility="gone"
+            tools:visibility="visible">
 
             <TableLayout
-                android:id="@+id/hTableLayout"
+                android:id="@+id/hNamesTL"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content">
 
@@ -122,88 +84,12 @@
                     android:minHeight="@dimen/box_score_row_min_height">
 
                     <TextView
-                        android:layout_width="@dimen/boxscore_tv_width"
+                        android:layout_width="100dp"
                         android:layout_height="wrap_content"
-                        android:text="MIN"
-                        android:theme="@style/boxScoreFragmentHeaderTV" />
-
-                    <TextView
-                        android:layout_width="@dimen/boxscore_tv_width"
-                        android:layout_height="wrap_content"
-                        android:text="PTS"
-                        android:theme="@style/boxScoreFragmentHeaderTV" />
-
-                    <TextView
-                        android:layout_width="@dimen/boxscore_tv_width"
-                        android:layout_height="wrap_content"
-                        android:text="REB"
-                        android:theme="@style/boxScoreFragmentHeaderTV" />
-
-                    <TextView
-                        android:layout_width="@dimen/boxscore_tv_width"
-                        android:layout_height="wrap_content"
-                        android:text="AST"
-                        android:theme="@style/boxScoreFragmentHeaderTV" />
-
-                    <TextView
-                        android:layout_width="@dimen/boxscore_tv_width"
-                        android:layout_height="wrap_content"
-                        android:text="STL"
-                        android:theme="@style/boxScoreFragmentHeaderTV" />
-
-                    <TextView
-                        android:layout_width="@dimen/boxscore_tv_width"
-                        android:layout_height="wrap_content"
-                        android:text="BLK"
-                        android:theme="@style/boxScoreFragmentHeaderTV" />
-
-                    <TextView
-                        android:layout_width="@dimen/boxscore_tv_width"
-                        android:layout_height="wrap_content"
-                        android:text="FG"
-                        android:theme="@style/boxScoreFragmentHeaderTV" />
-
-                    <TextView
-                        android:layout_width="@dimen/boxscore_tv_width"
-                        android:layout_height="wrap_content"
-                        android:text="3P"
-                        android:theme="@style/boxScoreFragmentHeaderTV" />
-
-                    <TextView
-                        android:layout_width="@dimen/boxscore_tv_width"
-                        android:layout_height="wrap_content"
-                        android:text="FT"
-                        android:theme="@style/boxScoreFragmentHeaderTV" />
-
-                    <TextView
-                        android:layout_width="@dimen/boxscore_tv_width"
-                        android:layout_height="wrap_content"
-                        android:text="OREB"
-                        android:theme="@style/boxScoreFragmentHeaderTV" />
-
-                    <TextView
-                        android:layout_width="@dimen/boxscore_tv_width"
-                        android:layout_height="wrap_content"
-                        android:text="DREB"
-                        android:theme="@style/boxScoreFragmentHeaderTV" />
-
-                    <TextView
-                        android:layout_width="@dimen/boxscore_tv_width"
-                        android:layout_height="wrap_content"
-                        android:text="TOV"
-                        android:theme="@style/boxScoreFragmentHeaderTV" />
-
-                    <TextView
-                        android:layout_width="@dimen/boxscore_tv_width"
-                        android:layout_height="wrap_content"
-                        android:text="PF"
-                        android:theme="@style/boxScoreFragmentHeaderTV" />
-
-                    <TextView
-                        android:layout_width="@dimen/boxscore_tv_width"
-                        android:layout_height="wrap_content"
-                        android:text="+/-"
-                        android:theme="@style/boxScoreFragmentHeaderTV" />
+                        android:layout_marginStart="10dp"
+                        android:gravity="start"
+                        android:theme="@style/boxScoreFragmentHeaderTV"
+                        tools:text="STARTERS" />
 
                 </TableRow>
 
@@ -213,149 +99,231 @@
                     android:minHeight="@dimen/box_score_row_min_height">
 
                     <TextView
-                        android:layout_width="@dimen/boxscore_tv_width"
+                        android:layout_width="100dp"
                         android:layout_height="wrap_content"
-                        android:text="MIN"
-                        android:theme="@style/boxScoreFragmentHeaderTV" />
-
-                    <TextView
-                        android:layout_width="@dimen/boxscore_tv_width"
-                        android:layout_height="wrap_content"
-                        android:text="PTS"
-                        android:theme="@style/boxScoreFragmentHeaderTV" />
-
-                    <TextView
-                        android:layout_width="@dimen/boxscore_tv_width"
-                        android:layout_height="wrap_content"
-                        android:text="REB"
-                        android:theme="@style/boxScoreFragmentHeaderTV" />
-
-                    <TextView
-                        android:layout_width="@dimen/boxscore_tv_width"
-                        android:layout_height="wrap_content"
-                        android:text="AST"
-                        android:theme="@style/boxScoreFragmentHeaderTV" />
-
-                    <TextView
-                        android:layout_width="@dimen/boxscore_tv_width"
-                        android:layout_height="wrap_content"
-                        android:text="STL"
-                        android:theme="@style/boxScoreFragmentHeaderTV" />
-
-                    <TextView
-                        android:layout_width="@dimen/boxscore_tv_width"
-                        android:layout_height="wrap_content"
-                        android:text="BLK"
-                        android:theme="@style/boxScoreFragmentHeaderTV" />
-
-                    <TextView
-                        android:layout_width="@dimen/boxscore_tv_width"
-                        android:layout_height="wrap_content"
-                        android:text="FG"
-                        android:theme="@style/boxScoreFragmentHeaderTV" />
-
-                    <TextView
-                        android:layout_width="@dimen/boxscore_tv_width"
-                        android:layout_height="wrap_content"
-                        android:text="3P"
-                        android:theme="@style/boxScoreFragmentHeaderTV" />
-
-                    <TextView
-                        android:layout_width="@dimen/boxscore_tv_width"
-                        android:layout_height="wrap_content"
-                        android:text="FT"
-                        android:theme="@style/boxScoreFragmentHeaderTV" />
-
-                    <TextView
-                        android:layout_width="@dimen/boxscore_tv_width"
-                        android:layout_height="wrap_content"
-                        android:text="OREB"
-                        android:theme="@style/boxScoreFragmentHeaderTV" />
-
-                    <TextView
-                        android:layout_width="@dimen/boxscore_tv_width"
-                        android:layout_height="wrap_content"
-                        android:text="DREB"
-                        android:theme="@style/boxScoreFragmentHeaderTV" />
-
-                    <TextView
-                        android:layout_width="@dimen/boxscore_tv_width"
-                        android:layout_height="wrap_content"
-                        android:text="TOV"
-                        android:theme="@style/boxScoreFragmentHeaderTV" />
-
-                    <TextView
-                        android:layout_width="@dimen/boxscore_tv_width"
-                        android:layout_height="wrap_content"
-                        android:text="PF"
-                        android:theme="@style/boxScoreFragmentHeaderTV" />
-
-                    <TextView
-                        android:layout_width="@dimen/boxscore_tv_width"
-                        android:layout_height="wrap_content"
-                        android:text="+/-"
-                        android:theme="@style/boxScoreFragmentHeaderTV" />
+                        android:layout_marginStart="10dp"
+                        android:gravity="start"
+                        android:theme="@style/boxScoreFragmentHeaderTV"
+                        tools:text="BENCH" />
 
                 </TableRow>
 
             </TableLayout>
 
-        </HorizontalScrollView>
+            <HorizontalScrollView
+                android:id="@+id/hHScroll"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
 
-    </LinearLayout>
+                <TableLayout
+                    android:id="@+id/hTableLayout"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
 
-    <LinearLayout
-        android:id="@+id/vLinearLayout"
+                    <TableRow
+                        android:background="@color/dark_gray"
+                        android:gravity="start|center_vertical"
+                        android:minHeight="@dimen/box_score_row_min_height">
+
+                        <TextView
+                            android:layout_width="@dimen/boxscore_tv_width"
+                            android:layout_height="wrap_content"
+                            android:text="MIN"
+                            android:theme="@style/boxScoreFragmentHeaderTV" />
+
+                        <TextView
+                            android:layout_width="@dimen/boxscore_tv_width"
+                            android:layout_height="wrap_content"
+                            android:text="PTS"
+                            android:theme="@style/boxScoreFragmentHeaderTV" />
+
+                        <TextView
+                            android:layout_width="@dimen/boxscore_tv_width"
+                            android:layout_height="wrap_content"
+                            android:text="REB"
+                            android:theme="@style/boxScoreFragmentHeaderTV" />
+
+                        <TextView
+                            android:layout_width="@dimen/boxscore_tv_width"
+                            android:layout_height="wrap_content"
+                            android:text="AST"
+                            android:theme="@style/boxScoreFragmentHeaderTV" />
+
+                        <TextView
+                            android:layout_width="@dimen/boxscore_tv_width"
+                            android:layout_height="wrap_content"
+                            android:text="STL"
+                            android:theme="@style/boxScoreFragmentHeaderTV" />
+
+                        <TextView
+                            android:layout_width="@dimen/boxscore_tv_width"
+                            android:layout_height="wrap_content"
+                            android:text="BLK"
+                            android:theme="@style/boxScoreFragmentHeaderTV" />
+
+                        <TextView
+                            android:layout_width="@dimen/boxscore_tv_width"
+                            android:layout_height="wrap_content"
+                            android:text="FG"
+                            android:theme="@style/boxScoreFragmentHeaderTV" />
+
+                        <TextView
+                            android:layout_width="@dimen/boxscore_tv_width"
+                            android:layout_height="wrap_content"
+                            android:text="3P"
+                            android:theme="@style/boxScoreFragmentHeaderTV" />
+
+                        <TextView
+                            android:layout_width="@dimen/boxscore_tv_width"
+                            android:layout_height="wrap_content"
+                            android:text="FT"
+                            android:theme="@style/boxScoreFragmentHeaderTV" />
+
+                        <TextView
+                            android:layout_width="@dimen/boxscore_tv_width"
+                            android:layout_height="wrap_content"
+                            android:text="OREB"
+                            android:theme="@style/boxScoreFragmentHeaderTV" />
+
+                        <TextView
+                            android:layout_width="@dimen/boxscore_tv_width"
+                            android:layout_height="wrap_content"
+                            android:text="DREB"
+                            android:theme="@style/boxScoreFragmentHeaderTV" />
+
+                        <TextView
+                            android:layout_width="@dimen/boxscore_tv_width"
+                            android:layout_height="wrap_content"
+                            android:text="TOV"
+                            android:theme="@style/boxScoreFragmentHeaderTV" />
+
+                        <TextView
+                            android:layout_width="@dimen/boxscore_tv_width"
+                            android:layout_height="wrap_content"
+                            android:text="PF"
+                            android:theme="@style/boxScoreFragmentHeaderTV" />
+
+                        <TextView
+                            android:layout_width="@dimen/boxscore_tv_width"
+                            android:layout_height="wrap_content"
+                            android:text="+/-"
+                            android:theme="@style/boxScoreFragmentHeaderTV" />
+
+                    </TableRow>
+
+                    <TableRow
+                        android:background="@color/dark_gray"
+                        android:gravity="start|center_vertical"
+                        android:minHeight="@dimen/box_score_row_min_height">
+
+                        <TextView
+                            android:layout_width="@dimen/boxscore_tv_width"
+                            android:layout_height="wrap_content"
+                            android:text="MIN"
+                            android:theme="@style/boxScoreFragmentHeaderTV" />
+
+                        <TextView
+                            android:layout_width="@dimen/boxscore_tv_width"
+                            android:layout_height="wrap_content"
+                            android:text="PTS"
+                            android:theme="@style/boxScoreFragmentHeaderTV" />
+
+                        <TextView
+                            android:layout_width="@dimen/boxscore_tv_width"
+                            android:layout_height="wrap_content"
+                            android:text="REB"
+                            android:theme="@style/boxScoreFragmentHeaderTV" />
+
+                        <TextView
+                            android:layout_width="@dimen/boxscore_tv_width"
+                            android:layout_height="wrap_content"
+                            android:text="AST"
+                            android:theme="@style/boxScoreFragmentHeaderTV" />
+
+                        <TextView
+                            android:layout_width="@dimen/boxscore_tv_width"
+                            android:layout_height="wrap_content"
+                            android:text="STL"
+                            android:theme="@style/boxScoreFragmentHeaderTV" />
+
+                        <TextView
+                            android:layout_width="@dimen/boxscore_tv_width"
+                            android:layout_height="wrap_content"
+                            android:text="BLK"
+                            android:theme="@style/boxScoreFragmentHeaderTV" />
+
+                        <TextView
+                            android:layout_width="@dimen/boxscore_tv_width"
+                            android:layout_height="wrap_content"
+                            android:text="FG"
+                            android:theme="@style/boxScoreFragmentHeaderTV" />
+
+                        <TextView
+                            android:layout_width="@dimen/boxscore_tv_width"
+                            android:layout_height="wrap_content"
+                            android:text="3P"
+                            android:theme="@style/boxScoreFragmentHeaderTV" />
+
+                        <TextView
+                            android:layout_width="@dimen/boxscore_tv_width"
+                            android:layout_height="wrap_content"
+                            android:text="FT"
+                            android:theme="@style/boxScoreFragmentHeaderTV" />
+
+                        <TextView
+                            android:layout_width="@dimen/boxscore_tv_width"
+                            android:layout_height="wrap_content"
+                            android:text="OREB"
+                            android:theme="@style/boxScoreFragmentHeaderTV" />
+
+                        <TextView
+                            android:layout_width="@dimen/boxscore_tv_width"
+                            android:layout_height="wrap_content"
+                            android:text="DREB"
+                            android:theme="@style/boxScoreFragmentHeaderTV" />
+
+                        <TextView
+                            android:layout_width="@dimen/boxscore_tv_width"
+                            android:layout_height="wrap_content"
+                            android:text="TOV"
+                            android:theme="@style/boxScoreFragmentHeaderTV" />
+
+                        <TextView
+                            android:layout_width="@dimen/boxscore_tv_width"
+                            android:layout_height="wrap_content"
+                            android:text="PF"
+                            android:theme="@style/boxScoreFragmentHeaderTV" />
+
+                        <TextView
+                            android:layout_width="@dimen/boxscore_tv_width"
+                            android:layout_height="wrap_content"
+                            android:text="+/-"
+                            android:theme="@style/boxScoreFragmentHeaderTV" />
+
+                    </TableRow>
+
+                </TableLayout>
+
+            </HorizontalScrollView>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:visibility="gone"
-        tools:visibility="visible">
+        android:layout_height="wrap_content" >
 
-        <TableLayout
-            android:id="@+id/vNamesTL"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
-
-            <TableRow
-                android:background="@color/dark_gray"
-                android:gravity="start|center_vertical"
-                android:minHeight="@dimen/box_score_row_min_height">
-
-                <TextView
-                    android:layout_width="100dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="10dp"
-                    android:gravity="start"
-                    android:theme="@style/boxScoreFragmentHeaderTV"
-                    tools:text="STARTERS" />
-
-            </TableRow>
-
-            <TableRow
-                android:background="@color/dark_gray"
-                android:gravity="start|center_vertical"
-                android:minHeight="@dimen/box_score_row_min_height">
-
-                <TextView
-                    android:layout_width="100dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="10dp"
-                    android:gravity="start"
-                    android:theme="@style/boxScoreFragmentHeaderTV"
-                    tools:text="BENCH" />
-
-            </TableRow>
-
-        </TableLayout>
-
-        <HorizontalScrollView
-            android:id="@+id/vHScroll"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
+        <LinearLayout
+            android:id="@+id/vLinearLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:visibility="gone"
+            tools:visibility="visible">
 
             <TableLayout
-                android:id="@+id/vTableLayout"
+                android:id="@+id/vNamesTL"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content">
 
@@ -365,88 +333,12 @@
                     android:minHeight="@dimen/box_score_row_min_height">
 
                     <TextView
-                        android:layout_width="@dimen/boxscore_tv_width"
+                        android:layout_width="100dp"
                         android:layout_height="wrap_content"
-                        android:text="MIN"
-                        android:theme="@style/boxScoreFragmentHeaderTV" />
-
-                    <TextView
-                        android:layout_width="@dimen/boxscore_tv_width"
-                        android:layout_height="wrap_content"
-                        android:text="PTS"
-                        android:theme="@style/boxScoreFragmentHeaderTV" />
-
-                    <TextView
-                        android:layout_width="@dimen/boxscore_tv_width"
-                        android:layout_height="wrap_content"
-                        android:text="REB"
-                        android:theme="@style/boxScoreFragmentHeaderTV" />
-
-                    <TextView
-                        android:layout_width="@dimen/boxscore_tv_width"
-                        android:layout_height="wrap_content"
-                        android:text="AST"
-                        android:theme="@style/boxScoreFragmentHeaderTV" />
-
-                    <TextView
-                        android:layout_width="@dimen/boxscore_tv_width"
-                        android:layout_height="wrap_content"
-                        android:text="STL"
-                        android:theme="@style/boxScoreFragmentHeaderTV" />
-
-                    <TextView
-                        android:layout_width="@dimen/boxscore_tv_width"
-                        android:layout_height="wrap_content"
-                        android:text="BLK"
-                        android:theme="@style/boxScoreFragmentHeaderTV" />
-
-                    <TextView
-                        android:layout_width="@dimen/boxscore_tv_width"
-                        android:layout_height="wrap_content"
-                        android:text="FG"
-                        android:theme="@style/boxScoreFragmentHeaderTV" />
-
-                    <TextView
-                        android:layout_width="@dimen/boxscore_tv_width"
-                        android:layout_height="wrap_content"
-                        android:text="3P"
-                        android:theme="@style/boxScoreFragmentHeaderTV" />
-
-                    <TextView
-                        android:layout_width="@dimen/boxscore_tv_width"
-                        android:layout_height="wrap_content"
-                        android:text="FT"
-                        android:theme="@style/boxScoreFragmentHeaderTV" />
-
-                    <TextView
-                        android:layout_width="@dimen/boxscore_tv_width"
-                        android:layout_height="wrap_content"
-                        android:text="OREB"
-                        android:theme="@style/boxScoreFragmentHeaderTV" />
-
-                    <TextView
-                        android:layout_width="@dimen/boxscore_tv_width"
-                        android:layout_height="wrap_content"
-                        android:text="DREB"
-                        android:theme="@style/boxScoreFragmentHeaderTV" />
-
-                    <TextView
-                        android:layout_width="@dimen/boxscore_tv_width"
-                        android:layout_height="wrap_content"
-                        android:text="TOV"
-                        android:theme="@style/boxScoreFragmentHeaderTV" />
-
-                    <TextView
-                        android:layout_width="@dimen/boxscore_tv_width"
-                        android:layout_height="wrap_content"
-                        android:text="PF"
-                        android:theme="@style/boxScoreFragmentHeaderTV" />
-
-                    <TextView
-                        android:layout_width="@dimen/boxscore_tv_width"
-                        android:layout_height="wrap_content"
-                        android:text="+/-"
-                        android:theme="@style/boxScoreFragmentHeaderTV" />
+                        android:layout_marginStart="10dp"
+                        android:gravity="start"
+                        android:theme="@style/boxScoreFragmentHeaderTV"
+                        tools:text="STARTERS" />
 
                 </TableRow>
 
@@ -456,95 +348,215 @@
                     android:minHeight="@dimen/box_score_row_min_height">
 
                     <TextView
-                        android:layout_width="@dimen/boxscore_tv_width"
+                        android:layout_width="100dp"
                         android:layout_height="wrap_content"
-                        android:text="MIN"
-                        android:theme="@style/boxScoreFragmentHeaderTV" />
-
-                    <TextView
-                        android:layout_width="@dimen/boxscore_tv_width"
-                        android:layout_height="wrap_content"
-                        android:text="PTS"
-                        android:theme="@style/boxScoreFragmentHeaderTV" />
-
-                    <TextView
-                        android:layout_width="@dimen/boxscore_tv_width"
-                        android:layout_height="wrap_content"
-                        android:text="REB"
-                        android:theme="@style/boxScoreFragmentHeaderTV" />
-
-                    <TextView
-                        android:layout_width="@dimen/boxscore_tv_width"
-                        android:layout_height="wrap_content"
-                        android:text="AST"
-                        android:theme="@style/boxScoreFragmentHeaderTV" />
-
-                    <TextView
-                        android:layout_width="@dimen/boxscore_tv_width"
-                        android:layout_height="wrap_content"
-                        android:text="STL"
-                        android:theme="@style/boxScoreFragmentHeaderTV" />
-
-                    <TextView
-                        android:layout_width="@dimen/boxscore_tv_width"
-                        android:layout_height="wrap_content"
-                        android:text="BLK"
-                        android:theme="@style/boxScoreFragmentHeaderTV" />
-
-                    <TextView
-                        android:layout_width="@dimen/boxscore_tv_width"
-                        android:layout_height="wrap_content"
-                        android:text="FG"
-                        android:theme="@style/boxScoreFragmentHeaderTV" />
-
-                    <TextView
-                        android:layout_width="@dimen/boxscore_tv_width"
-                        android:layout_height="wrap_content"
-                        android:text="3P"
-                        android:theme="@style/boxScoreFragmentHeaderTV" />
-
-                    <TextView
-                        android:layout_width="@dimen/boxscore_tv_width"
-                        android:layout_height="wrap_content"
-                        android:text="FT"
-                        android:theme="@style/boxScoreFragmentHeaderTV" />
-
-                    <TextView
-                        android:layout_width="@dimen/boxscore_tv_width"
-                        android:layout_height="wrap_content"
-                        android:text="OREB"
-                        android:theme="@style/boxScoreFragmentHeaderTV" />
-
-                    <TextView
-                        android:layout_width="@dimen/boxscore_tv_width"
-                        android:layout_height="wrap_content"
-                        android:text="DREB"
-                        android:theme="@style/boxScoreFragmentHeaderTV" />
-
-                    <TextView
-                        android:layout_width="@dimen/boxscore_tv_width"
-                        android:layout_height="wrap_content"
-                        android:text="TOV"
-                        android:theme="@style/boxScoreFragmentHeaderTV" />
-
-                    <TextView
-                        android:layout_width="@dimen/boxscore_tv_width"
-                        android:layout_height="wrap_content"
-                        android:text="PF"
-                        android:theme="@style/boxScoreFragmentHeaderTV" />
-
-                    <TextView
-                        android:layout_width="@dimen/boxscore_tv_width"
-                        android:layout_height="wrap_content"
-                        android:text="+/-"
-                        android:theme="@style/boxScoreFragmentHeaderTV" />
+                        android:layout_marginStart="10dp"
+                        android:gravity="start"
+                        android:theme="@style/boxScoreFragmentHeaderTV"
+                        tools:text="BENCH" />
 
                 </TableRow>
 
             </TableLayout>
 
-        </HorizontalScrollView>
+            <HorizontalScrollView
+                android:id="@+id/vHScroll"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
 
-    </LinearLayout>
+                <TableLayout
+                    android:id="@+id/vTableLayout"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <TableRow
+                        android:background="@color/dark_gray"
+                        android:gravity="start|center_vertical"
+                        android:minHeight="@dimen/box_score_row_min_height">
+
+                        <TextView
+                            android:layout_width="@dimen/boxscore_tv_width"
+                            android:layout_height="wrap_content"
+                            android:text="MIN"
+                            android:theme="@style/boxScoreFragmentHeaderTV" />
+
+                        <TextView
+                            android:layout_width="@dimen/boxscore_tv_width"
+                            android:layout_height="wrap_content"
+                            android:text="PTS"
+                            android:theme="@style/boxScoreFragmentHeaderTV" />
+
+                        <TextView
+                            android:layout_width="@dimen/boxscore_tv_width"
+                            android:layout_height="wrap_content"
+                            android:text="REB"
+                            android:theme="@style/boxScoreFragmentHeaderTV" />
+
+                        <TextView
+                            android:layout_width="@dimen/boxscore_tv_width"
+                            android:layout_height="wrap_content"
+                            android:text="AST"
+                            android:theme="@style/boxScoreFragmentHeaderTV" />
+
+                        <TextView
+                            android:layout_width="@dimen/boxscore_tv_width"
+                            android:layout_height="wrap_content"
+                            android:text="STL"
+                            android:theme="@style/boxScoreFragmentHeaderTV" />
+
+                        <TextView
+                            android:layout_width="@dimen/boxscore_tv_width"
+                            android:layout_height="wrap_content"
+                            android:text="BLK"
+                            android:theme="@style/boxScoreFragmentHeaderTV" />
+
+                        <TextView
+                            android:layout_width="@dimen/boxscore_tv_width"
+                            android:layout_height="wrap_content"
+                            android:text="FG"
+                            android:theme="@style/boxScoreFragmentHeaderTV" />
+
+                        <TextView
+                            android:layout_width="@dimen/boxscore_tv_width"
+                            android:layout_height="wrap_content"
+                            android:text="3P"
+                            android:theme="@style/boxScoreFragmentHeaderTV" />
+
+                        <TextView
+                            android:layout_width="@dimen/boxscore_tv_width"
+                            android:layout_height="wrap_content"
+                            android:text="FT"
+                            android:theme="@style/boxScoreFragmentHeaderTV" />
+
+                        <TextView
+                            android:layout_width="@dimen/boxscore_tv_width"
+                            android:layout_height="wrap_content"
+                            android:text="OREB"
+                            android:theme="@style/boxScoreFragmentHeaderTV" />
+
+                        <TextView
+                            android:layout_width="@dimen/boxscore_tv_width"
+                            android:layout_height="wrap_content"
+                            android:text="DREB"
+                            android:theme="@style/boxScoreFragmentHeaderTV" />
+
+                        <TextView
+                            android:layout_width="@dimen/boxscore_tv_width"
+                            android:layout_height="wrap_content"
+                            android:text="TOV"
+                            android:theme="@style/boxScoreFragmentHeaderTV" />
+
+                        <TextView
+                            android:layout_width="@dimen/boxscore_tv_width"
+                            android:layout_height="wrap_content"
+                            android:text="PF"
+                            android:theme="@style/boxScoreFragmentHeaderTV" />
+
+                        <TextView
+                            android:layout_width="@dimen/boxscore_tv_width"
+                            android:layout_height="wrap_content"
+                            android:text="+/-"
+                            android:theme="@style/boxScoreFragmentHeaderTV" />
+
+                    </TableRow>
+
+                    <TableRow
+                        android:background="@color/dark_gray"
+                        android:gravity="start|center_vertical"
+                        android:minHeight="@dimen/box_score_row_min_height">
+
+                        <TextView
+                            android:layout_width="@dimen/boxscore_tv_width"
+                            android:layout_height="wrap_content"
+                            android:text="MIN"
+                            android:theme="@style/boxScoreFragmentHeaderTV" />
+
+                        <TextView
+                            android:layout_width="@dimen/boxscore_tv_width"
+                            android:layout_height="wrap_content"
+                            android:text="PTS"
+                            android:theme="@style/boxScoreFragmentHeaderTV" />
+
+                        <TextView
+                            android:layout_width="@dimen/boxscore_tv_width"
+                            android:layout_height="wrap_content"
+                            android:text="REB"
+                            android:theme="@style/boxScoreFragmentHeaderTV" />
+
+                        <TextView
+                            android:layout_width="@dimen/boxscore_tv_width"
+                            android:layout_height="wrap_content"
+                            android:text="AST"
+                            android:theme="@style/boxScoreFragmentHeaderTV" />
+
+                        <TextView
+                            android:layout_width="@dimen/boxscore_tv_width"
+                            android:layout_height="wrap_content"
+                            android:text="STL"
+                            android:theme="@style/boxScoreFragmentHeaderTV" />
+
+                        <TextView
+                            android:layout_width="@dimen/boxscore_tv_width"
+                            android:layout_height="wrap_content"
+                            android:text="BLK"
+                            android:theme="@style/boxScoreFragmentHeaderTV" />
+
+                        <TextView
+                            android:layout_width="@dimen/boxscore_tv_width"
+                            android:layout_height="wrap_content"
+                            android:text="FG"
+                            android:theme="@style/boxScoreFragmentHeaderTV" />
+
+                        <TextView
+                            android:layout_width="@dimen/boxscore_tv_width"
+                            android:layout_height="wrap_content"
+                            android:text="3P"
+                            android:theme="@style/boxScoreFragmentHeaderTV" />
+
+                        <TextView
+                            android:layout_width="@dimen/boxscore_tv_width"
+                            android:layout_height="wrap_content"
+                            android:text="FT"
+                            android:theme="@style/boxScoreFragmentHeaderTV" />
+
+                        <TextView
+                            android:layout_width="@dimen/boxscore_tv_width"
+                            android:layout_height="wrap_content"
+                            android:text="OREB"
+                            android:theme="@style/boxScoreFragmentHeaderTV" />
+
+                        <TextView
+                            android:layout_width="@dimen/boxscore_tv_width"
+                            android:layout_height="wrap_content"
+                            android:text="DREB"
+                            android:theme="@style/boxScoreFragmentHeaderTV" />
+
+                        <TextView
+                            android:layout_width="@dimen/boxscore_tv_width"
+                            android:layout_height="wrap_content"
+                            android:text="TOV"
+                            android:theme="@style/boxScoreFragmentHeaderTV" />
+
+                        <TextView
+                            android:layout_width="@dimen/boxscore_tv_width"
+                            android:layout_height="wrap_content"
+                            android:text="PF"
+                            android:theme="@style/boxScoreFragmentHeaderTV" />
+
+                        <TextView
+                            android:layout_width="@dimen/boxscore_tv_width"
+                            android:layout_height="wrap_content"
+                            android:text="+/-"
+                            android:theme="@style/boxScoreFragmentHeaderTV" />
+
+                    </TableRow>
+
+                </TableLayout>
+
+            </HorizontalScrollView>
+
+        </LinearLayout>
+
+    </ScrollView>
 
 </LinearLayout>
