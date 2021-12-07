@@ -31,7 +31,7 @@
         <com.google.android.material.tabs.TabLayout
             android:id="@+id/boxScoreTabLayout"
             android:layout_width="320dp"
-            android:layout_height="32dp"
+            android:layout_height="30dp"
             android:background="@color/darkest_gray"
             android:visibility="gone"
             app:tabGravity="fill"
@@ -42,6 +42,7 @@
             app:tabMaxWidth="0dp"
             app:tabMode="fixed"
             app:tabSelectedTextColor="@color/text_gray"
+            app:tabTextAppearance="@style/TextAppearance.AppCompat.Body1"
             app:tabTextColor="@color/text_darker_gray"
             tools:visibility="visible">
 
@@ -62,16 +63,18 @@
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
+        android:layout_height="match_parent"
+        android:fillViewport="true"
+        android:id="@+id/hScrollView"
+        android:visibility="gone"
+        tools:visibility="visible">
 
         <LinearLayout
             android:id="@+id/hLinearLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/text_darker_gray"
-            android:orientation="horizontal"
-            android:visibility="gone"
-            tools:visibility="visible">
+            android:background="@color/darkest_gray"
+            android:orientation="horizontal">
 
             <TableLayout
                 android:id="@+id/hNamesTL"
@@ -113,13 +116,15 @@
             <HorizontalScrollView
                 android:id="@+id/hHScroll"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="1dp">
+                android:layout_height="match_parent"
+                android:layout_marginStart="0dp">
 
                 <TableLayout
                     android:id="@+id/hTableLayout"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:background="@color/text_darker_gray"
+                    android:paddingStart="1dp">
 
                     <TableRow
                         android:background="@color/dark_gray"
@@ -324,17 +329,19 @@
     </ScrollView>
 
     <ScrollView
+        android:id="@+id/vScrollView"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
+        android:layout_height="match_parent"
+        android:fillViewport="true"
+        android:visibility="gone"
+        tools:visibility="visible">
 
         <LinearLayout
             android:id="@+id/vLinearLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:visibility="gone"
-            tools:visibility="visible"
-            android:background="@color/text_darker_gray">
+            android:background="@color/darkest_gray"
+            android:orientation="horizontal">
 
             <TableLayout
                 android:id="@+id/vNamesTL"
@@ -376,13 +383,15 @@
             <HorizontalScrollView
                 android:id="@+id/vHScroll"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="1dp">
+                android:layout_height="match_parent"
+                android:layout_marginStart="0dp">
 
                 <TableLayout
                     android:id="@+id/vTableLayout"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:background="@color/text_darker_gray"
+                    android:paddingStart="1dp">
 
                     <TableRow
                         android:background="@color/dark_gray"

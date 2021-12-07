@@ -10,7 +10,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingBottom="8dp">
+        android:paddingBottom="12dp">
 
         <TextView
             android:id="@+id/pHTeam"
@@ -63,10 +63,10 @@
             android:id="@+id/pQuarter"
             android:layout_width="80dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="28sp"
+            android:layout_marginTop="32dp"
             android:gravity="center"
             android:textColor="@color/text_gray"
-            android:textSize="14sp"
+            android:textSize="13sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -78,7 +78,7 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:textColor="@color/text_darker_gray"
-            android:textSize="14sp"
+            android:textSize="13sp"
             app:layout_constraintEnd_toEndOf="@+id/pQuarter"
             app:layout_constraintStart_toStartOf="@+id/pQuarter"
             app:layout_constraintTop_toBottomOf="@+id/pQuarter"
@@ -90,7 +90,7 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:textColor="@color/text_gray"
-            android:textSize="28sp"
+            android:textSize="26sp"
             app:layout_constraintBottom_toBottomOf="@+id/pClock"
             app:layout_constraintEnd_toStartOf="@+id/pQuarter"
             app:layout_constraintTop_toTopOf="@+id/pQuarter"
@@ -102,7 +102,7 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:textColor="@color/text_gray"
-            android:textSize="28sp"
+            android:textSize="26sp"
             app:layout_constraintBottom_toBottomOf="@+id/pClock"
             app:layout_constraintStart_toEndOf="@+id/pQuarter"
             app:layout_constraintTop_toTopOf="@+id/pQuarter"
@@ -134,7 +134,7 @@
             android:layout_height="wrap_content"
             android:text="Final"
             android:textColor="@color/text_gray"
-            android:textSize="16sp"
+            android:textSize="15sp"
             android:visibility="invisible"
             app:layout_constraintBottom_toBottomOf="@+id/pClock"
             app:layout_constraintEnd_toEndOf="parent"
@@ -146,12 +146,13 @@
     <com.google.android.material.tabs.TabLayout
         android:id="@+id/gameInfoTabLayout"
         android:layout_width="match_parent"
-        android:layout_height="32dp"
+        android:layout_height="30dp"
         android:background="@color/dark_gray"
-        app:tabSelectedTextColor="@color/text_gray"
-        app:tabTextColor="@color/text_darker_gray"
+        android:paddingTop="0dp"
         app:tabIndicatorColor="@color/text_gray"
-        android:paddingTop="0dp" />
+        app:tabSelectedTextColor="@color/text_gray"
+        app:tabTextAppearance="@style/TextAppearance.AppCompat.Body1"
+        app:tabTextColor="@color/text_darker_gray" />
 
     <androidx.viewpager2.widget.ViewPager2
         android:id="@+id/gameInfoViewPager"

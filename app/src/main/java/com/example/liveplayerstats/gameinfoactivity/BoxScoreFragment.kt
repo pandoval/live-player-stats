@@ -71,8 +71,8 @@ class BoxScoreFragment : Fragment() {
     private fun setupBoxScore(boxScore: BoxScore) {
         if (firstLoad) {
             firstLoad = false
-            if (binding.hLinearLayout.visibility == View.GONE && tabNeverSelected) {
-                binding.hLinearLayout.visibility = View.VISIBLE
+            if (binding.hScrollView.visibility == View.GONE && tabNeverSelected) {
+                binding.hScrollView.visibility = View.VISIBLE
             }
         }
 
@@ -256,11 +256,12 @@ class BoxScoreFragment : Fragment() {
         val name = "${p.firstName.substring(0,1)}.${p.lastName}"
         val tv = TextView(context)
         tv.layoutParams = LinearLayout.LayoutParams(TypedValue.applyDimension(
-            TypedValue.COMPLEX_UNIT_DIP, 124f,resources.displayMetrics)
+            TypedValue.COMPLEX_UNIT_DIP, 116f,resources.displayMetrics)
             .toInt(),
             LinearLayout.LayoutParams.MATCH_PARENT)
         tv.maxLines = 1
-        TextViewCompat.setAutoSizeTextTypeWithDefaults(tv, TextViewCompat.AUTO_SIZE_TEXT_TYPE_UNIFORM)
+        //TextViewCompat.setAutoSizeTextTypeWithDefaults(tv, TextViewCompat.AUTO_SIZE_TEXT_TYPE_UNIFORM)
+        tv.ellipsize = TextUtils.TruncateAt.END
         tv.gravity = Gravity.START or Gravity.CENTER_VERTICAL
         tv.setTextColor(ContextCompat.getColor(requireContext(), R.color.text_gray))
         tv.setTextSize(TypedValue.COMPLEX_UNIT_PX, resources.getDimension(R.dimen.box_score_text_size))
@@ -294,8 +295,8 @@ class BoxScoreFragment : Fragment() {
                     if (dataState.data[0].basicGameData.statusNum != 1) {
                         setupBoxScore(dataState.data[0])
                     } else {
-                        binding.hLinearLayout.visibility = View.GONE
-                        binding.vLinearLayout.visibility = View.GONE
+                        binding.hScrollView.visibility = View.GONE
+                        binding.vScrollView.visibility = View.GONE
                         binding.boxScoreTabLayout.visibility = View.GONE
                         binding.notStartedTV.visibility = View.VISIBLE
                     }
@@ -341,15 +342,15 @@ class BoxScoreFragment : Fragment() {
             override fun onTabSelected(tab: TabLayout.Tab?) {
                 when (tab?.position) {
                     0 -> {
-                        binding.hLinearLayout.visibility = View.VISIBLE
-                        binding.vLinearLayout.visibility = View.GONE
+                        binding.hScrollView.visibility = View.VISIBLE
+                        binding.vScrollView.visibility = View.GONE
                     }
                     1 -> {
                         if (tabNeverSelected) {
                             tabNeverSelected = false
                         }
-                        binding.vLinearLayout.visibility = View.VISIBLE
-                        binding.hLinearLayout.visibility = View.GONE
+                        binding.vScrollView.visibility = View.VISIBLE
+                        binding.hScrollView.visibility = View.GONE
                     }
                 }
             }
