@@ -5,7 +5,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:paddingEnd="16dp"
     tools:context=".gameinfoactivity.BoxScoreFragment"
     tools:ignore="hardcodedText">
 
@@ -69,6 +68,7 @@
             android:id="@+id/hLinearLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@color/text_darker_gray"
             android:orientation="horizontal"
             android:visibility="gone"
             tools:visibility="visible">
@@ -113,7 +113,8 @@
             <HorizontalScrollView
                 android:id="@+id/hHScroll"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_marginStart="1dp">
 
                 <TableLayout
                     android:id="@+id/hTableLayout"
@@ -124,6 +125,12 @@
                         android:background="@color/dark_gray"
                         android:gravity="start|center_vertical"
                         android:minHeight="@dimen/box_score_row_min_height">
+
+                        <TextView
+                            android:layout_width="@dimen/boxscore_tv_width"
+                            android:layout_height="wrap_content"
+                            android:text="P"
+                            android:theme="@style/boxScoreFragmentHeaderTV" />
 
                         <TextView
                             android:layout_width="@dimen/boxscore_tv_width"
@@ -215,6 +222,12 @@
                         android:background="@color/dark_gray"
                         android:gravity="start|center_vertical"
                         android:minHeight="@dimen/box_score_row_min_height">
+
+                        <TextView
+                            android:layout_width="@dimen/boxscore_tv_width"
+                            android:layout_height="wrap_content"
+                            android:text="P"
+                            android:theme="@style/boxScoreFragmentHeaderTV" />
 
                         <TextView
                             android:layout_width="@dimen/boxscore_tv_width"
@@ -320,7 +333,8 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:visibility="gone"
-            tools:visibility="visible">
+            tools:visibility="visible"
+            android:background="@color/text_darker_gray">
 
             <TableLayout
                 android:id="@+id/vNamesTL"
@@ -362,7 +376,8 @@
             <HorizontalScrollView
                 android:id="@+id/vHScroll"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_marginStart="1dp">
 
                 <TableLayout
                     android:id="@+id/vTableLayout"
@@ -373,6 +388,12 @@
                         android:background="@color/dark_gray"
                         android:gravity="start|center_vertical"
                         android:minHeight="@dimen/box_score_row_min_height">
+
+                        <TextView
+                            android:layout_width="@dimen/boxscore_tv_width"
+                            android:layout_height="wrap_content"
+                            android:text="P"
+                            android:theme="@style/boxScoreFragmentHeaderTV" />
 
                         <TextView
                             android:layout_width="@dimen/boxscore_tv_width"
@@ -464,6 +485,12 @@
                         android:background="@color/dark_gray"
                         android:gravity="start|center_vertical"
                         android:minHeight="@dimen/box_score_row_min_height">
+
+                        <TextView
+                            android:layout_width="@dimen/boxscore_tv_width"
+                            android:layout_height="wrap_content"
+                            android:text="P"
+                            android:theme="@style/boxScoreFragmentHeaderTV" />
 
                         <TextView
                             android:layout_width="@dimen/boxscore_tv_width"

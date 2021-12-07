@@ -10,7 +10,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingBottom="16dp">
+        android:paddingBottom="8dp">
 
         <TextView
             android:id="@+id/pHTeam"
@@ -63,10 +63,10 @@
             android:id="@+id/pQuarter"
             android:layout_width="80dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="32dp"
+            android:layout_marginTop="28sp"
             android:gravity="center"
             android:textColor="@color/text_gray"
-            android:textSize="12sp"
+            android:textSize="14sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -78,7 +78,7 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:textColor="@color/text_darker_gray"
-            android:textSize="12sp"
+            android:textSize="14sp"
             app:layout_constraintEnd_toEndOf="@+id/pQuarter"
             app:layout_constraintStart_toStartOf="@+id/pQuarter"
             app:layout_constraintTop_toBottomOf="@+id/pQuarter"
@@ -86,11 +86,11 @@
 
         <TextView
             android:id="@+id/pHTeamPoints"
-            android:layout_width="50dp"
+            android:layout_width="64dp"
             android:layout_height="wrap_content"
             android:gravity="center"
             android:textColor="@color/text_gray"
-            android:textSize="24sp"
+            android:textSize="28sp"
             app:layout_constraintBottom_toBottomOf="@+id/pClock"
             app:layout_constraintEnd_toStartOf="@+id/pQuarter"
             app:layout_constraintTop_toTopOf="@+id/pQuarter"
@@ -98,11 +98,11 @@
 
         <TextView
             android:id="@+id/pVTeamPoints"
-            android:layout_width="50dp"
+            android:layout_width="64dp"
             android:layout_height="wrap_content"
             android:gravity="center"
             android:textColor="@color/text_gray"
-            android:textSize="24sp"
+            android:textSize="28sp"
             app:layout_constraintBottom_toBottomOf="@+id/pClock"
             app:layout_constraintStart_toEndOf="@+id/pQuarter"
             app:layout_constraintTop_toTopOf="@+id/pQuarter"
@@ -110,8 +110,8 @@
 
         <ImageView
             android:id="@+id/pHTeamLogo"
-            android:layout_width="32dp"
-            android:layout_height="32dp"
+            android:layout_width="44dp"
+            android:layout_height="44dp"
             android:layout_marginEnd="16dp"
             app:layout_constraintBottom_toBottomOf="@+id/pHTeamPoints"
             app:layout_constraintEnd_toStartOf="@+id/pHTeamPoints"
@@ -120,8 +120,8 @@
 
         <ImageView
             android:id="@+id/pVTeamLogo"
-            android:layout_width="32dp"
-            android:layout_height="32dp"
+            android:layout_width="44dp"
+            android:layout_height="44dp"
             android:layout_marginStart="16dp"
             app:layout_constraintBottom_toBottomOf="@+id/pVTeamPoints"
             app:layout_constraintStart_toEndOf="@+id/pVTeamPoints"
@@ -134,6 +134,7 @@
             android:layout_height="wrap_content"
             android:text="Final"
             android:textColor="@color/text_gray"
+            android:textSize="16sp"
             android:visibility="invisible"
             app:layout_constraintBottom_toBottomOf="@+id/pClock"
             app:layout_constraintEnd_toEndOf="parent"

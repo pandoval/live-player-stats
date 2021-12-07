@@ -1,6 +1,7 @@
 package com.example.liveplayerstats.gameinfoactivity
 
 import android.os.Bundle
+import android.text.TextUtils
 import android.util.TypedValue
 import android.view.Gravity
 import android.view.LayoutInflater
@@ -12,6 +13,7 @@ import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.core.view.get
 import androidx.core.view.marginEnd
+import androidx.core.widget.TextViewCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
@@ -215,6 +217,7 @@ class BoxScoreFragment : Fragment() {
         row.minimumHeight = TypedValue.applyDimension(
             TypedValue.COMPLEX_UNIT_DIP, ROW_HEIGHT,resources.displayMetrics).toInt()
         row.gravity = Gravity.START or Gravity.CENTER_VERTICAL
+        row.addView(valueTV(p.pos))
         row.addView(valueTV(p.min))
         row.addView(valueTV(p.points))
         row.addView(valueTV(p.totReb))
@@ -252,9 +255,13 @@ class BoxScoreFragment : Fragment() {
 
         val name = "${p.firstName.substring(0,1)}.${p.lastName}"
         val tv = TextView(context)
-        tv.layoutParams = LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT,
+        tv.layoutParams = LinearLayout.LayoutParams(TypedValue.applyDimension(
+            TypedValue.COMPLEX_UNIT_DIP, 124f,resources.displayMetrics)
+            .toInt(),
             LinearLayout.LayoutParams.MATCH_PARENT)
-        tv.gravity = Gravity.START
+        tv.maxLines = 1
+        TextViewCompat.setAutoSizeTextTypeWithDefaults(tv, TextViewCompat.AUTO_SIZE_TEXT_TYPE_UNIFORM)
+        tv.gravity = Gravity.START or Gravity.CENTER_VERTICAL
         tv.setTextColor(ContextCompat.getColor(requireContext(), R.color.text_gray))
         tv.setTextSize(TypedValue.COMPLEX_UNIT_PX, resources.getDimension(R.dimen.box_score_text_size))
         tv.text = name
@@ -264,17 +271,6 @@ class BoxScoreFragment : Fragment() {
             TypedValue.COMPLEX_UNIT_DIP, 8f,resources.displayMetrics)
             .toInt(), 0)
         horizontalLinearLayout.addView(tv)
-
-        if (p.pos != "") {
-            val posTV = TextView(context)
-            posTV.layoutParams = LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT,
-                LinearLayout.LayoutParams.MATCH_PARENT)
-            posTV.text = p.pos
-            posTV.gravity = Gravity.START
-            posTV.setTextColor(ContextCompat.getColor(requireContext(), R.color.text_darker_gray))
-            posTV.setTextSize(TypedValue.COMPLEX_UNIT_PX, resources.getDimension(R.dimen.box_score_text_size))
-            horizontalLinearLayout.addView(posTV)
-        }
         row.addView(horizontalLinearLayout)
         return row
     }
