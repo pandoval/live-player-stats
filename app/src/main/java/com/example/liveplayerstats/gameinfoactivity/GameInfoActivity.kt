@@ -17,6 +17,7 @@ import com.example.liveplayerstats.util.DataState
 import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
+import com.google.gson.Gson
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -24,6 +25,7 @@ class GameInfoActivity : AppCompatActivity() {
 
     private val viewModel: GameInfoViewModel by viewModels()
     private lateinit var teamId: String
+    private var initialBoxScore: BoxScore? = null
     private lateinit var binding: ActivityGameInfoBinding
 
     private lateinit var teamArray: Array<String>
@@ -38,6 +40,8 @@ class GameInfoActivity : AppCompatActivity() {
         setContentView(view)
 
         teamId = intent.getStringExtra(MainActivity.TEAM_ID).toString()
+        val gson = Gson()
+        initialBoxScore = gson.fromJson(intent.getStringExtra(MainActivity.BOX_SCORE_JSON), BoxScore::class.java)
 
         teamArray = resources.getStringArray(R.array.nba_team_id)
         teamImgResources = TeamImgResources.values()
@@ -58,6 +62,7 @@ class GameInfoActivity : AppCompatActivity() {
             }
         }.attach()
 
+        initialBoxScore?.let { updateScoreboard(it) }
         subscribeObservers()
         fetchScoreboardStats()
     }

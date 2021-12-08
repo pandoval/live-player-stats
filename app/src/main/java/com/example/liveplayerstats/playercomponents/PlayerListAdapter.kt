@@ -90,6 +90,7 @@ private val longClickListener: OnItemLongClickListener, private val context: Con
         private val resourcesMap: Map<String, TeamImgResources> = teamArray.zip(teamImgResources).toMap()
 
         private lateinit var currentPlayer: Player
+        private var currentBoxScore: BoxScore? = null
 
         private lateinit var ap: ActivePlayer
         private fun setBoxscore(p: Player, b: BoxScore, gameFinished: Boolean = false) {
@@ -135,72 +136,68 @@ private val longClickListener: OnItemLongClickListener, private val context: Con
 
         fun bind(pair: Pair<Player, BoxScore>?) {
             currentPlayer = pair!!.first
+            currentBoxScore = pair.second
 
-            if (pair != null) {
-                val p = pair.first
-                val b = pair.second
-                Glide.with(itemView)
-                    .load("https://cdn.nba.com/headshots/nba/latest/260x190/${p.id}.png").centerCrop().circleCrop()
-                    .into(pPic)
-                pName.text = p.name
-                pTeam.text = p.teamName
+            val p = pair.first
+            val b = pair.second
+            Glide.with(itemView)
+                .load("https://cdn.nba.com/headshots/nba/latest/260x190/${p.id}.png").centerCrop().circleCrop()
+                .into(pPic)
+            pName.text = p.name
+            pTeam.text = p.teamName
 
-                val hTeam = b.basicGameData.hTeam
-                pHTeam.text = hTeam.triCode
-                val hRecord = "${hTeam.win}-${hTeam.loss}"
-                pHTeamRecord.text = hRecord
-                Glide.with(itemView)
-                    .load(resourcesMap[hTeam.teamId]?.id).into(pHTeamLogo)
-                pHTeamPoints.text = hTeam.score
+            val hTeam = b.basicGameData.hTeam
+            pHTeam.text = hTeam.triCode
+            val hRecord = "${hTeam.win}-${hTeam.loss}"
+            pHTeamRecord.text = hRecord
+            Glide.with(itemView)
+                .load(resourcesMap[hTeam.teamId]?.id).into(pHTeamLogo)
+            pHTeamPoints.text = hTeam.score
 
-                val vTeam = b.basicGameData.vTeam
-                pVTeam.text = vTeam.triCode
-                val vRecord = "${vTeam.win}-${vTeam.loss}"
-                pVTeamRecord.text = vRecord
-                Glide.with(itemView)
-                    .load(resourcesMap[vTeam.teamId]?.id).into(pVTeamLogo)
-                pVTeamPoints.text = vTeam.score
+            val vTeam = b.basicGameData.vTeam
+            pVTeam.text = vTeam.triCode
+            val vRecord = "${vTeam.win}-${vTeam.loss}"
+            pVTeamRecord.text = vRecord
+            Glide.with(itemView)
+                .load(resourcesMap[vTeam.teamId]?.id).into(pVTeamLogo)
+            pVTeamPoints.text = vTeam.score
 
-                val quarterText = "Q${b.basicGameData.period.current.toString()}"
-                pQuarter.text = ""
-                pClock.text = ""
-                pFinal.visibility = View.INVISIBLE
-                horizScrollView.visibility = View.GONE
-                boxscoreSeparator.visibility = View.GONE
-                pIndicator.visibility = View.GONE
-                pStatus.visibility = View.GONE
-                when (b.basicGameData.statusNum) {
-                    1 -> {
-                        pQuarter.text = getDateString(b)
-                        pClock.text = b.basicGameData.startTimeEastern
-                        pHTeamPoints.text = ""
-                        pVTeamPoints.text = ""
-                    }
-                    2 -> {
-                        if (b.basicGameData.period.isHalftime) {
-                            pFinal.visibility = View.VISIBLE
-                            pFinal.text = "Halftime"
-                        } else if (b.basicGameData.period.isEndOfPeriod) {
-                            pFinal.visibility = View.VISIBLE
-                            val endOfQ = "End of $quarterText"
-                            pFinal.text = endOfQ
-                        } else {
-                            pQuarter.text = quarterText
-                            pClock.text = b.basicGameData.clock
-                        }
-                        setBoxscore(p, b)
-                    }
-                    3 -> {
-                        pFinal.visibility = View.VISIBLE
-                        pFinal.text = "Final"
-                        setBoxscore(p, b, true)
-                    }
+            val quarterText = "Q${b.basicGameData.period.current.toString()}"
+            pQuarter.text = ""
+            pClock.text = ""
+            pFinal.visibility = View.INVISIBLE
+            horizScrollView.visibility = View.GONE
+            boxscoreSeparator.visibility = View.GONE
+            pIndicator.visibility = View.GONE
+            pStatus.visibility = View.GONE
+            when (b.basicGameData.statusNum) {
+                1 -> {
+                    pQuarter.text = getDateString(b)
+                    pClock.text = b.basicGameData.startTimeEastern
+                    pHTeamPoints.text = ""
+                    pVTeamPoints.text = ""
                 }
-
-            } else {
-                pFinal.visibility = View.VISIBLE
-                pFinal.text = "Error"
+                2 -> {
+                    if (b.basicGameData.period.isHalftime) {
+                        pFinal.visibility = View.VISIBLE
+                        pFinal.text = "Halftime"
+                    } else if (b.basicGameData.period.isEndOfPeriod) {
+                        pFinal.visibility = View.VISIBLE
+                        val endOfQ = "End of $quarterText"
+                        pFinal.text = endOfQ
+                    } else {
+                        pQuarter.text = quarterText
+                        pClock.text = b.basicGameData.clock
+                    }
+                    setBoxscore(p, b)
+                }
+                3 -> {
+                    pFinal.visibility = View.VISIBLE
+                    pFinal.text = "Final"
+                    setBoxscore(p, b, true)
+                }
             }
+
             if (selectionMode) {
                 itemView.setOnClickListener {
                     itemSelected(currentPlayer.id)
@@ -247,7 +244,7 @@ private val longClickListener: OnItemLongClickListener, private val context: Con
         }
 
         override fun onClick(p0: View?) {
-            listener.onItemClick(currentPlayer.teamId)
+            listener.onItemClick(currentPlayer.teamId, currentBoxScore)
         }
 
         override fun onLongClick(p0: View?): Boolean {
@@ -257,7 +254,7 @@ private val longClickListener: OnItemLongClickListener, private val context: Con
     }
 
     interface OnItemClickListener {
-        fun onItemClick(teamId: String)
+        fun onItemClick(teamId: String, b: BoxScore?)
     }
 
     interface OnItemLongClickListener {
@@ -282,11 +279,11 @@ private val longClickListener: OnItemLongClickListener, private val context: Con
 
     class PlayersComparator : DiffUtil.ItemCallback<Pair<Player, BoxScore>>() {
         override fun areItemsTheSame(oldItem: Pair<Player, BoxScore>, newItem: Pair<Player, BoxScore>): Boolean {
-            return oldItem === newItem
+            return oldItem.first.id === newItem.first.id
         }
 
         override fun areContentsTheSame(oldItem: Pair<Player, BoxScore>, newItem: Pair<Player, BoxScore>): Boolean {
-            return oldItem.first.id == newItem.first.id
+            return oldItem == newItem
         }
     }
 

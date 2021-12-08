@@ -79,7 +79,9 @@
             <TableLayout
                 android:id="@+id/hNamesTL"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:background="@color/text_darker_gray"
+                android:paddingEnd="1dp">
 
                 <TableRow
                     android:background="@color/dark_gray"
@@ -123,8 +125,7 @@
                     android:id="@+id/hTableLayout"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:background="@color/text_darker_gray"
-                    android:paddingStart="1dp">
+                    android:paddingStart="0dp">
 
                     <TableRow
                         android:background="@color/dark_gray"
@@ -346,7 +347,9 @@
             <TableLayout
                 android:id="@+id/vNamesTL"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:background="@color/text_darker_gray"
+                android:paddingEnd="1dp">
 
                 <TableRow
                     android:background="@color/dark_gray"
@@ -390,8 +393,7 @@
                     android:id="@+id/vTableLayout"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:background="@color/text_darker_gray"
-                    android:paddingStart="1dp">
+                    android:paddingStart="0dp">
 
                     <TableRow
                         android:background="@color/dark_gray"

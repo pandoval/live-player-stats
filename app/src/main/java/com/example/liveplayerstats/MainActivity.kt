@@ -1,10 +1,7 @@
 package com.example.liveplayerstats
 
 import android.app.Activity
-import android.content.Context
 import android.content.Intent
-import android.net.ConnectivityManager
-import android.net.NetworkCapabilities
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
@@ -22,6 +19,7 @@ import com.example.liveplayerstats.playercomponents.*
 import com.example.liveplayerstats.util.DataState
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.snackbar.Snackbar
+import com.google.gson.Gson
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -158,9 +156,14 @@ class MainActivity : AppCompatActivity(), PlayerListAdapter.OnItemClickListener,
         adapter.notifyDataSetChanged()
     }
 
-    override fun onItemClick(teamId: String) {
+    override fun onItemClick(teamId: String, b: BoxScore?) {
         intent = Intent(this, GameInfoActivity::class.java)
         intent.putExtra(TEAM_ID, teamId)
+        if (b != null) {
+            val gson = Gson()
+            val bString = gson.toJson(b)
+            intent.putExtra(BOX_SCORE_JSON, bString)
+        }
         startActivity(intent)
     }
 
@@ -185,5 +188,6 @@ class MainActivity : AppCompatActivity(), PlayerListAdapter.OnItemClickListener,
 
     companion object {
         const val TEAM_ID = "com.example.liveplayerstats.TEAMID"
+        const val BOX_SCORE_JSON = "com.example.liveplayerstats.BOX_SCORE_JSON"
     }
 }
