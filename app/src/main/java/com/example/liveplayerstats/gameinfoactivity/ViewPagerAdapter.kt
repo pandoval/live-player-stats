@@ -16,7 +16,7 @@ class ViewPagerAdapter(fragmentManager: FragmentManager, lifecycle: Lifecycle) :
         return  when (position) {
                     0 -> {
                         //FOR TESTING. SWITCH THIS LATER
-                        SummaryFragment()
+                        BoxScoreFragment()
                     }
                     1 -> {
                         BoxScoreFragment()

@@ -2,6 +2,9 @@ package com.example.liveplayerstats.gameinfoactivity
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
+import android.util.Log
 import android.view.View
 import androidx.activity.viewModels
 import androidx.lifecycle.Observer
@@ -26,12 +29,16 @@ class GameInfoActivity : AppCompatActivity() {
     private val gameInfoSharedViewModel: GameInfoSharedViewModel by viewModels()
     private val viewModel: GameInfoViewModel by viewModels()
     private lateinit var teamId: String
-    private var initialBoxScore: BoxScore? = null
+    private var currentBoxScore: BoxScore? = null
     private lateinit var binding: ActivityGameInfoBinding
 
     private lateinit var teamArray: Array<String>
     private lateinit var teamImgResources: Array<TeamImgResources>
     private lateinit var resourcesMap: Map<String, TeamImgResources>
+
+    var handler = Handler(Looper.getMainLooper())
+    var runnable: Runnable? = null
+    val delay = 15000
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -41,7 +48,7 @@ class GameInfoActivity : AppCompatActivity() {
 
         teamId = intent.getStringExtra(MainActivity.TEAM_ID).toString()
         val gson = Gson()
-        initialBoxScore = gson.fromJson(intent.getStringExtra(MainActivity.BOX_SCORE_JSON), BoxScore::class.java)
+        currentBoxScore = gson.fromJson(intent.getStringExtra(MainActivity.BOX_SCORE_JSON), BoxScore::class.java)
 
         teamArray = resources.getStringArray(R.array.nba_team_id)
         teamImgResources = TeamImgResources.values()
@@ -63,7 +70,7 @@ class GameInfoActivity : AppCompatActivity() {
             }
         }.attach()
 
-        initialBoxScore?.let { updateScoreboard(it) }
+        currentBoxScore?.let { updateScoreboard(it) }
         subscribeObservers()
         fetchStats()
     }
@@ -72,6 +79,7 @@ class GameInfoActivity : AppCompatActivity() {
         viewModel.dataState.observe(this, Observer { dataState ->
             when (dataState) {
                 is DataState.Success<List<BoxScore>> -> {
+                    currentBoxScore = dataState.data[0]
                     gameInfoSharedViewModel.setBoxScore(dataState.data[0])
                     updateScoreboard(dataState.data[0])
                 }
@@ -90,6 +98,7 @@ class GameInfoActivity : AppCompatActivity() {
     }
 
     private fun fetchStats() {
+        Log.d("gameinfoactivity", "fetching stats")
         viewModel.setStateEvent(
             GameInfoViewModel.GameInfoStateEvent.GetGameInfoEvent,
             listOf(teamId)
@@ -143,6 +152,23 @@ class GameInfoActivity : AppCompatActivity() {
                 binding.pFinal.visibility = View.VISIBLE
                 binding.pFinal.text = "Final"
             }
+        }
+    }
+
+    override fun onResume() {
+        if (currentBoxScore?.basicGameData?.statusNum == 2) {
+            handler.postDelayed(Runnable {
+                handler.postDelayed(runnable!!, delay.toLong())
+                fetchStats()
+            }.also { runnable = it }, delay.toLong())
+        }
+        super.onResume()
+    }
+
+    override fun onPause() {
+        super.onPause()
+        if (runnable != null) {
+            handler.removeCallbacks(runnable!!)
         }
     }
 }
