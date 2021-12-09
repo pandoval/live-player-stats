@@ -23,6 +23,7 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class GameInfoActivity : AppCompatActivity() {
 
+    private val gameInfoSharedViewModel: GameInfoSharedViewModel by viewModels()
     private val viewModel: GameInfoViewModel by viewModels()
     private lateinit var teamId: String
     private var initialBoxScore: BoxScore? = null
@@ -31,7 +32,6 @@ class GameInfoActivity : AppCompatActivity() {
     private lateinit var teamArray: Array<String>
     private lateinit var teamImgResources: Array<TeamImgResources>
     private lateinit var resourcesMap: Map<String, TeamImgResources>
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -49,8 +49,9 @@ class GameInfoActivity : AppCompatActivity() {
 
         val tabLayout = findViewById<TabLayout>(R.id.gameInfoTabLayout)
         val viewPager2 = findViewById<ViewPager2>(R.id.gameInfoViewPager)
-        val adapter = ViewPagerAdapter(supportFragmentManager, lifecycle, teamId)
+        val adapter = ViewPagerAdapter(supportFragmentManager, lifecycle)
         viewPager2.adapter = adapter
+        viewPager2.offscreenPageLimit = 2
         TabLayoutMediator(tabLayout, viewPager2) { tab, position ->
             when (position) {
                 0 -> {
@@ -64,13 +65,14 @@ class GameInfoActivity : AppCompatActivity() {
 
         initialBoxScore?.let { updateScoreboard(it) }
         subscribeObservers()
-        fetchScoreboardStats()
+        fetchStats()
     }
 
     private fun subscribeObservers() {
         viewModel.dataState.observe(this, Observer { dataState ->
             when (dataState) {
                 is DataState.Success<List<BoxScore>> -> {
+                    gameInfoSharedViewModel.setBoxScore(dataState.data[0])
                     updateScoreboard(dataState.data[0])
                 }
                 is DataState.Error -> {
@@ -87,7 +89,7 @@ class GameInfoActivity : AppCompatActivity() {
 
     }
 
-    private fun fetchScoreboardStats() {
+    private fun fetchStats() {
         viewModel.setStateEvent(
             GameInfoViewModel.GameInfoStateEvent.GetGameInfoEvent,
             listOf(teamId)

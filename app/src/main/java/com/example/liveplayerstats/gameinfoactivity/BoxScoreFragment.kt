@@ -15,6 +15,7 @@ import androidx.core.view.get
 import androidx.core.view.marginEnd
 import androidx.core.widget.TextViewCompat
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import com.example.liveplayerstats.R
@@ -33,8 +34,7 @@ class BoxScoreFragment : Fragment() {
     private var firstLoad = true
     private var tabNeverSelected = true
 
-    private val boxScoreViewModel: BoxScoreViewModel by viewModels()
-    private lateinit var teamId: String
+    private val gameInfoSharedViewModel: GameInfoSharedViewModel by activityViewModels()
 
     private lateinit var hFirstFive: ArrayList<ActivePlayer>
     private lateinit var vFirstFive: ArrayList<ActivePlayer>
@@ -56,16 +56,24 @@ class BoxScoreFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        arguments.let {
-            teamId = it?.getString(PLAYER_TEAM_ID).toString()
-        }
+        //arguments.let {
+        //    teamId = it?.getString(PLAYER_TEAM_ID).toString()
+        //}
 
         tricodeArray = requireContext().resources.getStringArray(R.array.nba_tricode)
         teamNameArray = requireContext().resources.getStringArray(R.array.nba_team_names)
         teamMap = tricodeArray.zip(teamNameArray).toMap()
 
-        subscribeObservers()
-        fetchStats()
+        gameInfoSharedViewModel.boxScore.observe(this, Observer { b ->
+            if (b.basicGameData.statusNum != 1) {
+                setupBoxScore(b)
+            } else {
+                binding.hScrollView.visibility = View.GONE
+                binding.vScrollView.visibility = View.GONE
+                binding.boxScoreTabLayout.visibility = View.GONE
+                binding.notStartedTV.visibility = View.VISIBLE
+            }
+        })
     }
 
     private fun setupBoxScore(boxScore: BoxScore) {
@@ -286,38 +294,6 @@ class BoxScoreFragment : Fragment() {
         tv.setTextColor(ContextCompat.getColor(requireContext(), R.color.text_gray))
         tv.setTextSize(TypedValue.COMPLEX_UNIT_PX, resources.getDimension(R.dimen.box_score_text_size))
         return tv
-    }
-
-    private fun subscribeObservers() {
-        boxScoreViewModel.dataState.observe(this, Observer { dataState ->
-            when(dataState){
-                is DataState.Success<List<BoxScore>> -> {
-                    if (dataState.data[0].basicGameData.statusNum != 1) {
-                        setupBoxScore(dataState.data[0])
-                    } else {
-                        binding.hScrollView.visibility = View.GONE
-                        binding.vScrollView.visibility = View.GONE
-                        binding.boxScoreTabLayout.visibility = View.GONE
-                        binding.notStartedTV.visibility = View.VISIBLE
-                    }
-
-
-                }
-                is DataState.Error -> {
-                    Snackbar.make(requireContext(), binding.root,
-                        "Network unavailable", Snackbar.LENGTH_SHORT).show()
-                }
-                is DataState.Loading -> {
-                    //TODO("ADD THING IN ACTION BAR MAYBE")
-                }
-            }
-        })
-
-    }
-
-    private fun fetchStats() {
-        boxScoreViewModel.setStateEvent(BoxScoreViewModel.BoxScoreStateEvent.GetBoxScoreEvent,
-            listOf(teamId))
     }
 
     private var _binding: FragmentBoxscoreBinding? = null
