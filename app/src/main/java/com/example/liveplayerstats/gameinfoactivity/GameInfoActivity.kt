@@ -15,6 +15,7 @@ import com.example.liveplayerstats.R
 import com.example.liveplayerstats.boxscore.BoxScore
 import com.example.liveplayerstats.databinding.ActivityGameInfoBinding
 import com.example.liveplayerstats.enums.TeamImgResources
+import com.example.liveplayerstats.pbp.Play
 import com.example.liveplayerstats.playercomponents.PlayerListAdapter
 import com.example.liveplayerstats.util.DataState
 import com.google.android.material.snackbar.Snackbar
@@ -26,6 +27,7 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class GameInfoActivity : AppCompatActivity() {
 
+    private val gameInfoPBPViewModel: GameInfoPBPViewModel by viewModels()
     private val gameInfoSharedViewModel: GameInfoSharedViewModel by viewModels()
     private val viewModel: GameInfoViewModel by viewModels()
     private lateinit var teamId: String
@@ -67,6 +69,9 @@ class GameInfoActivity : AppCompatActivity() {
                 1 -> {
                     tab.text = "Box Score"
                 }
+                2 -> {
+                    tab.text = "Plays"
+                }
             }
         }.attach()
 
@@ -90,11 +95,24 @@ class GameInfoActivity : AppCompatActivity() {
                     ).show()
                 }
                 is DataState.Loading -> {
-                    //TODO("ADD THING IN ACTION BAR MAYBE")
+
                 }
             }
         })
 
+        gameInfoPBPViewModel.dataState.observe(this, Observer { dataState ->
+            when (dataState) {
+                is DataState.Success<List<Play>> -> {
+                    gameInfoSharedViewModel.setPlays(dataState.data)
+                }
+                is DataState.Error -> {
+
+                }
+                is DataState.Loading -> {
+
+                }
+            }
+        })
     }
 
     private fun fetchStats() {
@@ -103,7 +121,14 @@ class GameInfoActivity : AppCompatActivity() {
             GameInfoViewModel.GameInfoStateEvent.GetGameInfoEvent,
             listOf(teamId)
         )
+        currentBoxScore?.basicGameData?.gameId?.let {
+            gameInfoPBPViewModel.setStateEvent(GameInfoPBPViewModel.GameInfoPBPStateEvent.GetGameInfoPBPEvent,
+                it
+            )
+        }
     }
+
+
 
 
     private fun updateScoreboard(b: BoxScore) {

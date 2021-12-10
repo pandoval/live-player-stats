@@ -9,17 +9,20 @@ class ViewPagerAdapter(fragmentManager: FragmentManager, lifecycle: Lifecycle) :
     FragmentStateAdapter(fragmentManager, lifecycle) {
 
     override fun getItemCount(): Int {
-        return 2
+        return 3
     }
 
     override fun createFragment(position: Int): Fragment {
         return  when (position) {
                     0 -> {
                         //FOR TESTING. SWITCH THIS LATER
-                        BoxScoreFragment()
+                        PBPFragment()
                     }
                     1 -> {
                         BoxScoreFragment()
+                    }
+                    2 -> {
+                        SummaryFragment()
                     }
                     else -> {
                         Fragment()

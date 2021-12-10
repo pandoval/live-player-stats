@@ -29,7 +29,6 @@ import dagger.hilt.android.AndroidEntryPoint
 
 private const val PLAYER_TEAM_ID = "teamId"
 
-@AndroidEntryPoint
 class BoxScoreFragment : Fragment() {
     //These two variables are to prevent the two preset rows from showing before the stats load
     private var firstLoad = true

@@ -7,5 +7,6 @@ data class BasicGameData(
         val statusNum: Int,
         val vTeam: VTeamBS,
         val startTimeEastern: String,
-        val startDateEastern: String
+        val startDateEastern: String,
+        val gameId: String
 )

@@ -2,6 +2,7 @@ package com.example.liveplayerstats.di
 
 import android.content.Context
 import com.example.liveplayerstats.NBAApi
+import com.example.liveplayerstats.gameinfoactivity.GameInfoRepository
 import com.example.liveplayerstats.newplayercomponents.NewPlayerRepository
 import com.example.liveplayerstats.playercomponents.PlayerStatsRepository
 import dagger.Module
@@ -28,5 +29,13 @@ object RepositoryModule {
         nbaApi: NBAApi
     ): PlayerStatsRepository {
         return PlayerStatsRepository(nbaApi)
+    }
+
+    @Singleton
+    @Provides
+    fun provideGameInfoRepository(
+        nbaApi: NBAApi
+    ): GameInfoRepository {
+        return GameInfoRepository(nbaApi)
     }
 }

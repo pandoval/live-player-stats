@@ -1,6 +1,7 @@
 package com.example.liveplayerstats
 
 import com.example.liveplayerstats.boxscore.BoxScore
+import com.example.liveplayerstats.pbp.PBP
 import com.example.liveplayerstats.playerlist.PlayerList
 import com.example.liveplayerstats.playerprofile.Player
 import com.example.liveplayerstats.teamschedule.TeamSchedule
@@ -25,9 +26,17 @@ interface NBAApi {
     suspend fun getBoxscore(@Path("date") date: String, @Path("gameId") gameId: String): BoxScore
 
     //CHANGE 2020 TO PLAYING YEAR
+    //TODO("POTENTIALLY CHANGE THIS TO GET TODAY PAGE AND GET YEAR FROM THERE")
     @GET("v1/$SEASON_YEAR/players.json")
     suspend fun getPlayerList(): PlayerList
 
     @GET("v1/${SEASON_YEAR}/teams/{teamId}/schedule.json")
     suspend fun getTeamSchedule(@Path("teamId") teamId: String): TeamSchedule
+
+    @GET("v1/{date}/{gameId}_pbp_{q}.json")
+    suspend fun getPBP(
+        @Path("date") date: String,
+        @Path("gameId") gameId: String,
+        @Path("q") q: String
+    ): PBP
 }
