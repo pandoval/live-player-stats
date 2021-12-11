@@ -217,6 +217,7 @@
                 android:layout_height="wrap_content"
                 android:text="Final"
                 android:textColor="@color/text_gray"
+                android:textSize="13sp"
                 android:visibility="invisible"
                 app:layout_constraintBottom_toBottomOf="@+id/pClock"
                 app:layout_constraintEnd_toEndOf="parent"

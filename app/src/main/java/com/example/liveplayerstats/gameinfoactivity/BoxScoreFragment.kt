@@ -2,6 +2,7 @@ package com.example.liveplayerstats.gameinfoactivity
 
 import android.os.Bundle
 import android.text.TextUtils
+import android.util.Log
 import android.util.TypedValue
 import android.view.Gravity
 import android.view.LayoutInflater
@@ -100,6 +101,8 @@ class BoxScoreFragment : Fragment() {
             if (i % 2 == 0) {
                 rowLighter = true
             }
+            Log.d("hfirst", hFirstFive.toString())
+            Log.d("vfirst", vFirstFive.toString())
             binding.hTableLayout.addView(addRow(hFirstFive[i-1], rowLighter), i)
             binding.vTableLayout.addView(addRow(vFirstFive[i-1], rowLighter), i)
             binding.hNamesTL.addView(addName(hFirstFive[i-1], rowLighter), i)
@@ -145,9 +148,7 @@ class BoxScoreFragment : Fragment() {
         val vTeamPlayers = arrayListOf<ActivePlayer>()
 
         for(player in boxScore.stats.activePlayers) {
-
-            //Remove inactive/0 minute players
-            if (player.min != "" && player.min != "0:00") {
+            if (player.min != "") {
                 if (player.teamId == boxScore.basicGameData.hTeam.teamId) {
                     hTeamPlayers.add(player)
                 } else {
@@ -195,6 +196,9 @@ class BoxScoreFragment : Fragment() {
                 }
             }
         }
+
+        hOthers.removeAll { it.min == "0:00" }
+        vOthers.removeAll {it.min == "0:00"}
     }
 
     private fun setNameHeaders(gameActive: Boolean) {
