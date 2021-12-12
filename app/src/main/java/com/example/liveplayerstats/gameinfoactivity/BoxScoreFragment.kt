@@ -148,7 +148,7 @@ class BoxScoreFragment : Fragment() {
         val vTeamPlayers = arrayListOf<ActivePlayer>()
 
         for(player in boxScore.stats.activePlayers) {
-            if (player.min != "") {
+            if (player.min.isNotEmpty()) {
                 if (player.teamId == boxScore.basicGameData.hTeam.teamId) {
                     hTeamPlayers.add(player)
                 } else {

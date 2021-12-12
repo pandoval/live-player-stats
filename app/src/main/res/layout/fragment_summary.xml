@@ -1,14 +1,165 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".SummaryFragment">
+    android:orientation="vertical"
+    tools:context="gameinfoactivity.SummaryFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <TableLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp">
 
-</FrameLayout>
+        <TableRow>
+
+            <TextView
+                style="@style/summaryTableHeader"
+                android:layout_height="wrap_content"
+                android:layout_weight="3" />
+
+            <TextView
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                style="@style/summaryTableHeader"
+                android:text="Q1"/>
+
+            <TextView
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                style="@style/summaryTableHeader"
+                android:text="Q2"/>
+
+            <TextView
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                style="@style/summaryTableHeader"
+                android:text="Q3"/>
+
+            <TextView
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                style="@style/summaryTableHeader"
+                android:text="Q4"/>
+
+            <TextView
+                android:layout_height="wrap_content"
+                android:layout_weight="3"
+                style="@style/summaryTableHeader"
+                android:text="TOT"/>
+
+        </TableRow>
+
+        <TableRow
+            android:background="@color/text_darker_gray"
+            android:layout_marginTop="2dp"
+            android:layout_marginBottom="2dp">
+            <View
+                android:layout_height="1dp"
+                android:layout_width="match_parent"/>
+        </TableRow>
+
+        <TableRow>
+
+            <TextView
+                android:id="@+id/hName"
+                style="@style/summaryTableHeader"
+                android:layout_height="wrap_content"
+                android:layout_weight="3"
+                tools:text="PHI" />
+
+            <TextView
+                android:id="@+id/hq1"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                style="@style/summaryTableValue"
+                tools:text="23"/>
+
+            <TextView
+                android:id="@+id/hq2"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                style="@style/summaryTableValue"
+                tools:text="42"/>
+
+            <TextView
+                android:id="@+id/hq3"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                style="@style/summaryTableValue"
+                tools:text="32"/>
+
+            <TextView
+                android:id="@+id/hq4"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                style="@style/summaryTableValue"
+                tools:text="19"/>
+
+            <TextView
+                android:id="@+id/hTot"
+                style="@style/summaryTableHeader"
+                android:layout_height="wrap_content"
+                android:layout_weight="3"
+                tools:text="109" />
+
+        </TableRow>
+
+        <TableRow>
+
+            <TextView
+                android:id="@+id/vName"
+                style="@style/summaryTableHeader"
+                android:layout_height="wrap_content"
+                android:layout_weight="3"
+                tools:text="GSW" />
+
+            <TextView
+                android:id="@+id/vq1"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                style="@style/summaryTableValue"
+                tools:text="23"/>
+
+            <TextView
+                android:id="@+id/vq2"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                style="@style/summaryTableValue"
+                tools:text="42"/>
+
+            <TextView
+                android:id="@+id/vq3"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                style="@style/summaryTableValue"
+                tools:text="32"/>
+
+            <TextView
+                android:id="@+id/vq4"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                style="@style/summaryTableValue"
+                tools:text="19"/>
+
+            <TextView
+                android:id="@+id/vTot"
+                style="@style/summaryTableHeader"
+                android:layout_height="wrap_content"
+                android:layout_weight="3"
+                tools:text="109" />
+
+        </TableRow>
+
+        <TableRow
+            android:background="@color/text_darker_gray"
+            android:layout_marginTop="2dp"
+            android:layout_marginBottom="2dp">
+            <View
+                android:layout_height="1dp"
+                android:layout_width="match_parent"/>
+        </TableRow>
+
+    </TableLayout>
+
+</LinearLayout>

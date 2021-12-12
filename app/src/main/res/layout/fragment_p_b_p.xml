@@ -8,6 +8,16 @@
     android:orientation="vertical"
     tools:context=".gameinfoactivity.PBPFragment">
 
+    <TextView
+        android:id="@+id/notStartedTV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="16dp"
+        android:text="@string/game_not_started"
+        android:textColor="@color/text_gray"
+        android:visibility="gone" />
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/playsRecyclerView"
         android:layout_width="match_parent"

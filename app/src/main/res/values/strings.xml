@@ -4,7 +4,7 @@
     <string name="hint_player_name">Player name</string>
     <string name="confirm_choices">Confirm choices</string>
     <string name="reset_players_title">Delete All Players</string>
-    <string name="refresh_players">Refresh Players</string>
+    <string name="refresh_players">Refresh Stats</string>
     <string name="close">Close</string>
     <string name="delete_players">Delete Players</string>
 

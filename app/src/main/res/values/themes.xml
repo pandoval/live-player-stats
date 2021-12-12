@@ -49,4 +49,17 @@
     <style name="Theme.LivePlayerStats.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
     <style name="Theme.LivePlayerStats.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+    <style name="summaryTableValue">
+        <item name="android:gravity">center</item>
+        <item name="android:textSize">@dimen/summary_table_text_size</item>
+        <item name="android:textColor">@color/text_gray</item>
+    </style>
+
+    <style name="summaryTableHeader">
+        <item name="android:gravity">center</item>
+        <item name="android:textSize">@dimen/summary_table_text_size</item>
+        <item name="android:textColor">@color/text_gray</item>
+    </style>
+
 </resources>

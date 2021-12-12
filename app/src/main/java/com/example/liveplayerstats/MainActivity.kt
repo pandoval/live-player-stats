@@ -4,6 +4,7 @@ import android.app.Activity
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
@@ -47,7 +48,6 @@ class MainActivity : AppCompatActivity(), PlayerListAdapter.OnItemClickListener,
             val ids = data?.getStringArrayListExtra(NewPlayerActivity.REPLY_IDS)
             val teamNames = data?.getStringArrayListExtra(NewPlayerActivity.REPLY_TEAMNAMES)
             val teamIds = data?.getStringArrayListExtra(NewPlayerActivity.REPLY_TEAMIDS)
-
             if (names != null && ids != null && teamNames != null && teamIds != null) {
                 val listPlayers = ArrayList<Player>()
                 for (i in names.indices) {
@@ -81,8 +81,13 @@ class MainActivity : AppCompatActivity(), PlayerListAdapter.OnItemClickListener,
 
         subscribeObservers()
         playerViewModel.allPlayers.observe(this) { players ->
-            playerList = players
-            updatePage()
+            if (::playerList.isInitialized && playerList == players) {
+                Log.d("main", "list is same")
+                updatePage()
+            } else {
+                playerList = players
+                updatePage()
+            }
         }
 
         swipeRefreshLayout = findViewById<SwipeRefreshLayout>(R.id.mainSwipeRefresh)
@@ -111,6 +116,7 @@ class MainActivity : AppCompatActivity(), PlayerListAdapter.OnItemClickListener,
                     fab.isEnabled = true
                 }
                 is DataState.Loading -> {
+                    Log.d("main", "loading")
                     swipeRefreshLayout.isRefreshing = true
                     fab.isEnabled = false
                 }

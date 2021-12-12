@@ -42,6 +42,8 @@ class GameInfoActivity : AppCompatActivity() {
     var runnable: Runnable? = null
     val delay = 15000
 
+    private var firstLoad = true
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityGameInfoBinding.inflate(layoutInflater)
@@ -67,17 +69,17 @@ class GameInfoActivity : AppCompatActivity() {
                     tab.text = "Summary"
                 }
                 1 -> {
-                    tab.text = "Box Score"
+                    tab.text = "Play-by-Play"
                 }
                 2 -> {
-                    tab.text = "Plays"
+                    tab.text = "Box Score"
                 }
             }
         }.attach()
 
         currentBoxScore?.let { updateScoreboard(it) }
+        currentBoxScore?.let { gameInfoSharedViewModel.setBoxScore(it) }
         subscribeObservers()
-        fetchStats()
     }
 
     private fun subscribeObservers() {
@@ -181,6 +183,10 @@ class GameInfoActivity : AppCompatActivity() {
     }
 
     override fun onResume() {
+        if (currentBoxScore?.basicGameData?.statusNum == 2 || firstLoad) {
+            fetchStats()
+            firstLoad = false
+        }
         if (currentBoxScore?.basicGameData?.statusNum == 2) {
             handler.postDelayed(Runnable {
                 handler.postDelayed(runnable!!, delay.toLong())
