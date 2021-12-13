@@ -11,7 +11,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp">
 
-        <TableRow>
+        <TableRow android:id="@+id/headerRow">
 
             <TextView
                 style="@style/summaryTableHeader"
@@ -59,7 +59,7 @@
                 android:layout_width="match_parent"/>
         </TableRow>
 
-        <TableRow>
+        <TableRow android:id="@+id/hRow">
 
             <TextView
                 android:id="@+id/hName"
@@ -105,7 +105,7 @@
 
         </TableRow>
 
-        <TableRow>
+        <TableRow android:id="@+id/vRow">
 
             <TextView
                 android:id="@+id/vName"
