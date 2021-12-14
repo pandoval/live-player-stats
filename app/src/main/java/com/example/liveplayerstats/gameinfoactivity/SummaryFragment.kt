@@ -27,7 +27,15 @@ class SummaryFragment : Fragment() {
         super.onCreate(savedInstanceState)
 
         gameInfoSharedViewModel.boxScore.observe(this, Observer { b ->
-            setTable(b)
+            if (b.basicGameData.statusNum != 1) {
+                binding.summaryTableLayout.visibility = View.VISIBLE
+                binding.notStartedTV.visibility = View.GONE
+                setTable(b)
+            } else {
+                binding.summaryTableLayout.visibility = View.GONE
+                binding.notStartedTV.visibility = View.VISIBLE
+            }
+
         })
     }
 
