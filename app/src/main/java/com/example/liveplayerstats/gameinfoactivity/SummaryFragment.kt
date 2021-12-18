@@ -15,7 +15,6 @@ import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
 import com.example.liveplayerstats.R
 import com.example.liveplayerstats.boxscore.BoxScore
-import com.example.liveplayerstats.databinding.FragmentPBPBinding
 import com.example.liveplayerstats.databinding.FragmentSummaryBinding
 
 class SummaryFragment : Fragment() {
@@ -108,9 +107,9 @@ class SummaryFragment : Fragment() {
             if (currentOT < numOT) {
                 val difference = numOT - currentOT
                 for (i in 1..difference) {
-                    val tv1 = newTV("OT${currentOT + i}")
-                    val tv2 = newTV(h.linescore[currentOT + i + 3].score)
-                    val tv3 = newTV(v.linescore[currentOT + i + 3].score)
+                    val tv1 = newTableTV("OT${currentOT + i}")
+                    val tv2 = newTableTV(h.linescore[currentOT + i + 3].score)
+                    val tv3 = newTableTV(v.linescore[currentOT + i + 3].score)
 
                     overtimeTVs.add(tv1)
                     overtimeTVs.add(tv2)
@@ -132,7 +131,7 @@ class SummaryFragment : Fragment() {
         }
     }
 
-    private fun newTV(text: String): TextView {
+    private fun newTableTV(text: String): TextView {
         val tv = TextView(context)
         tv.layoutParams = TableRow.LayoutParams(
             TableRow.LayoutParams.MATCH_PARENT,
@@ -142,6 +141,11 @@ class SummaryFragment : Fragment() {
         tv.setTextSize(TypedValue.COMPLEX_UNIT_PX, resources.getDimension(R.dimen.summary_table_text_size))
         tv.setTextColor(ContextCompat.getColor(requireContext(), R.color.text_gray))
         return tv
+    }
+
+    private fun setTeamStats(b: BoxScore) {
+
+
     }
 
     private var _binding: FragmentSummaryBinding? = null

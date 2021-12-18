@@ -62,4 +62,16 @@
         <item name="android:textColor">@color/text_gray</item>
     </style>
 
+    <style name="summaryTeamStatsLabel">
+        <item name="android:gravity">center</item>
+        <item name="android:textSize">@dimen/summary_table_text_size</item>
+        <item name="android:textColor">@color/text_gray</item>
+    </style>
+
+    <style name="summaryTeamStatsValue">
+        <item name="android:gravity">center</item>
+        <item name="android:textSize">@dimen/summary_table_text_size</item>
+        <item name="android:textColor">@color/text_gray</item>
+    </style>
+
 </resources>
