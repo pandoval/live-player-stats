@@ -27,10 +27,13 @@ class SummaryFragment : Fragment() {
 
         gameInfoSharedViewModel.boxScore.observe(this, Observer { b ->
             if (b.basicGameData.statusNum != 1) {
+                binding.teamStatsTL.visibility = View.VISIBLE
                 binding.summaryTableLayout.visibility = View.VISIBLE
                 binding.notStartedTV.visibility = View.GONE
                 setTable(b)
+                setTeamStats(b)
             } else {
+                binding.teamStatsTL.visibility = View.GONE
                 binding.summaryTableLayout.visibility = View.GONE
                 binding.notStartedTV.visibility = View.VISIBLE
             }
@@ -144,8 +147,46 @@ class SummaryFragment : Fragment() {
     }
 
     private fun setTeamStats(b: BoxScore) {
+        val h = b.stats.hTeam.totals
+        val v = b.stats.vTeam.totals
 
+        val hFGText = "${h.fgm}/${h.fga} (${h.fgp}%)"
+        binding.hFG.text = hFGText
+        val hTPText = "${h.tpm}/${h.tpa} (${h.tpp}%)"
+        binding.hTP.text = hTPText
+        val hFTText = "${h.ftm}/${h.fta} (${h.ftp}%)"
+        binding.hFT.text = hFTText
+        binding.hAst.text = h.assists
+        binding.hReb.text = h.totReb
+        binding.hOReb.text = h.offReb
+        binding.hDReb.text = h.defReb
+        binding.hStl.text = h.steals
+        binding.hBlk.text = h.blocks
+        binding.hTo.text = h.turnovers
+        binding.hPOT.text = b.stats.hTeam.pointsOffTurnovers
+        binding.hPIP.text = b.stats.hTeam.pointsInPaint
+        binding.hSCP.text = b.stats.hTeam.secondChancePoints
+        binding.hFBP.text = b.stats.hTeam.fastBreakPoints
+        binding.hFouls.text = h.pFouls
 
+        val vFGText = "(${v.fgp}%) ${v.fgm}/${v.fga}"
+        binding.vFG.text = vFGText
+        val vTPText = "(${v.tpp}%) ${v.tpm}/${v.tpa}"
+        binding.vTP.text = vTPText
+        val vFTText = "(${v.ftp}%) ${v.ftm}/${v.fta}"
+        binding.vFT.text = vFTText
+        binding.vAst.text = v.assists
+        binding.vReb.text = v.totReb
+        binding.vOReb.text = v.offReb
+        binding.vDReb.text = v.defReb
+        binding.vStl.text = v.steals
+        binding.vBlk.text = v.blocks
+        binding.vTo.text = v.turnovers
+        binding.vPOT.text = b.stats.vTeam.pointsOffTurnovers
+        binding.vPIP.text = b.stats.vTeam.pointsInPaint
+        binding.vSCP.text = b.stats.vTeam.secondChancePoints
+        binding.vFBP.text = b.stats.vTeam.fastBreakPoints
+        binding.vFouls.text = v.pFouls
     }
 
     private var _binding: FragmentSummaryBinding? = null
