@@ -24,6 +24,7 @@ import com.example.liveplayerstats.boxscore.ActivePlayer
 import com.example.liveplayerstats.boxscore.BoxScore
 import com.example.liveplayerstats.databinding.FragmentBoxscoreBinding
 import com.example.liveplayerstats.util.DataState
+import com.example.liveplayerstats.util.TeamMapper
 import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.tabs.TabLayout
 import dagger.hilt.android.AndroidEntryPoint
@@ -51,8 +52,6 @@ class BoxScoreFragment : Fragment() {
     private lateinit var vNameHeaders1: TableRow
     private lateinit var vNameHeaders2: TableRow
 
-    private lateinit var tricodeArray: Array<String>
-    private lateinit var teamNameArray: Array<String>
     private lateinit var teamMap: Map<String,String>
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -61,9 +60,7 @@ class BoxScoreFragment : Fragment() {
         //    teamId = it?.getString(PLAYER_TEAM_ID).toString()
         //}
 
-        tricodeArray = requireContext().resources.getStringArray(R.array.nba_tricode)
-        teamNameArray = requireContext().resources.getStringArray(R.array.nba_team_names)
-        teamMap = tricodeArray.zip(teamNameArray).toMap()
+        teamMap = TeamMapper.tricodeNameMap(requireContext())
 
         gameInfoSharedViewModel.boxScore.observe(this, Observer { b ->
             if (b.basicGameData.statusNum != 1) {
