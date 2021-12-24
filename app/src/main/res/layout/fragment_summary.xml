@@ -1,576 +1,631 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     tools:context="gameinfoactivity.SummaryFragment"
     android:id="@+id/summaryLinearLayout">
 
-    <TextView
-        android:id="@+id/notStartedTV"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginTop="16dp"
-        android:text="@string/game_not_started"
-        android:textColor="@color/text_gray"
-        android:visibility="gone" />
-
-    <TableLayout
-        android:id="@+id/summaryTableLayout"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp">
-
-        <TableRow android:id="@+id/headerRow">
-
-            <TextView
-                style="@style/summaryTableHeader"
-                android:layout_height="wrap_content"
-                android:layout_weight="3" />
-
-            <TextView
-                android:layout_height="wrap_content"
-                android:layout_weight="2"
-                style="@style/summaryTableHeader"
-                android:text="Q1"/>
-
-            <TextView
-                android:layout_height="wrap_content"
-                android:layout_weight="2"
-                style="@style/summaryTableHeader"
-                android:text="Q2"/>
-
-            <TextView
-                android:layout_height="wrap_content"
-                android:layout_weight="2"
-                style="@style/summaryTableHeader"
-                android:text="Q3"/>
-
-            <TextView
-                android:layout_height="wrap_content"
-                android:layout_weight="2"
-                style="@style/summaryTableHeader"
-                android:text="Q4"/>
-
-            <TextView
-                android:layout_height="wrap_content"
-                android:layout_weight="3"
-                style="@style/summaryTableHeader"
-                android:text="TOT"/>
-
-        </TableRow>
-
-        <TableRow
-            android:background="@color/text_darker_gray"
-            android:layout_marginTop="2dp"
-            android:layout_marginBottom="2dp">
-            <View
-                android:layout_height="1dp"
-                android:layout_width="match_parent"/>
-        </TableRow>
-
-        <TableRow android:id="@+id/hRow">
-
-            <TextView
-                android:id="@+id/hName"
-                style="@style/summaryTableHeader"
-                android:layout_height="wrap_content"
-                android:layout_weight="3"
-                tools:text="PHI" />
-
-            <TextView
-                android:id="@+id/hq1"
-                android:layout_height="wrap_content"
-                android:layout_weight="2"
-                style="@style/summaryTableValue"
-                tools:text="23"/>
-
-            <TextView
-                android:id="@+id/hq2"
-                android:layout_height="wrap_content"
-                android:layout_weight="2"
-                style="@style/summaryTableValue"
-                tools:text="42"/>
-
-            <TextView
-                android:id="@+id/hq3"
-                android:layout_height="wrap_content"
-                android:layout_weight="2"
-                style="@style/summaryTableValue"
-                tools:text="32"/>
-
-            <TextView
-                android:id="@+id/hq4"
-                android:layout_height="wrap_content"
-                android:layout_weight="2"
-                style="@style/summaryTableValue"
-                tools:text="19"/>
-
-            <TextView
-                android:id="@+id/hTot"
-                style="@style/summaryTableHeader"
-                android:layout_height="wrap_content"
-                android:layout_weight="3"
-                tools:text="109" />
-
-        </TableRow>
-
-        <TableRow android:id="@+id/vRow">
-
-            <TextView
-                android:id="@+id/vName"
-                style="@style/summaryTableHeader"
-                android:layout_height="wrap_content"
-                android:layout_weight="3"
-                tools:text="GSW" />
-
-            <TextView
-                android:id="@+id/vq1"
-                android:layout_height="wrap_content"
-                android:layout_weight="2"
-                style="@style/summaryTableValue"
-                tools:text="23"/>
-
-            <TextView
-                android:id="@+id/vq2"
-                android:layout_height="wrap_content"
-                android:layout_weight="2"
-                style="@style/summaryTableValue"
-                tools:text="42"/>
-
-            <TextView
-                android:id="@+id/vq3"
-                android:layout_height="wrap_content"
-                android:layout_weight="2"
-                style="@style/summaryTableValue"
-                tools:text="32"/>
-
-            <TextView
-                android:id="@+id/vq4"
-                android:layout_height="wrap_content"
-                android:layout_weight="2"
-                style="@style/summaryTableValue"
-                tools:text="19"/>
-
-            <TextView
-                android:id="@+id/vTot"
-                style="@style/summaryTableHeader"
-                android:layout_height="wrap_content"
-                android:layout_weight="3"
-                tools:text="109" />
-
-        </TableRow>
-
-        <TableRow
-            android:background="@color/text_darker_gray"
-            android:layout_marginTop="2dp"
-            android:layout_marginBottom="2dp">
-            <View
-                android:layout_height="1dp"
-                android:layout_width="match_parent"/>
-        </TableRow>
-
-    </TableLayout>
-
-    <TableLayout
-        android:id="@+id/teamStatsTL"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp">
-
-        <TableRow>
-
-            <TextView
-                android:id="@+id/hFG"
-                style="@style/summaryTeamStatsValue"
-                android:layout_marginStart="@dimen/summary_team_stats_margin"
-                android:layout_weight="1"
-                android:gravity="start"
-                tools:text="115" />
-
-            <TextView
-                style="@style/summaryTeamStatsLabel"
-                android:layout_weight="10"
-                android:gravity="center"
-                android:text="Field Goals" />
-
-            <TextView
-                android:id="@+id/vFG"
-                style="@style/summaryTeamStatsValue"
-                android:layout_marginEnd="@dimen/summary_team_stats_margin"
-                android:layout_weight="1"
-                android:gravity="end"
-                tools:text="105" />
-
-        </TableRow>
-
-        <TableRow>
-
-            <TextView
-                android:id="@+id/hTP"
-                style="@style/summaryTeamStatsValue"
-                android:layout_marginStart="@dimen/summary_team_stats_margin"
-                android:layout_weight="1"
-                android:gravity="start"
-                tools:text="115" />
-
-            <TextView
-                style="@style/summaryTeamStatsLabel"
-                android:layout_weight="10"
-                android:gravity="center"
-                android:text="3 Pointers" />
-
-            <TextView
-                android:id="@+id/vTP"
-                style="@style/summaryTeamStatsValue"
-                android:layout_marginEnd="@dimen/summary_team_stats_margin"
-                android:layout_weight="1"
-                android:gravity="end"
-                tools:text="105" />
-
-        </TableRow>
-
-        <TableRow>
-
-            <TextView
-                android:id="@+id/hFT"
-                style="@style/summaryTeamStatsValue"
-                android:layout_marginStart="@dimen/summary_team_stats_margin"
-                android:layout_weight="1"
-                android:gravity="start"
-                tools:text="115" />
-
-            <TextView
-                style="@style/summaryTeamStatsLabel"
-                android:layout_weight="10"
-                android:gravity="center"
-                android:text="Free Throws" />
-
-            <TextView
-                android:id="@+id/vFT"
-                style="@style/summaryTeamStatsValue"
-                android:layout_marginEnd="@dimen/summary_team_stats_margin"
-                android:layout_weight="1"
-                android:gravity="end"
-                tools:text="105" />
-
-        </TableRow>
-
-        <TableRow>
-
-            <TextView
-                android:id="@+id/hAst"
-                style="@style/summaryTeamStatsValue"
-                android:layout_marginStart="@dimen/summary_team_stats_margin"
-                android:layout_weight="1"
-                android:gravity="start"
-                tools:text="115" />
-
-            <TextView
-                style="@style/summaryTeamStatsLabel"
-                android:layout_weight="10"
-                android:gravity="center"
-                android:text="Assists" />
-
-            <TextView
-                android:id="@+id/vAst"
-                style="@style/summaryTeamStatsValue"
-                android:layout_marginEnd="@dimen/summary_team_stats_margin"
-                android:layout_weight="1"
-                android:gravity="end"
-                tools:text="105" />
-
-        </TableRow>
-
-        <TableRow>
-
-            <TextView
-                android:id="@+id/hReb"
-                style="@style/summaryTeamStatsValue"
-                android:layout_marginStart="@dimen/summary_team_stats_margin"
-                android:layout_weight="1"
-                android:gravity="start"
-                tools:text="115" />
-
-            <TextView
-                style="@style/summaryTeamStatsLabel"
-                android:layout_weight="10"
-                android:gravity="center"
-                android:text="Total Rebounds" />
-
-            <TextView
-                android:id="@+id/vReb"
-                style="@style/summaryTeamStatsValue"
-                android:layout_marginEnd="@dimen/summary_team_stats_margin"
-                android:layout_weight="1"
-                android:gravity="end"
-                tools:text="105" />
-
-        </TableRow>
-
-        <TableRow>
-
-            <TextView
-                android:id="@+id/hOReb"
-                style="@style/summaryTeamStatsValue"
-                android:layout_marginStart="@dimen/summary_team_stats_margin"
-                android:layout_weight="1"
-                android:gravity="start"
-                tools:text="115" />
-
-            <TextView
-                style="@style/summaryTeamStatsLabel"
-                android:layout_weight="10"
-                android:gravity="center"
-                android:text="Offensive Rebounds" />
-
-            <TextView
-                android:id="@+id/vOReb"
-                style="@style/summaryTeamStatsValue"
-                android:layout_marginEnd="@dimen/summary_team_stats_margin"
-                android:layout_weight="1"
-                android:gravity="end"
-                tools:text="105" />
-
-        </TableRow>
-
-        <TableRow>
-
-            <TextView
-                android:id="@+id/hDReb"
-                style="@style/summaryTeamStatsValue"
-                android:layout_marginStart="@dimen/summary_team_stats_margin"
-                android:layout_weight="1"
-                android:gravity="start"
-                tools:text="115" />
-
-            <TextView
-                style="@style/summaryTeamStatsLabel"
-                android:layout_weight="10"
-                android:gravity="center"
-                android:text="Defensive Rebounds" />
-
-            <TextView
-                android:id="@+id/vDReb"
-                style="@style/summaryTeamStatsValue"
-                android:layout_marginEnd="@dimen/summary_team_stats_margin"
-                android:layout_weight="1"
-                android:gravity="end"
-                tools:text="105" />
-
-        </TableRow>
-
-        <TableRow>
-
-            <TextView
-                android:id="@+id/hStl"
-                style="@style/summaryTeamStatsValue"
-                android:layout_marginStart="@dimen/summary_team_stats_margin"
-                android:layout_weight="1"
-                android:gravity="start"
-                tools:text="115" />
-
-            <TextView
-                style="@style/summaryTeamStatsLabel"
-                android:layout_weight="10"
-                android:gravity="center"
-                android:text="Steals" />
-
-            <TextView
-                android:id="@+id/vStl"
-                style="@style/summaryTeamStatsValue"
-                android:layout_marginEnd="@dimen/summary_team_stats_margin"
-                android:layout_weight="1"
-                android:gravity="end"
-                tools:text="105" />
-
-        </TableRow>
-
-        <TableRow>
-
-            <TextView
-                android:id="@+id/hBlk"
-                style="@style/summaryTeamStatsValue"
-                android:layout_marginStart="@dimen/summary_team_stats_margin"
-                android:layout_weight="1"
-                android:gravity="start"
-                tools:text="115" />
-
-            <TextView
-                style="@style/summaryTeamStatsLabel"
-                android:layout_weight="10"
-                android:gravity="center"
-                android:text="Blocks" />
-
-            <TextView
-                android:id="@+id/vBlk"
-                style="@style/summaryTeamStatsValue"
-                android:layout_marginEnd="@dimen/summary_team_stats_margin"
-                android:layout_weight="1"
-                android:gravity="end"
-                tools:text="105" />
-
-        </TableRow>
-
-        <TableRow>
-
-            <TextView
-                android:id="@+id/hTo"
-                style="@style/summaryTeamStatsValue"
-                android:layout_marginStart="@dimen/summary_team_stats_margin"
-                android:layout_weight="1"
-                android:gravity="start"
-                tools:text="115" />
-
-            <TextView
-                style="@style/summaryTeamStatsLabel"
-                android:layout_weight="10"
-                android:gravity="center"
-                android:text="Turnovers" />
-
-            <TextView
-                android:id="@+id/vTo"
-                style="@style/summaryTeamStatsValue"
-                android:layout_marginEnd="@dimen/summary_team_stats_margin"
-                android:layout_weight="1"
-                android:gravity="end"
-                tools:text="105" />
-
-        </TableRow>
-
-        <TableRow>
-
-            <TextView
-                android:id="@+id/hPOT"
-                style="@style/summaryTeamStatsValue"
-                android:layout_marginStart="@dimen/summary_team_stats_margin"
-                android:layout_weight="1"
-                android:gravity="start"
-                tools:text="115" />
-
-            <TextView
-                style="@style/summaryTeamStatsLabel"
-                android:layout_weight="10"
-                android:gravity="center"
-                android:text="Points Off Turnovers" />
-
-            <TextView
-                android:id="@+id/vPOT"
-                style="@style/summaryTeamStatsValue"
-                android:layout_marginEnd="@dimen/summary_team_stats_margin"
-                android:layout_weight="1"
-                android:gravity="end"
-                tools:text="105" />
-
-        </TableRow>
-
-        <TableRow>
-
-            <TextView
-                android:id="@+id/hPIP"
-                style="@style/summaryTeamStatsValue"
-                android:layout_marginStart="@dimen/summary_team_stats_margin"
-                android:layout_weight="1"
-                android:gravity="start"
-                tools:text="115" />
-
-            <TextView
-                style="@style/summaryTeamStatsLabel"
-                android:layout_weight="10"
-                android:gravity="center"
-                android:text="Points in Paint" />
-
-            <TextView
-                android:id="@+id/vPIP"
-                style="@style/summaryTeamStatsValue"
-                android:layout_marginEnd="@dimen/summary_team_stats_margin"
-                android:layout_weight="1"
-                android:gravity="end"
-                tools:text="105" />
-
-        </TableRow>
-
-        <TableRow>
-
-            <TextView
-                android:id="@+id/hSCP"
-                style="@style/summaryTeamStatsValue"
-                android:layout_marginStart="@dimen/summary_team_stats_margin"
-                android:layout_weight="1"
-                android:gravity="start"
-                tools:text="115" />
-
-            <TextView
-                style="@style/summaryTeamStatsLabel"
-                android:layout_weight="10"
-                android:gravity="center"
-                android:text="2nd Chance Points" />
-
-            <TextView
-                android:id="@+id/vSCP"
-                style="@style/summaryTeamStatsValue"
-                android:layout_marginEnd="@dimen/summary_team_stats_margin"
-                android:layout_weight="1"
-                android:gravity="end"
-                tools:text="105" />
-
-        </TableRow>
-
-        <TableRow>
-
-            <TextView
-                android:id="@+id/hFBP"
-                style="@style/summaryTeamStatsValue"
-                android:layout_marginStart="@dimen/summary_team_stats_margin"
-                android:layout_weight="1"
-                android:gravity="start"
-                tools:text="115" />
-
-            <TextView
-                style="@style/summaryTeamStatsLabel"
-                android:layout_weight="10"
-                android:gravity="center"
-                android:text="Fast Break Points" />
-
-            <TextView
-                android:id="@+id/vFBP"
-                style="@style/summaryTeamStatsValue"
-                android:layout_marginEnd="@dimen/summary_team_stats_margin"
-                android:layout_weight="1"
-                android:gravity="end"
-                tools:text="105" />
-
-        </TableRow>
-
-        <TableRow>
-
-            <TextView
-                android:id="@+id/hFouls"
-                style="@style/summaryTeamStatsValue"
-                android:layout_marginStart="@dimen/summary_team_stats_margin"
-                android:layout_weight="1"
-                android:gravity="start"
-                tools:text="115" />
-
-            <TextView
-                style="@style/summaryTeamStatsLabel"
-                android:layout_weight="10"
-                android:gravity="center"
-                android:text="Fouls" />
-
-            <TextView
-                android:id="@+id/vFouls"
-                style="@style/summaryTeamStatsValue"
-                android:layout_marginEnd="@dimen/summary_team_stats_margin"
-                android:layout_weight="1"
-                android:gravity="end"
-                tools:text="105" />
-
-        </TableRow>
-
-
-    </TableLayout>
-
-</LinearLayout>
+        android:orientation="vertical"
+        android:paddingBottom="48dp">
+
+        <TextView
+            android:id="@+id/notStartedTV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="16dp"
+            android:text="@string/game_not_started"
+            android:textColor="@color/text_gray"
+            android:visibility="gone" />
+
+        <TableLayout
+            android:id="@+id/summaryTableLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp">
+
+            <TableRow
+                android:id="@+id/headerRow"
+                android:background="@color/dark_gray"
+                android:gravity="center_vertical"
+                android:minHeight="@dimen/summary_table_row_height">
+
+                <TextView
+                    style="@style/summaryTableHeader"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="3" />
+
+                <TextView
+                    style="@style/summaryTableHeader"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:text="Q1" />
+
+                <TextView
+                    style="@style/summaryTableHeader"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:text="Q2" />
+
+                <TextView
+                    style="@style/summaryTableHeader"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:text="Q3" />
+
+                <TextView
+                    style="@style/summaryTableHeader"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:text="Q4" />
+
+                <TextView
+                    style="@style/summaryTableHeader"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="3"
+                    android:text="TOT" />
+
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/hRow"
+                android:gravity="center_vertical"
+                android:minHeight="@dimen/summary_table_row_height">
+
+                <TextView
+                    android:id="@+id/hName"
+                    style="@style/summaryTableHeader"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="3"
+                    tools:text="PHI" />
+
+                <TextView
+                    android:id="@+id/hq1"
+                    style="@style/summaryTableValue"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    tools:text="23" />
+
+                <TextView
+                    android:id="@+id/hq2"
+                    style="@style/summaryTableValue"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    tools:text="42" />
+
+                <TextView
+                    android:id="@+id/hq3"
+                    style="@style/summaryTableValue"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    tools:text="32" />
+
+                <TextView
+                    android:id="@+id/hq4"
+                    style="@style/summaryTableValue"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    tools:text="19" />
+
+                <TextView
+                    android:id="@+id/hTot"
+                    style="@style/summaryTableHeader"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="3"
+                    tools:text="109" />
+
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/vRow"
+                android:background="@color/darker_gray"
+                android:gravity="center_vertical"
+                android:minHeight="@dimen/summary_table_row_height">
+
+                <TextView
+                    android:id="@+id/vName"
+                    style="@style/summaryTableHeader"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="3"
+                    tools:text="GSW" />
+
+                <TextView
+                    android:id="@+id/vq1"
+                    style="@style/summaryTableValue"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    tools:text="23" />
+
+                <TextView
+                    android:id="@+id/vq2"
+                    style="@style/summaryTableValue"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    tools:text="42" />
+
+                <TextView
+                    android:id="@+id/vq3"
+                    style="@style/summaryTableValue"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    tools:text="32" />
+
+                <TextView
+                    android:id="@+id/vq4"
+                    style="@style/summaryTableValue"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    tools:text="19" />
+
+                <TextView
+                    android:id="@+id/vTot"
+                    style="@style/summaryTableHeader"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="3"
+                    tools:text="109" />
+
+            </TableRow>
+
+        </TableLayout>
+
+        <TableLayout
+            android:id="@+id/teamStatsTL"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:background="@color/text_darker_gray">
+
+            <TableRow
+                android:background="@color/dark_gray"
+                android:gravity="center_vertical"
+                android:minHeight="@dimen/summary_team_stats_row_height">
+
+                <TextView
+                    android:layout_marginStart="16dp"
+                    android:id="@+id/hFullName"
+                    android:textColor="@color/text_gray"
+                    android:textSize="13sp"
+                    tools:text="Suns"
+                    android:layout_weight="1"
+                    android:gravity="start"/>
+
+                <TextView
+                    android:layout_marginEnd="16dp"
+                    android:id="@+id/vFullName"
+                    android:textColor="@color/text_gray"
+                    android:textSize="13sp"
+                    tools:text="Lakers"
+                    android:layout_weight="1"
+                    android:gravity="end"/>
+
+            </TableRow>
+
+            <TableRow android:background="@color/darkest_gray"
+                android:minHeight="@dimen/summary_team_stats_row_height"
+                android:gravity="center">
+
+                <TextView
+                    android:id="@+id/hFG"
+                    style="@style/summaryTeamStatsValue"
+                    android:layout_marginStart="@dimen/summary_team_stats_margin"
+                    android:layout_weight="1"
+                    android:gravity="start"
+                    tools:text="115" />
+
+                <TextView
+                    style="@style/summaryTeamStatsLabel"
+                    android:layout_weight="10"
+                    android:gravity="center"
+                    android:text="Field Goals" />
+
+                <TextView
+                    android:id="@+id/vFG"
+                    style="@style/summaryTeamStatsValue"
+                    android:layout_marginEnd="@dimen/summary_team_stats_margin"
+                    android:layout_weight="1"
+                    android:gravity="end"
+                    tools:text="105" />
+
+            </TableRow>
+
+            <TableRow android:background="@color/darker_gray"
+                android:minHeight="@dimen/summary_team_stats_row_height"
+                android:gravity="center">
+
+                <TextView
+                    android:id="@+id/hTP"
+                    style="@style/summaryTeamStatsValue"
+                    android:layout_marginStart="@dimen/summary_team_stats_margin"
+                    android:layout_weight="1"
+                    android:gravity="start"
+                    tools:text="115" />
+
+                <TextView
+                    style="@style/summaryTeamStatsLabel"
+                    android:layout_weight="10"
+                    android:gravity="center"
+                    android:text="3 Pointers" />
+
+                <TextView
+                    android:id="@+id/vTP"
+                    style="@style/summaryTeamStatsValue"
+                    android:layout_marginEnd="@dimen/summary_team_stats_margin"
+                    android:layout_weight="1"
+                    android:gravity="end"
+                    tools:text="105" />
+
+            </TableRow>
+
+            <TableRow android:background="@color/darkest_gray"
+                android:minHeight="@dimen/summary_team_stats_row_height"
+                android:gravity="center">
+
+                <TextView
+                    android:id="@+id/hFT"
+                    style="@style/summaryTeamStatsValue"
+                    android:layout_marginStart="@dimen/summary_team_stats_margin"
+                    android:layout_weight="1"
+                    android:gravity="start"
+                    tools:text="115" />
+
+                <TextView
+                    style="@style/summaryTeamStatsLabel"
+                    android:layout_weight="10"
+                    android:gravity="center"
+                    android:text="Free Throws" />
+
+                <TextView
+                    android:id="@+id/vFT"
+                    style="@style/summaryTeamStatsValue"
+                    android:layout_marginEnd="@dimen/summary_team_stats_margin"
+                    android:layout_weight="1"
+                    android:gravity="end"
+                    tools:text="105" />
+
+            </TableRow>
+
+            <TableRow android:background="@color/darker_gray"
+                android:minHeight="@dimen/summary_team_stats_row_height"
+                android:gravity="center">
+
+                <TextView
+                    android:id="@+id/hAst"
+                    style="@style/summaryTeamStatsValue"
+                    android:layout_marginStart="@dimen/summary_team_stats_margin"
+                    android:layout_weight="1"
+                    android:gravity="start"
+                    tools:text="115" />
+
+                <TextView
+                    style="@style/summaryTeamStatsLabel"
+                    android:layout_weight="10"
+                    android:gravity="center"
+                    android:text="Assists" />
+
+                <TextView
+                    android:id="@+id/vAst"
+                    style="@style/summaryTeamStatsValue"
+                    android:layout_marginEnd="@dimen/summary_team_stats_margin"
+                    android:layout_weight="1"
+                    android:gravity="end"
+                    tools:text="105" />
+
+            </TableRow>
+
+            <TableRow android:background="@color/darkest_gray"
+                android:minHeight="@dimen/summary_team_stats_row_height"
+                android:gravity="center">
+
+                <TextView
+                    android:id="@+id/hReb"
+                    style="@style/summaryTeamStatsValue"
+                    android:layout_marginStart="@dimen/summary_team_stats_margin"
+                    android:layout_weight="1"
+                    android:gravity="start"
+                    tools:text="115" />
+
+                <TextView
+                    style="@style/summaryTeamStatsLabel"
+                    android:layout_weight="10"
+                    android:gravity="center"
+                    android:text="Total Rebounds" />
+
+                <TextView
+                    android:id="@+id/vReb"
+                    style="@style/summaryTeamStatsValue"
+                    android:layout_marginEnd="@dimen/summary_team_stats_margin"
+                    android:layout_weight="1"
+                    android:gravity="end"
+                    tools:text="105" />
+
+            </TableRow>
+
+            <TableRow android:background="@color/darker_gray"
+                android:minHeight="@dimen/summary_team_stats_row_height"
+                android:gravity="center">
+
+                <TextView
+                    android:id="@+id/hOReb"
+                    style="@style/summaryTeamStatsValue"
+                    android:layout_marginStart="@dimen/summary_team_stats_margin"
+                    android:layout_weight="1"
+                    android:gravity="start"
+                    tools:text="115" />
+
+                <TextView
+                    style="@style/summaryTeamStatsLabel"
+                    android:layout_weight="10"
+                    android:gravity="center"
+                    android:text="Offensive Rebounds" />
+
+                <TextView
+                    android:id="@+id/vOReb"
+                    style="@style/summaryTeamStatsValue"
+                    android:layout_marginEnd="@dimen/summary_team_stats_margin"
+                    android:layout_weight="1"
+                    android:gravity="end"
+                    tools:text="105" />
+
+            </TableRow>
+
+            <TableRow android:background="@color/darkest_gray"
+                android:minHeight="@dimen/summary_team_stats_row_height"
+                android:gravity="center">
+
+                <TextView
+                    android:id="@+id/hDReb"
+                    style="@style/summaryTeamStatsValue"
+                    android:layout_marginStart="@dimen/summary_team_stats_margin"
+                    android:layout_weight="1"
+                    android:gravity="start"
+                    tools:text="115" />
+
+                <TextView
+                    style="@style/summaryTeamStatsLabel"
+                    android:layout_weight="10"
+                    android:gravity="center"
+                    android:text="Defensive Rebounds" />
+
+                <TextView
+                    android:id="@+id/vDReb"
+                    style="@style/summaryTeamStatsValue"
+                    android:layout_marginEnd="@dimen/summary_team_stats_margin"
+                    android:layout_weight="1"
+                    android:gravity="end"
+                    tools:text="105" />
+
+            </TableRow>
+
+            <TableRow android:background="@color/darker_gray"
+                android:minHeight="@dimen/summary_team_stats_row_height"
+                android:gravity="center">
+
+                <TextView
+                    android:id="@+id/hStl"
+                    style="@style/summaryTeamStatsValue"
+                    android:layout_marginStart="@dimen/summary_team_stats_margin"
+                    android:layout_weight="1"
+                    android:gravity="start"
+                    tools:text="115" />
+
+                <TextView
+                    style="@style/summaryTeamStatsLabel"
+                    android:layout_weight="10"
+                    android:gravity="center"
+                    android:text="Steals" />
+
+                <TextView
+                    android:id="@+id/vStl"
+                    style="@style/summaryTeamStatsValue"
+                    android:layout_marginEnd="@dimen/summary_team_stats_margin"
+                    android:layout_weight="1"
+                    android:gravity="end"
+                    tools:text="105" />
+
+            </TableRow>
+
+            <TableRow android:background="@color/darkest_gray"
+                android:minHeight="@dimen/summary_team_stats_row_height"
+                android:gravity="center">
+
+                <TextView
+                    android:id="@+id/hBlk"
+                    style="@style/summaryTeamStatsValue"
+                    android:layout_marginStart="@dimen/summary_team_stats_margin"
+                    android:layout_weight="1"
+                    android:gravity="start"
+                    tools:text="115" />
+
+                <TextView
+                    style="@style/summaryTeamStatsLabel"
+                    android:layout_weight="10"
+                    android:gravity="center"
+                    android:text="Blocks" />
+
+                <TextView
+                    android:id="@+id/vBlk"
+                    style="@style/summaryTeamStatsValue"
+                    android:layout_marginEnd="@dimen/summary_team_stats_margin"
+                    android:layout_weight="1"
+                    android:gravity="end"
+                    tools:text="105" />
+
+            </TableRow>
+
+            <TableRow android:background="@color/darker_gray"
+                android:minHeight="@dimen/summary_team_stats_row_height"
+                android:gravity="center">
+
+                <TextView
+                    android:id="@+id/hTo"
+                    style="@style/summaryTeamStatsValue"
+                    android:layout_marginStart="@dimen/summary_team_stats_margin"
+                    android:layout_weight="1"
+                    android:gravity="start"
+                    tools:text="115" />
+
+                <TextView
+                    style="@style/summaryTeamStatsLabel"
+                    android:layout_weight="10"
+                    android:gravity="center"
+                    android:text="Turnovers" />
+
+                <TextView
+                    android:id="@+id/vTo"
+                    style="@style/summaryTeamStatsValue"
+                    android:layout_marginEnd="@dimen/summary_team_stats_margin"
+                    android:layout_weight="1"
+                    android:gravity="end"
+                    tools:text="105" />
+
+            </TableRow>
+
+            <TableRow android:background="@color/darkest_gray"
+                android:minHeight="@dimen/summary_team_stats_row_height"
+                android:gravity="center">
+
+                <TextView
+                    android:id="@+id/hPOT"
+                    style="@style/summaryTeamStatsValue"
+                    android:layout_marginStart="@dimen/summary_team_stats_margin"
+                    android:layout_weight="1"
+                    android:gravity="start"
+                    tools:text="115" />
+
+                <TextView
+                    style="@style/summaryTeamStatsLabel"
+                    android:layout_weight="10"
+                    android:gravity="center"
+                    android:text="Points Off Turnovers" />
+
+                <TextView
+                    android:id="@+id/vPOT"
+                    style="@style/summaryTeamStatsValue"
+                    android:layout_marginEnd="@dimen/summary_team_stats_margin"
+                    android:layout_weight="1"
+                    android:gravity="end"
+                    tools:text="105" />
+
+            </TableRow>
+
+            <TableRow android:background="@color/darker_gray"
+                android:minHeight="@dimen/summary_team_stats_row_height"
+                android:gravity="center">
+
+                <TextView
+                    android:id="@+id/hPIP"
+                    style="@style/summaryTeamStatsValue"
+                    android:layout_marginStart="@dimen/summary_team_stats_margin"
+                    android:layout_weight="1"
+                    android:gravity="start"
+                    tools:text="115" />
+
+                <TextView
+                    style="@style/summaryTeamStatsLabel"
+                    android:layout_weight="10"
+                    android:gravity="center"
+                    android:text="Points in Paint" />
+
+                <TextView
+                    android:id="@+id/vPIP"
+                    style="@style/summaryTeamStatsValue"
+                    android:layout_marginEnd="@dimen/summary_team_stats_margin"
+                    android:layout_weight="1"
+                    android:gravity="end"
+                    tools:text="105" />
+
+            </TableRow>
+
+            <TableRow android:background="@color/darkest_gray"
+                android:minHeight="@dimen/summary_team_stats_row_height"
+                android:gravity="center">
+
+                <TextView
+                    android:id="@+id/hSCP"
+                    style="@style/summaryTeamStatsValue"
+                    android:layout_marginStart="@dimen/summary_team_stats_margin"
+                    android:layout_weight="1"
+                    android:gravity="start"
+                    tools:text="115" />
+
+                <TextView
+                    style="@style/summaryTeamStatsLabel"
+                    android:layout_weight="10"
+                    android:gravity="center"
+                    android:text="2nd Chance Points" />
+
+                <TextView
+                    android:id="@+id/vSCP"
+                    style="@style/summaryTeamStatsValue"
+                    android:layout_marginEnd="@dimen/summary_team_stats_margin"
+                    android:layout_weight="1"
+                    android:gravity="end"
+                    tools:text="105" />
+
+            </TableRow>
+
+            <TableRow android:background="@color/darker_gray"
+                android:minHeight="@dimen/summary_team_stats_row_height"
+                android:gravity="center">
+
+                <TextView
+                    android:id="@+id/hFBP"
+                    style="@style/summaryTeamStatsValue"
+                    android:layout_marginStart="@dimen/summary_team_stats_margin"
+                    android:layout_weight="1"
+                    android:gravity="start"
+                    tools:text="115" />
+
+                <TextView
+                    style="@style/summaryTeamStatsLabel"
+                    android:layout_weight="10"
+                    android:gravity="center"
+                    android:text="Fast Break Points" />
+
+                <TextView
+                    android:id="@+id/vFBP"
+                    style="@style/summaryTeamStatsValue"
+                    android:layout_marginEnd="@dimen/summary_team_stats_margin"
+                    android:layout_weight="1"
+                    android:gravity="end"
+                    tools:text="105" />
+
+            </TableRow>
+
+            <TableRow android:background="@color/darkest_gray"
+                android:minHeight="@dimen/summary_team_stats_row_height"
+                android:gravity="center">
+
+                <TextView
+                    android:id="@+id/hFouls"
+                    style="@style/summaryTeamStatsValue"
+                    android:layout_marginStart="@dimen/summary_team_stats_margin"
+                    android:layout_weight="1"
+                    android:gravity="start"
+                    tools:text="115" />
+
+                <TextView
+                    style="@style/summaryTeamStatsLabel"
+                    android:layout_weight="10"
+                    android:gravity="center"
+                    android:text="Fouls" />
+
+                <TextView
+                    android:id="@+id/vFouls"
+                    style="@style/summaryTeamStatsValue"
+                    android:layout_marginEnd="@dimen/summary_team_stats_margin"
+                    android:layout_weight="1"
+                    android:gravity="end"
+                    tools:text="105" />
+
+            </TableRow>
+
+        </TableLayout>
+
+    </LinearLayout>
+
+</ScrollView>

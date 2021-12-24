@@ -16,6 +16,7 @@ import androidx.lifecycle.Observer
 import com.example.liveplayerstats.R
 import com.example.liveplayerstats.boxscore.BoxScore
 import com.example.liveplayerstats.databinding.FragmentSummaryBinding
+import com.example.liveplayerstats.util.TeamMapper
 
 class SummaryFragment : Fragment() {
 
@@ -149,6 +150,10 @@ class SummaryFragment : Fragment() {
     private fun setTeamStats(b: BoxScore) {
         val h = b.stats.hTeam.totals
         val v = b.stats.vTeam.totals
+
+        val teamMap = TeamMapper.tricodeNameMap(requireContext())
+        binding.hFullName.text = teamMap[b.basicGameData.hTeam.triCode]
+        binding.vFullName.text = teamMap[b.basicGameData.vTeam.triCode]
 
         val hFGText = "${h.fgm}/${h.fga} (${h.fgp}%)"
         binding.hFG.text = hFGText
