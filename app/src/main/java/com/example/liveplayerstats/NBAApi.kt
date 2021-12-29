@@ -25,7 +25,6 @@ interface NBAApi {
     @GET("v1/{date}/{gameId}_boxscore.json")
     suspend fun getBoxscore(@Path("date") date: String, @Path("gameId") gameId: String): BoxScore
 
-    //CHANGE 2020 TO PLAYING YEAR
     //TODO("POTENTIALLY CHANGE THIS TO GET TODAY PAGE AND GET YEAR FROM THERE")
     @GET("v1/$SEASON_YEAR/players.json")
     suspend fun getPlayerList(): PlayerList

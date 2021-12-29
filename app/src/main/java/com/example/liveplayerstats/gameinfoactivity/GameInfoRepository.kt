@@ -24,6 +24,7 @@ class GameInfoRepository @Inject constructor(private val nbaApi: NBAApi){
             val date = PlayerStatsRepository.getDate()
             val plays = mutableListOf<Play>()
             for (i in 1..11) {
+                Log.e("gameinforepository", "$date, $gameId, ${i.toString()}")
                 val quarterPlays = nbaApi.getPBP(date, gameId = gameId, i.toString()).plays
                 if (quarterPlays.isNotEmpty()) {
                     for (p in quarterPlays) {
@@ -38,7 +39,7 @@ class GameInfoRepository @Inject constructor(private val nbaApi: NBAApi){
             if (e is HttpException) {
                 emit(DataState.Success(listOf()))
             }
-            Log.e("error", e.toString())
+            Log.e("gameinforepository", e.toString())
             emit(DataState.Error(e))
         }
     }

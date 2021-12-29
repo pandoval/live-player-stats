@@ -135,6 +135,8 @@ class SummaryFragment : Fragment() {
         }
     }
 
+
+
     private fun newTableTV(text: String): TextView {
         val tv = TextView(context)
         tv.layoutParams = TableRow.LayoutParams(
@@ -151,7 +153,7 @@ class SummaryFragment : Fragment() {
         val h = b.stats.hTeam.totals
         val v = b.stats.vTeam.totals
 
-        val teamMap = TeamMapper.tricodeNameMap(requireContext())
+        val teamMap = TeamMapper.triCodeNameMap(requireContext())
         binding.hFullName.text = teamMap[b.basicGameData.hTeam.triCode]
         binding.vFullName.text = teamMap[b.basicGameData.vTeam.triCode]
 

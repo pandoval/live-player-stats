@@ -13,21 +13,15 @@ import android.widget.TableRow
 import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.core.view.get
-import androidx.core.view.marginEnd
-import androidx.core.widget.TextViewCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
-import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import com.example.liveplayerstats.R
 import com.example.liveplayerstats.boxscore.ActivePlayer
 import com.example.liveplayerstats.boxscore.BoxScore
 import com.example.liveplayerstats.databinding.FragmentBoxscoreBinding
-import com.example.liveplayerstats.util.DataState
 import com.example.liveplayerstats.util.TeamMapper
-import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.tabs.TabLayout
-import dagger.hilt.android.AndroidEntryPoint
 
 private const val PLAYER_TEAM_ID = "teamId"
 
@@ -60,7 +54,7 @@ class BoxScoreFragment : Fragment() {
         //    teamId = it?.getString(PLAYER_TEAM_ID).toString()
         //}
 
-        teamMap = TeamMapper.tricodeNameMap(requireContext())
+        teamMap = TeamMapper.triCodeNameMap(requireContext())
 
         gameInfoSharedViewModel.boxScore.observe(this, Observer { b ->
             if (b.basicGameData.statusNum != 1) {
