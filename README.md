@@ -2,15 +2,19 @@
 An Android app for live NBA player stats.  
 Track your favorite NBA players all at once with this app!
 
-## Current Features
-* Add your favorite NBA players
-* Live game scoreboards for each player
-* Live stats for each player
-* Easily delete and add players
-* List of players is saved in a database
-* Indicator for when players are on/off the court
+<img src="https://i.postimg.cc/RZ7k2c9X/Screenshot-20220122-165401.jpg" width="250"><img src="https://i.postimg.cc/NGVvXsp7/Screenshot-20220122-165238.jpg" width="250">
+<img src="https://i.postimg.cc/fy64QCJg/Screenshot-20220122-165824.jpg" width="250">
+<img src="https://i.postimg.cc/bNtcH75X/Screenshot-20220122-165604.jpg" width="250">
+<img src="https://i.postimg.cc/wB9Cz7jH/Screenshot-20220122-165454.jpg" width="250">
+<img src="https://i.postimg.cc/fRQ4HH4V/Screenshot-20220122-165559.jpg" width="250">
 
-## Features in Progress
-* Open up boxscore/game information when player is clicked
-* Live scoreboard displaying all games for the day
-* Player sorting/filtering
+## Features
+* Track your favorite NBA players 
+* Live game scoreboards
+* Live player stats
+* Easily delete and add players
+* On/off court indicator
+* Live game stats
+* Live play-by-play
+* Live boxscores
+
